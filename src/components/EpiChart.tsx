@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 
 const weeklyData = [
   { sem: "SE1", conf2025: 1, notif2026: 2, conf2026: 2 },
@@ -38,9 +38,15 @@ export function EpiChart() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12, color: "hsl(210 15% 55%)" }} />
-          <Bar dataKey="conf2025" name="Confirmados 2025" fill="hsl(210 80% 55%)" radius={[3, 3, 0, 0]} />
-          <Bar dataKey="notif2026" name="Notificados 2026" fill="hsl(38 92% 50%)" radius={[3, 3, 0, 0]} />
-          <Bar dataKey="conf2026" name="Confirmados 2026" fill="hsl(174 62% 47%)" radius={[3, 3, 0, 0]} />
+          <Bar dataKey="conf2025" name="Confirmados 2025" fill="hsl(210 80% 55%)" radius={[3, 3, 0, 0]}>
+            <LabelList dataKey="conf2025" position="top" fill="hsl(210 80% 55%)" fontSize={9} />
+          </Bar>
+          <Bar dataKey="notif2026" name="Notificados 2026" fill="hsl(38 92% 50%)" radius={[3, 3, 0, 0]}>
+            <LabelList dataKey="notif2026" position="top" fill="hsl(38 92% 50%)" fontSize={9} />
+          </Bar>
+          <Bar dataKey="conf2026" name="Confirmados 2026" fill="hsl(174 62% 47%)" radius={[3, 3, 0, 0]}>
+            <LabelList dataKey="conf2026" position="top" fill="hsl(174 62% 47%)" fontSize={9} />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
