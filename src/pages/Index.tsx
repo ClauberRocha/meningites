@@ -69,13 +69,13 @@ const Index = () => {
           <div className="glass-card p-5 col-span-1 md:col-span-2">
             <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Status dos Casos</h3>
             <div className="flex h-8 rounded-lg overflow-hidden">
-              <div className="bg-success flex items-center justify-center text-xs font-semibold text-success-foreground" style={{ width: "32%" }}>
+              <div className="bg-destructive flex items-center justify-center text-xs font-semibold text-destructive-foreground" style={{ width: "32%" }}>
                 21 Conf.
               </div>
               <div className="bg-warning flex items-center justify-center text-xs font-semibold text-warning-foreground" style={{ width: "39%" }}>
                 26 Invest.
               </div>
-              <div className="bg-secondary flex items-center justify-center text-xs font-semibold text-secondary-foreground" style={{ width: "29%" }}>
+              <div className="bg-success flex items-center justify-center text-xs font-semibold text-success-foreground" style={{ width: "29%" }}>
                 19 Desc.
               </div>
             </div>
