@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 
-const weeklyData = [
+const allWeeklyData = [
   { sem: "SE1", conf2025: 1, notif2026: 2, conf2026: 2 },
   { sem: "SE2", conf2025: 0, notif2026: 4, conf2026: 2 },
   { sem: "SE3", conf2025: 5, notif2026: 5, conf2026: 4 },
@@ -18,11 +18,24 @@ const weeklyData = [
   { sem: "SE15", conf2025: 0, notif2026: 5, conf2026: 0 },
 ];
 
-export function EpiChart() {
+interface EpiChartProps {
+  startWeek?: number;
+  endWeek?: number;
+}
+
+export function EpiChart({ startWeek = 1, endWeek = 15 }: EpiChartProps) {
+  const weeklyData = allWeeklyData.slice(startWeek - 1, endWeek);
+  const totalNotif = weeklyData.reduce((s, d) => s + d.notif2026, 0);
+  const totalConf = weeklyData.reduce((s, d) => s + d.conf2026, 0);
+  const taxa = totalNotif > 0 ? ((totalConf / totalNotif) * 100).toFixed(1) : "0";
+
   return (
-    <div className="glass-card p-6">
-      <h3 className="font-display font-semibold text-foreground mb-1">Distribuição por Semana Epidemiológica</h3>
-      <p className="text-xs text-muted-foreground mb-4">Comparação 2025 vs 2026 — SE 01 a SE 15</p>
+    <div>
+      <div className="flex flex-wrap gap-4 mb-4 text-sm">
+        <span className="text-muted-foreground">Notificados 2026: <span className="font-bold text-warning">{totalNotif}</span></span>
+        <span className="text-muted-foreground">Confirmados 2026: <span className="font-bold text-primary">{totalConf}</span></span>
+        <span className="text-muted-foreground">Taxa de confirmação: <span className="font-bold text-foreground">{taxa}%</span></span>
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={weeklyData} barGap={2}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
