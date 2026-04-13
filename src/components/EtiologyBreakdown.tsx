@@ -28,7 +28,7 @@ export function EtiologyBreakdown() {
         <div className="w-32 h-32">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie data={data} innerRadius={30} outerRadius={55} paddingAngle={3} dataKey="value" stroke="none">
+              <Pie data={data} innerRadius={30} outerRadius={55} paddingAngle={3} dataKey="value" stroke="none" label={({ name, value }) => `${name}: ${value}`}>
                 {data.map((entry, i) => <Cell key={i} fill={entry.color} />)}
               </Pie>
               <Tooltip

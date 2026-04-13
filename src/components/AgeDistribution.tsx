@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell, LabelList } from "recharts";
 
 const ageData = [
   { faixa: "0-1", casos: 6 },
@@ -42,6 +42,7 @@ export function AgeDistribution() {
             }}
           />
           <Bar dataKey="casos" name="Casos" radius={[0, 4, 4, 0]}>
+            <LabelList dataKey="casos" position="right" fill="hsl(210 20% 85%)" fontSize={11} fontWeight={600} />
             {ageData.map((_, i) => (
               <Cell key={i} fill={colors[i]} />
             ))}
