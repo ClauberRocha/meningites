@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from "recharts";
 
 const allWeeklyData = [
   { sem: "SE1", conf2025: 1, notif2026: 2, conf2026: 2 },
@@ -37,7 +37,7 @@ export function EpiChart({ startWeek = 1, endWeek = 15 }: EpiChartProps) {
         <span className="text-muted-foreground">Taxa de confirmação: <span className="font-bold text-foreground">{taxa}%</span></span>
       </div>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={weeklyData} barGap={2}>
+        <LineChart data={weeklyData}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
           <XAxis dataKey="sem" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
@@ -51,16 +51,10 @@ export function EpiChart({ startWeek = 1, endWeek = 15 }: EpiChartProps) {
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12, color: "hsl(210 15% 55%)" }} />
-          <Bar dataKey="conf2025" name="Confirmados 2025" fill="hsl(210 80% 55%)" radius={[3, 3, 0, 0]}>
-            <LabelList dataKey="conf2025" position="top" fill="hsl(210 80% 55%)" fontSize={9} />
-          </Bar>
-          <Bar dataKey="notif2026" name="Notificados 2026" fill="hsl(38 92% 50%)" radius={[3, 3, 0, 0]}>
-            <LabelList dataKey="notif2026" position="top" fill="hsl(38 92% 50%)" fontSize={9} />
-          </Bar>
-          <Bar dataKey="conf2026" name="Confirmados 2026" fill="hsl(174 62% 47%)" radius={[3, 3, 0, 0]}>
-            <LabelList dataKey="conf2026" position="top" fill="hsl(174 62% 47%)" fontSize={9} />
-          </Bar>
-        </BarChart>
+          <Line type="monotone" dataKey="conf2025" name="Confirmados 2025" stroke="hsl(210 80% 55%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="notif2026" name="Notificados 2026" stroke="hsl(38 92% 50%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="conf2026" name="Confirmados 2026" stroke="hsl(174 62% 47%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
