@@ -1,15 +1,15 @@
+const total = 26;
+
 const regions = [
   { name: "Metropolitana", value: 12, max: 12 },
+  { name: "Santa Inês", value: 3, max: 12 },
+  { name: "Rosário", value: 3, max: 12 },
   { name: "Viana", value: 2, max: 12 },
-  { name: "Rosário", value: 1, max: 12 },
-  { name: "Barra do Corda", value: 1, max: 12 },
-  { name: "Itapecuru", value: 1, max: 12 },
-];
-
-const macroRegions = [
-  { name: "Macrorregião Norte", pct: 86 },
-  { name: "Macrorregião Sul", pct: 5 },
-  { name: "Macrorregião Leste", pct: 10 },
+  { name: "Bacabal", value: 2, max: 12 },
+  { name: "Presidente Dutra", value: 1, max: 12 },
+  { name: "Balsas", value: 1, max: 12 },
+  { name: "Imperatriz", value: 1, max: 12 },
+  { name: "Pedreiras", value: 1, max: 12 },
 ];
 
 export function GeographicHeatmap() {
