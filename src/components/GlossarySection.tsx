@@ -9,18 +9,39 @@ const glossary = [
   { sigla: "PNI", desc: "Programa Nacional de Imunizações" },
 ];
 
+const borderColors: Record<string, string> = {
+  destructive: "border-destructive/30 hover:border-destructive/60",
+  warning: "border-warning/30 hover:border-warning/60",
+  default: "border-border/50 hover:border-primary/40",
+};
+
+const bgColors: Record<string, string> = {
+  destructive: "bg-destructive/5",
+  warning: "bg-warning/5",
+  default: "bg-secondary/30",
+};
+
 export function GlossarySection() {
   return (
     <div className="glass-card p-6">
       <h3 className="font-display font-semibold text-foreground mb-1">Glossário de Siglas Epidemiológicas</h3>
       <p className="text-xs text-muted-foreground mb-4">Definições de termos e siglas utilizadas no dashboard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {glossary.map((g) => (
-          <div key={g.sigla} className="flex gap-3 p-3 bg-secondary/30 rounded-lg">
-            <span className="text-sm font-bold text-primary shrink-0 w-16">{g.sigla}</span>
-            <span className="text-xs text-muted-foreground">{g.desc}</span>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {glossary.map((g, i) => {
+          const variant = i < 3 ? "destructive" : i < 6 ? "warning" : "default";
+          return (
+            <div
+              key={g.sigla}
+              className={`rounded-xl border p-4 transition-all hover:scale-[1.02] ${borderColors[variant]} ${bgColors[variant]}`}
+            >
+              <div className="flex items-start gap-2 mb-2">
+                <span className="text-xl">📋</span>
+                <h4 className="text-sm font-bold text-primary">{g.sigla}</h4>
+              </div>
+              <p className="text-xs text-muted-foreground">{g.desc}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
