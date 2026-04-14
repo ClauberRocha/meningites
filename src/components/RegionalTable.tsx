@@ -16,7 +16,7 @@ export function RegionalTable() {
   return (
     <div className="glass-card p-6">
       <h3 className="font-display font-semibold text-foreground mb-1">Distribuição por Regional</h3>
-      <p className="text-xs text-muted-foreground mb-4">Casos confirmados e pendentes</p>
+      <p className="text-xs text-muted-foreground mb-4">Casos pendentes de confirmação</p>
       <div className="space-y-2.5 max-h-[300px] overflow-y-auto pr-1">
         {confirmedData.map((item) => (
           <div key={item.regional} className="flex items-center gap-3">
@@ -28,13 +28,8 @@ export function RegionalTable() {
               />
             </div>
             <span className="text-sm font-semibold text-primary w-6 text-right">{item.confirmados}</span>
-            <span className="text-xs text-warning w-6 text-right">{item.pendentes > 0 ? item.pendentes : "—"}</span>
           </div>
         ))}
-      </div>
-      <div className="flex gap-4 mt-4 text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-primary" /> Confirmados</span>
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-warning" /> Pendentes</span>
       </div>
     </div>
   );
