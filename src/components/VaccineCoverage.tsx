@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const vaccineData = [
   { year: "2020", BCG: 72, HepB: 68, DTP: 65, VIP: 63, Pneumo: 61, TripliceViral: 70, DTPAdulto: 45 },
@@ -21,6 +22,7 @@ const vaccines = [
   { key: "DTPAdulto", color: "hsl(330 65% 55%)", name: "DTP Adulto" },
 ];
 
+const allKeys = vaccines.map((v) => v.key);
 const years = vaccineData.map((d) => d.year);
 
 const tooltipStyle = {
@@ -34,6 +36,25 @@ const tooltipStyle = {
 export function VaccineCoverage() {
   const [startYear, setStartYear] = useState("2020");
   const [endYear, setEndYear] = useState("2025");
+  const [selectedVaccines, setSelectedVaccines] = useState<string[]>([...allKeys]);
+
+  const allSelected = selectedVaccines.length === allKeys.length;
+
+  const toggleVaccine = (key: string) => {
+    setSelectedVaccines((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
+    );
+  };
+
+  const toggleAll = () => {
+    setSelectedVaccines(allSelected ? [] : [...allKeys]);
+  };
+
+  const clearFilters = () => {
+    setStartYear("2020");
+    setEndYear("2025");
+    setSelectedVaccines([...allKeys]);
+  };
 
   const filteredData = useMemo(() => {
     const si = years.indexOf(startYear);
@@ -41,18 +62,20 @@ export function VaccineCoverage() {
     return vaccineData.slice(Math.min(si, ei), Math.max(si, ei) + 1);
   }, [startYear, endYear]);
 
+  const activeVaccines = vaccines.filter((v) => selectedVaccines.includes(v.key));
+
   const comparison = useMemo(() => {
     const startData = vaccineData.find((d) => d.year === startYear);
     const endData = vaccineData.find((d) => d.year === endYear);
     if (!startData || !endData) return [];
 
-    return vaccines.map((v) => {
+    return activeVaccines.map((v) => {
       const initial = startData[v.key as keyof typeof startData] as number;
       const final = endData[v.key as keyof typeof endData] as number;
       const diff = final - initial;
       return { ...v, initial, final, diff };
     });
-  }, [startYear, endYear]);
+  }, [startYear, endYear, selectedVaccines]);
 
   const avgDiff = comparison.length > 0
     ? (comparison.reduce((s, c) => s + c.diff, 0) / comparison.length).toFixed(1)
@@ -63,8 +86,8 @@ export function VaccineCoverage() {
       <h3 className="font-display font-semibold text-foreground mb-1">Cobertura Vacinal de Rotina</h3>
       <p className="text-xs text-muted-foreground mb-4">Evolução da cobertura vacinal para principais vacinas do calendário infantil</p>
 
-      {/* Filtros */}
-      <div className="flex flex-wrap gap-4 mb-5">
+      {/* Filtros de Ano */}
+      <div className="flex flex-wrap items-end gap-4 mb-4">
         <div>
           <label className="text-xs text-muted-foreground block mb-1">Ano Inicial</label>
           <select
@@ -89,39 +112,79 @@ export function VaccineCoverage() {
             ))}
           </select>
         </div>
+        <button
+          onClick={clearFilters}
+          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+        >
+          Limpar Filtros
+        </button>
+      </div>
+
+      {/* Seleção de Vacinas */}
+      <div className="flex flex-wrap items-center gap-3 mb-5 p-3 bg-secondary/20 rounded-lg border border-border/30">
+        <div className="flex items-center gap-2 mr-2">
+          <Checkbox
+            checked={allSelected}
+            onCheckedChange={toggleAll}
+            id="all-vaccines"
+          />
+          <label htmlFor="all-vaccines" className="text-xs font-semibold text-foreground cursor-pointer">
+            Todas
+          </label>
+        </div>
+        <div className="w-px h-5 bg-border/50" />
+        {vaccines.map((v) => (
+          <div key={v.key} className="flex items-center gap-1.5">
+            <Checkbox
+              checked={selectedVaccines.includes(v.key)}
+              onCheckedChange={() => toggleVaccine(v.key)}
+              id={`vaccine-${v.key}`}
+            />
+            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: v.color }} />
+            <label htmlFor={`vaccine-${v.key}`} className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+              {v.name}
+            </label>
+          </div>
+        ))}
       </div>
 
       {/* Gráfico */}
-      <ResponsiveContainer width="100%" height={350}>
-        <LineChart data={filteredData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
-          <XAxis dataKey="year" tick={{ fill: "hsl(210 15% 55%)", fontSize: 12 }} axisLine={false} tickLine={false} />
-          <YAxis
-            domain={[40, 100]}
-            tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }}
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={(v) => `${v}%`}
-          />
-          <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => `${value}%`} />
-          <Legend wrapperStyle={{ fontSize: 11 }} />
-          {vaccines.map((v) => (
-            <Line
-              key={v.key}
-              type="monotone"
-              dataKey={v.key}
-              name={v.name}
-              stroke={v.color}
-              strokeWidth={2}
-              dot={{ r: 3 }}
-              activeDot={{ r: 5 }}
+      {activeVaccines.length > 0 ? (
+        <ResponsiveContainer width="100%" height={350}>
+          <LineChart data={filteredData}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
+            <XAxis dataKey="year" tick={{ fill: "hsl(210 15% 55%)", fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis
+              domain={[40, 100]}
+              tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={(v) => `${v}%`}
             />
-          ))}
-        </LineChart>
-      </ResponsiveContainer>
+            <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => `${value}%`} />
+            <Legend wrapperStyle={{ fontSize: 11 }} />
+            {activeVaccines.map((v) => (
+              <Line
+                key={v.key}
+                type="monotone"
+                dataKey={v.key}
+                name={v.name}
+                stroke={v.color}
+                strokeWidth={2}
+                dot={{ r: 3 }}
+                activeDot={{ r: 5 }}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      ) : (
+        <div className="flex items-center justify-center h-[350px] text-muted-foreground text-sm">
+          Selecione ao menos uma vacina para visualizar o gráfico.
+        </div>
+      )}
 
       {/* Análise Comparativa */}
-      {startYear !== endYear && (
+      {startYear !== endYear && comparison.length > 0 && (
         <div className="mt-5 border-t border-border/50 pt-5">
           <h4 className="text-sm font-display font-semibold text-foreground mb-3">
             Comparativo {startYear} → {endYear}
