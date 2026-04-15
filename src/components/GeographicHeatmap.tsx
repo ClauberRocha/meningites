@@ -1,15 +1,16 @@
-const total = 21;
+const total = 22;
 
 const regions = [
   { name: "Metropolitana", value: 12 },
   { name: "Bacabal", value: 2 },
+  { name: "Rosário", value: 1 },
+  { name: "Caxias", value: 1 },
+  { name: "Outro Estado", value: 1 },
   { name: "Itapecuru", value: 1 },
   { name: "Imperatriz", value: 1 },
   { name: "Barra do Corda", value: 1 },
-  { name: "Caxias", value: 1 },
-  { name: "Rosário", value: 1 },
-  { name: "Zé Doca", value: 1 },
   { name: "Viana", value: 1 },
+  { name: "Zé Doca", value: 1 },
 ];
 
 export function GeographicHeatmap() {

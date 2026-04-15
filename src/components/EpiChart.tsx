@@ -1,21 +1,21 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 
 const allWeeklyData = [
-  { sem: "SE1", conf2025: 1, notif2026: 2, conf2026: 2 },
-  { sem: "SE2", conf2025: 0, notif2026: 4, conf2026: 2 },
-  { sem: "SE3", conf2025: 5, notif2026: 5, conf2026: 4 },
-  { sem: "SE4", conf2025: 1, notif2026: 3, conf2026: 3 },
-  { sem: "SE5", conf2025: 2, notif2026: 4, conf2026: 2 },
-  { sem: "SE6", conf2025: 5, notif2026: 2, conf2026: 1 },
-  { sem: "SE7", conf2025: 1, notif2026: 1, conf2026: 0 },
+  { sem: "SE1", conf2025: 2, notif2026: 2, conf2026: 0 },
+  { sem: "SE2", conf2025: 0, notif2026: 7, conf2026: 2 },
+  { sem: "SE3", conf2025: 5, notif2026: 7, conf2026: 4 },
+  { sem: "SE4", conf2025: 1, notif2026: 4, conf2026: 3 },
+  { sem: "SE5", conf2025: 2, notif2026: 6, conf2026: 2 },
+  { sem: "SE6", conf2025: 5, notif2026: 5, conf2026: 1 },
+  { sem: "SE7", conf2025: 1, notif2026: 4, conf2026: 0 },
   { sem: "SE8", conf2025: 0, notif2026: 7, conf2026: 2 },
-  { sem: "SE9", conf2025: 5, notif2026: 7, conf2026: 1 },
+  { sem: "SE9", conf2025: 5, notif2026: 5, conf2026: 1 },
   { sem: "SE10", conf2025: 2, notif2026: 4, conf2026: 0 },
   { sem: "SE11", conf2025: 4, notif2026: 6, conf2026: 1 },
-  { sem: "SE12", conf2025: 3, notif2026: 5, conf2026: 1 },
-  { sem: "SE13", conf2025: 2, notif2026: 4, conf2026: 1 },
-  { sem: "SE14", conf2025: 3, notif2026: 7, conf2026: 2 },
-  { sem: "SE15", conf2025: 0, notif2026: 5, conf2026: 0 },
+  { sem: "SE12", conf2025: 3, notif2026: 13, conf2026: 1 },
+  { sem: "SE13", conf2025: 2, notif2026: 6, conf2026: 1 },
+  { sem: "SE14", conf2025: 3, notif2026: 4, conf2026: 4 },
+  { sem: "SE15", conf2025: 0, notif2026: 2, conf2026: 1 },
 ];
 
 interface EpiChartProps {
@@ -26,14 +26,16 @@ interface EpiChartProps {
 export function EpiChart({ startWeek = 1, endWeek = 15 }: EpiChartProps) {
   const weeklyData = allWeeklyData.slice(startWeek - 1, endWeek);
   const totalNotif = weeklyData.reduce((s, d) => s + d.notif2026, 0);
-  const totalConf = weeklyData.reduce((s, d) => s + d.conf2026, 0);
-  const taxa = totalNotif > 0 ? ((totalConf / totalNotif) * 100).toFixed(1) : "0";
+  const totalConf2026 = weeklyData.reduce((s, d) => s + d.conf2026, 0);
+  const totalConf2025 = weeklyData.reduce((s, d) => s + d.conf2025, 0);
+  const taxa = totalNotif > 0 ? ((totalConf2026 / totalNotif) * 100).toFixed(1) : "0";
 
   return (
     <div>
       <div className="flex flex-wrap gap-4 mb-4 text-sm">
-        <span className="text-muted-foreground">Notificados 2026: <span className="font-bold text-warning">{totalNotif}</span></span>
-        <span className="text-muted-foreground">Confirmados 2026: <span className="font-bold text-primary">{totalConf}</span></span>
+        <span className="text-muted-foreground">Confirmados 2025: <span className="font-bold" style={{ color: "hsl(210 80% 55%)" }}>{totalConf2025}</span></span>
+        <span className="text-muted-foreground">Notificados 2026: <span className="font-bold" style={{ color: "hsl(38 92% 50%)" }}>{totalNotif}</span></span>
+        <span className="text-muted-foreground">Confirmados 2026: <span className="font-bold" style={{ color: "hsl(0 72% 55%)" }}>{totalConf2026}</span></span>
         <span className="text-muted-foreground">Taxa de confirmação: <span className="font-bold text-foreground">{taxa}%</span></span>
       </div>
       <ResponsiveContainer width="100%" height={300}>
@@ -51,9 +53,15 @@ export function EpiChart({ startWeek = 1, endWeek = 15 }: EpiChartProps) {
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12, color: "hsl(210 15% 55%)" }} />
-          <Line type="monotone" dataKey="conf2025" name="Confirmados 2025" stroke="hsl(210 80% 55%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-          <Line type="monotone" dataKey="notif2026" name="Notificados 2026" stroke="hsl(38 92% 50%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-          <Line type="monotone" dataKey="conf2026" name="Confirmados 2026" stroke="hsl(174 62% 47%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="conf2025" name="Confirmados 2025" stroke="hsl(210 80% 55%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }}>
+            <LabelList dataKey="conf2025" position="top" fill="hsl(210 80% 55%)" fontSize={10} fontWeight={600} />
+          </Line>
+          <Line type="monotone" dataKey="notif2026" name="Notificados 2026" stroke="hsl(38 92% 50%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }}>
+            <LabelList dataKey="notif2026" position="top" fill="hsl(38 92% 50%)" fontSize={10} fontWeight={600} />
+          </Line>
+          <Line type="monotone" dataKey="conf2026" name="Confirmados 2026" stroke="hsl(0 72% 55%)" strokeWidth={3.5} dot={{ r: 4 }} activeDot={{ r: 6 }}>
+            <LabelList dataKey="conf2026" position="top" fill="hsl(0 72% 55%)" fontSize={10} fontWeight={600} />
+          </Line>
         </LineChart>
       </ResponsiveContainer>
     </div>

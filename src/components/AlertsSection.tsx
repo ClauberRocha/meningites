@@ -24,7 +24,7 @@ const alerts = [
   {
     emoji: "🦠",
     title: "Predominância de Meningite Bacteriana",
-    finding: "86% dos casos são bacterianos (18 casos), com taxa de mortalidade de 11%.",
+    finding: "82% dos casos são bacterianos (18 casos), com taxa de mortalidade de 14%.",
     recommendations: [
       "Garantir acesso rápido a antibióticos apropriados",
       "Reforçar protocolos de manejo clínico de meningite bacteriana",
@@ -35,7 +35,7 @@ const alerts = [
   {
     emoji: "⚠️",
     title: "Taxa de Mortalidade",
-    finding: "11% de taxa de mortalidade (2 óbitos em 18 bacterianas).",
+    finding: "14% de taxa de mortalidade (3 óbitos em 22 confirmados).",
     recommendations: [
       "Revisar protocolos de manejo clínico e terapia antimicrobiana",
       "Reforçar capacitação em diagnóstico precoce",

@@ -3,12 +3,11 @@ export function CaseEvolution() {
     { label: "Alta", value: 9, pct: 50, color: "bg-success", textColor: "text-success" },
     { label: "Óbito por Meningite", value: 2, pct: 11, color: "bg-destructive", textColor: "text-destructive" },
     { label: "Internação", value: 7, pct: 39, color: "bg-warning", textColor: "text-warning" },
-    { label: "Em Investigação", value: 0, pct: 0, color: "bg-muted", textColor: "text-muted-foreground" },
   ];
 
   const viralEvolution = [
     { label: "Alta", value: 2, color: "text-success" },
-    { label: "Óbitos", value: 0, color: "text-muted-foreground" },
+    { label: "Óbitos", value: 1, color: "text-destructive" },
   ];
 
   const outrasEvolution = [
@@ -41,7 +40,7 @@ export function CaseEvolution() {
 
       {/* Viral */}
       <div className="border-t border-border/50 pt-4 mb-4">
-        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-2">Meningite Viral (2 casos)</p>
+        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-2">Meningite Viral (3 casos)</p>
         <div className="flex gap-4">
           {viralEvolution.map((e) => (
             <div key={e.label} className="flex items-center gap-2 text-sm">
@@ -67,7 +66,7 @@ export function CaseEvolution() {
 
       <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20">
         <p className="text-xs text-warning">
-          <span className="font-semibold">Análise:</span> A taxa de alta entre bacterianas é de 50%, com 11% de óbitos e 39% em internação. Todos os casos virais e de outras etiologias evoluíram para alta.
+          <span className="font-semibold">Análise:</span> A taxa de alta entre bacterianas é de 50%, com 11% de óbitos e 39% em internação. Meningite viral teve 1 óbito. Outras etiologias evoluíram para alta.
         </p>
       </div>
     </div>

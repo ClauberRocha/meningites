@@ -4,22 +4,70 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const vaccineData = [
-  { year: "2020", BCG: 72, HepB: 68, DTP: 65, VIP: 63, Pneumo: 61, TripliceViral: 70, DTPAdulto: 45 },
-  { year: "2021", BCG: 74, HepB: 70, DTP: 67, VIP: 65, Pneumo: 64, TripliceViral: 72, DTPAdulto: 48 },
-  { year: "2022", BCG: 82, HepB: 78, DTP: 75, VIP: 73, Pneumo: 72, TripliceViral: 79, DTPAdulto: 55 },
-  { year: "2023", BCG: 86, HepB: 83, DTP: 80, VIP: 78, Pneumo: 77, TripliceViral: 83, DTPAdulto: 60 },
-  { year: "2024", BCG: 89, HepB: 86, DTP: 83, VIP: 81, Pneumo: 80, TripliceViral: 86, DTPAdulto: 64 },
-  { year: "2025", BCG: 91, HepB: 88, DTP: 85, VIP: 84, Pneumo: 82, TripliceViral: 88, DTPAdulto: 67 },
+  {
+    year: "2020",
+    BCG: 18.98, HepB30: 16.51, HepB1: 35.80, DTP: 36.03, FA: 32.61, VIP: 38.02,
+    Pneumo: 43.26, MeningoC: 40.20, Penta: 35.80, Rotavirus: 39.79, HepA: 35.42,
+    DTPRef: 30.90, TViralD1: 45.89, TViralD2: 21.82, PneumoRef: 40.10, PolioRef: 33.91,
+    Varicela: 32.48, MenigoCRef: 39.02, dTpa: 27.78,
+  },
+  {
+    year: "2021",
+    BCG: 30.73, HepB30: 26.71, HepB1: 47.50, DTP: 48.65, FA: 40.98, VIP: 47.61,
+    Pneumo: 52.62, MeningoC: 50.76, Penta: 47.50, Rotavirus: 49.41, HepA: 43.33,
+    DTPRef: 43.08, TViralD1: 53.87, TViralD2: 25.64, PneumoRef: 50.90, PolioRef: 40.35,
+    Varicela: 42.01, MenigoCRef: 50.99, dTpa: 39.43,
+  },
+  {
+    year: "2022",
+    BCG: 75.04, HepB30: 64.17, HepB1: 56.30, DTP: 56.30, FA: 46.50, VIP: 57.13,
+    Pneumo: 63.48, MeningoC: 59.45, Penta: 56.30, Rotavirus: 59.12, HepA: 47.17,
+    DTPRef: 44.94, TViralD1: 58.27, TViralD2: 31.97, PneumoRef: 55.90, PolioRef: 43.57,
+    Varicela: 52.01, MenigoCRef: 55.27, dTpa: 40.01,
+  },
+  {
+    year: "2023",
+    BCG: 75.08, HepB30: 73.51, HepB1: 72.73, DTP: 72.75, FA: 63.14, VIP: 72.82,
+    Pneumo: 78.47, MeningoC: 73.50, Penta: 72.69, Rotavirus: 75.44, HepA: 71.04,
+    DTPRef: 61.18, TViralD1: 70.94, TViralD2: 41.77, PneumoRef: 73.00, PolioRef: 62.58,
+    Varicela: 56.60, MenigoCRef: 76.07, dTpa: 75.54,
+  },
+  {
+    year: "2024",
+    BCG: 80.43, HepB30: 78.37, HepB1: 78.05, DTP: 78.10, FA: 57.02, VIP: 78.28,
+    Pneumo: 86.45, MeningoC: 79.08, Penta: 78.05, Rotavirus: 82.67, HepA: 79.85,
+    DTPRef: 78.82, TViralD1: 85.11, TViralD2: 54.59, PneumoRef: 87.79, PolioRef: 79.61,
+    Varicela: 59.19, MenigoCRef: 85.03, dTpa: 84.45,
+  },
+  {
+    year: "2025",
+    BCG: 90.81, HepB30: 90.99, HepB1: 85.36, DTP: 85.49, FA: 68.06, VIP: 82.03,
+    Pneumo: 90.06, MeningoC: 85.58, Penta: 83.58, Rotavirus: 85.28, HepA: 78.96,
+    DTPRef: 82.95, TViralD1: 90.07, TViralD2: 72.49, PneumoRef: 87.03, PolioRef: 71.40,
+    Varicela: 71.40, MenigoCRef: 87.39, dTpa: 100.60,
+  },
 ];
 
 const vaccines = [
-  { key: "BCG", color: "hsl(174 62% 47%)", name: "BCG" },
-  { key: "HepB", color: "hsl(210 80% 55%)", name: "Hepatite B" },
-  { key: "DTP", color: "hsl(38 92% 50%)", name: "DTP" },
-  { key: "VIP", color: "hsl(152 60% 45%)", name: "Poliomielite VIP" },
-  { key: "Pneumo", color: "hsl(0 72% 55%)", name: "Pneumocócica" },
-  { key: "TripliceViral", color: "hsl(280 60% 55%)", name: "Tríplice Viral" },
-  { key: "DTPAdulto", color: "hsl(330 65% 55%)", name: "DTP Adulto" },
+  { key: "BCG", color: "hsl(174 62% 47%)", name: "BCG (META 90%)" },
+  { key: "HepB30", color: "hsl(210 80% 55%)", name: "Hepatite B (<30 dias) (META 95%)" },
+  { key: "HepB1", color: "hsl(38 92% 50%)", name: "Hepatite B (<1 ano) (META 95%)" },
+  { key: "DTP", color: "hsl(0 72% 55%)", name: "DTP (META 95%)" },
+  { key: "FA", color: "hsl(280 60% 55%)", name: "FA (<1 ano) (META 100%)" },
+  { key: "VIP", color: "hsl(152 60% 45%)", name: "Poliomielite VIP Injetável (<1 ano) (META 95%)" },
+  { key: "Pneumo", color: "hsl(330 65% 55%)", name: "Pneumocócica (<1 ano) (META 95%)" },
+  { key: "MeningoC", color: "hsl(45 90% 50%)", name: "Meningocócica Conj.C (<1 ano) (META 95%)" },
+  { key: "Penta", color: "hsl(200 70% 50%)", name: "Pentavalente (<1 ano) (META 95%)" },
+  { key: "Rotavirus", color: "hsl(120 50% 45%)", name: "Rotavírus Humano (META 95%)" },
+  { key: "HepA", color: "hsl(15 80% 55%)", name: "Hepatite A Infantil" },
+  { key: "DTPRef", color: "hsl(260 50% 55%)", name: "DTP (1º reforço) (META 95%)" },
+  { key: "TViralD1", color: "hsl(340 70% 50%)", name: "Tríplice Viral - D1 (META 95%)" },
+  { key: "TViralD2", color: "hsl(190 70% 45%)", name: "Tríplice Viral - D2 (META 95%)" },
+  { key: "PneumoRef", color: "hsl(60 70% 45%)", name: "Pneumocócica (1º reforço) (META 95%)" },
+  { key: "PolioRef", color: "hsl(100 50% 50%)", name: "Polio Injetável (VIP) (Reforço)" },
+  { key: "Varicela", color: "hsl(310 60% 50%)", name: "Varicela (META 95%)" },
+  { key: "MenigoCRef", color: "hsl(230 60% 55%)", name: "Meningocócica Conj.C 1º reforço (META 95%)" },
+  { key: "dTpa", color: "hsl(0 0% 55%)", name: "dTpa adulto (META 100%)" },
 ];
 
 const allKeys = vaccines.map((v) => v.key);
@@ -50,12 +98,6 @@ export function VaccineCoverage() {
     setSelectedVaccines(allSelected ? [] : [...allKeys]);
   };
 
-  const clearFilters = () => {
-    setStartYear("2020");
-    setEndYear("2025");
-    setSelectedVaccines([...allKeys]);
-  };
-
   const filteredData = useMemo(() => {
     const si = years.indexOf(startYear);
     const ei = years.indexOf(endYear);
@@ -63,6 +105,8 @@ export function VaccineCoverage() {
   }, [startYear, endYear]);
 
   const activeVaccines = vaccines.filter((v) => selectedVaccines.includes(v.key));
+
+  const latestData = filteredData[filteredData.length - 1];
 
   const comparison = useMemo(() => {
     const startData = vaccineData.find((d) => d.year === startYear);
@@ -72,7 +116,7 @@ export function VaccineCoverage() {
     return activeVaccines.map((v) => {
       const initial = startData[v.key as keyof typeof startData] as number;
       const final = endData[v.key as keyof typeof endData] as number;
-      const diff = final - initial;
+      const diff = +(final - initial).toFixed(2);
       return { ...v, initial, final, diff };
     });
   }, [startYear, endYear, selectedVaccines]);
@@ -86,7 +130,6 @@ export function VaccineCoverage() {
       <h3 className="font-display font-semibold text-foreground mb-1">Cobertura Vacinal de Rotina</h3>
       <p className="text-xs text-muted-foreground mb-4">Evolução da cobertura vacinal para principais vacinas do calendário infantil</p>
 
-      {/* Filtros de Ano */}
       <div className="flex flex-wrap items-end gap-4 mb-4">
         <div>
           <label className="text-xs text-muted-foreground block mb-1">Ano Inicial</label>
@@ -95,9 +138,7 @@ export function VaccineCoverage() {
             onChange={(e) => setStartYear(e.target.value)}
             className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
-            {years.map((y) => (
-              <option key={y} value={y}>{y}</option>
-            ))}
+            {years.map((y) => (<option key={y} value={y}>{y}</option>))}
           </select>
         </div>
         <div>
@@ -107,62 +148,52 @@ export function VaccineCoverage() {
             onChange={(e) => setEndYear(e.target.value)}
             className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
-            {years.map((y) => (
-              <option key={y} value={y}>{y}</option>
-            ))}
+            {years.map((y) => (<option key={y} value={y}>{y}</option>))}
           </select>
         </div>
-        <button
-          onClick={clearFilters}
-          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
-        >
-          Limpar Filtros
-        </button>
       </div>
 
-      {/* Seleção de Vacinas */}
       <div className="flex flex-wrap items-center gap-3 mb-5 p-3 bg-secondary/20 rounded-lg border border-border/30">
         <div className="flex items-center gap-2 mr-2">
-          <Checkbox
-            checked={allSelected}
-            onCheckedChange={toggleAll}
-            id="all-vaccines"
-          />
-          <label htmlFor="all-vaccines" className="text-xs font-semibold text-foreground cursor-pointer">
-            Todas
-          </label>
+          <Checkbox checked={allSelected} onCheckedChange={toggleAll} id="all-vaccines" />
+          <label htmlFor="all-vaccines" className="text-xs font-semibold text-foreground cursor-pointer">Todas</label>
         </div>
         <div className="w-px h-5 bg-border/50" />
-        {vaccines.map((v) => (
-          <div key={v.key} className="flex items-center gap-1.5">
-            <Checkbox
-              checked={selectedVaccines.includes(v.key)}
-              onCheckedChange={() => toggleVaccine(v.key)}
-              id={`vaccine-${v.key}`}
-            />
-            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: v.color }} />
-            <label htmlFor={`vaccine-${v.key}`} className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-              {v.name}
-            </label>
-          </div>
-        ))}
+        {vaccines.map((v) => {
+          const currentPct = latestData ? (latestData[v.key as keyof typeof latestData] as number) : null;
+          return (
+            <div key={v.key} className="flex items-center gap-1.5">
+              <Checkbox
+                checked={selectedVaccines.includes(v.key)}
+                onCheckedChange={() => toggleVaccine(v.key)}
+                id={`vaccine-${v.key}`}
+              />
+              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: v.color }} />
+              <label htmlFor={`vaccine-${v.key}`} className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+                {v.name}
+                {selectedVaccines.includes(v.key) && currentPct !== null && (
+                  <span className="ml-1 font-semibold text-foreground">({currentPct}%)</span>
+                )}
+              </label>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Gráfico */}
       {activeVaccines.length > 0 ? (
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={filteredData}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
             <XAxis dataKey="year" tick={{ fill: "hsl(210 15% 55%)", fontSize: 12 }} axisLine={false} tickLine={false} />
             <YAxis
-              domain={[40, 100]}
+              domain={[0, 110]}
               tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               tickFormatter={(v) => `${v}%`}
             />
             <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => `${value}%`} />
-            <Legend wrapperStyle={{ fontSize: 11 }} />
+            <Legend wrapperStyle={{ fontSize: 10 }} />
             {activeVaccines.map((v) => (
               <Line
                 key={v.key}
@@ -171,19 +202,18 @@ export function VaccineCoverage() {
                 name={v.name}
                 stroke={v.color}
                 strokeWidth={2}
-                dot={{ r: 3 }}
-                activeDot={{ r: 5 }}
+                dot={{ r: 2 }}
+                activeDot={{ r: 4 }}
               />
             ))}
           </LineChart>
         </ResponsiveContainer>
       ) : (
-        <div className="flex items-center justify-center h-[350px] text-muted-foreground text-sm">
+        <div className="flex items-center justify-center h-[400px] text-muted-foreground text-sm">
           Selecione ao menos uma vacina para visualizar o gráfico.
         </div>
       )}
 
-      {/* Análise Comparativa */}
       {startYear !== endYear && comparison.length > 0 && (
         <div className="mt-5 border-t border-border/50 pt-5">
           <h4 className="text-sm font-display font-semibold text-foreground mb-3">
@@ -217,7 +247,6 @@ export function VaccineCoverage() {
             })}
           </div>
 
-          {/* Resumo */}
           <div className={`p-3 rounded-lg border ${
             Number(avgDiff) > 0
               ? "bg-success/10 border-success/20"
@@ -230,24 +259,11 @@ export function VaccineCoverage() {
             }`}>
               <span className="font-semibold">Resumo ({startYear} → {endYear}):</span>{" "}
               {Number(avgDiff) > 0
-                ? `Houve aumento médio de +${avgDiff} pontos percentuais na cobertura vacinal. Todas as ${comparison.filter(c => c.diff > 0).length} vacinas com variação positiva demonstram melhoria na execução do programa de imunização.`
+                ? `Houve aumento médio de +${avgDiff} pontos percentuais na cobertura vacinal.`
                 : Number(avgDiff) < 0
-                ? `Houve redução média de ${avgDiff} pontos percentuais na cobertura vacinal, indicando necessidade urgente de intensificação das estratégias de imunização.`
+                ? `Houve redução média de ${avgDiff} pontos percentuais na cobertura vacinal.`
                 : "Não houve variação significativa na cobertura vacinal no período selecionado."
               }
-              {" "}
-              {comparison.length > 0 && (
-                <>
-                  Maior variação: <span className="font-bold">{
-                    comparison.reduce((max, c) => Math.abs(c.diff) > Math.abs(max.diff) ? c : max).name
-                  }</span> ({comparison.reduce((max, c) => Math.abs(c.diff) > Math.abs(max.diff) ? c : max).diff > 0 ? "+" : ""}
-                  {comparison.reduce((max, c) => Math.abs(c.diff) > Math.abs(max.diff) ? c : max).diff}pp).
-                  {" "}Menor variação: <span className="font-bold">{
-                    comparison.reduce((min, c) => Math.abs(c.diff) < Math.abs(min.diff) ? c : min).name
-                  }</span> ({comparison.reduce((min, c) => Math.abs(c.diff) < Math.abs(min.diff) ? c : min).diff > 0 ? "+" : ""}
-                  {comparison.reduce((min, c) => Math.abs(c.diff) < Math.abs(min.diff) ? c : min).diff}pp).
-                </>
-              )}
             </p>
           </div>
         </div>
@@ -255,7 +271,7 @@ export function VaccineCoverage() {
 
       <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/20">
         <p className="text-xs text-info">
-          <span className="font-semibold">Nota:</span> As metas de cobertura (90% para maioria das vacinas) ainda não foram atingidas em várias vacinas, indicando necessidade de intensificação das estratégias de imunização.
+          <span className="font-semibold">Nota:</span> As metas de cobertura ainda não foram atingidas em várias vacinas, indicando necessidade de intensificação das estratégias de imunização.
         </p>
       </div>
     </div>

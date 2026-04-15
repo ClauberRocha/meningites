@@ -1,9 +1,9 @@
 const criteria = [
-  { name: "Quimiocitológico", value: 8, pct: 38 },
-  { name: "Clínico", value: 5, pct: 24 },
-  { name: "PCR", value: 4, pct: 19 },
+  { name: "Quimiocitológico", value: 8, pct: 36 },
+  { name: "Clínico", value: 5, pct: 23 },
+  { name: "PCR", value: 4, pct: 18 },
   { name: "Cultura", value: 3, pct: 14 },
-  { name: "Necropsia", value: 1, pct: 5 },
+  { name: "Necropsia", value: 2, pct: 9 },
 ];
 
 export function ConfirmationCriteria() {
@@ -20,7 +20,7 @@ export function ConfirmationCriteria() {
             </div>
             <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-info to-primary transition-all"
+                className="h-full rounded-full bg-destructive transition-all"
                 style={{ width: `${c.pct}%` }}
               />
             </div>
