@@ -1,31 +1,30 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, LabelList } from "recharts";
 
 const sexDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Masculino", value: 10, pct: 48 }, { name: "Feminino", value: 11, pct: 52 }],
+  all: [{ name: "Masculino", value: 11, pct: 50 }, { name: "Feminino", value: 11, pct: 50 }],
   "0-1": [{ name: "Masculino", value: 4, pct: 67 }, { name: "Feminino", value: 2, pct: 33 }],
   "1-10": [{ name: "Masculino", value: 2, pct: 40 }, { name: "Feminino", value: 3, pct: 60 }],
   "11-20": [{ name: "Masculino", value: 2, pct: 67 }, { name: "Feminino", value: 1, pct: 33 }],
   "21-30": [{ name: "Masculino", value: 1, pct: 100 }, { name: "Feminino", value: 0, pct: 0 }],
-  "31-40": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
+  "31-40": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 2, pct: 100 }],
   "41-50": [{ name: "Masculino", value: 1, pct: 33 }, { name: "Feminino", value: 2, pct: 67 }],
   "51-60": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
-  "61-70": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
+  "61-70": [{ name: "Masculino", value: 1, pct: 50 }, { name: "Feminino", value: 0, pct: 50 }],
 };
 
 const raceDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Parda", value: 18, pct: 86 }, { name: "Branca", value: 2, pct: 10 }, { name: "Indígena", value: 1, pct: 5 }],
+  all: [{ name: "Parda", value: 20, pct: 91 }, { name: "Branca", value: 1, pct: 5 }, { name: "Indígena", value: 1, pct: 5 }],
   "0-1": [{ name: "Parda", value: 6, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
   "1-10": [{ name: "Parda", value: 4, pct: 80 }, { name: "Branca", value: 1, pct: 20 }, { name: "Indígena", value: 0, pct: 0 }],
   "11-20": [{ name: "Parda", value: 3, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
   "21-30": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "31-40": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "41-50": [{ name: "Parda", value: 2, pct: 67 }, { name: "Branca", value: 1, pct: 33 }, { name: "Indígena", value: 0, pct: 0 }],
+  "31-40": [{ name: "Parda", value: 2, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "41-50": [{ name: "Parda", value: 2, pct: 67 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 33 }],
   "51-60": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "61-70": [{ name: "Parda", value: 0, pct: 0 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 100 }],
+  "61-70": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
 };
 
 const SEX_COLORS = ["hsl(210 80% 55%)", "hsl(330 65% 55%)"];
-const RACE_COLORS = ["hsl(38 92% 50%)", "hsl(210 80% 55%)", "hsl(152 60% 45%)"];
 
 const tooltipStyle = {
   backgroundColor: "hsl(210 28% 12%)",
@@ -69,7 +68,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
         </div>
         <div className="mt-4 p-3 rounded-lg bg-info/10 border border-info/20">
           <p className="text-xs text-info">
-            <span className="font-semibold">Análise:</span> Distribuição equilibrada entre os sexos, consistente com o perfil epidemiológico da doença.
+            <span className="font-semibold">Análise:</span> Distribuição equilibrada entre os sexos (50%/50%), consistente com o perfil epidemiológico da doença.
           </p>
         </div>
       </div>
@@ -84,15 +83,14 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
             <XAxis dataKey="name" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Bar dataKey="value" name="Casos" radius={[4, 4, 0, 0]}>
+            <Bar dataKey="value" name="Casos" fill="hsl(0 72% 55%)" radius={[4, 4, 0, 0]}>
               <LabelList dataKey="value" position="top" fill="hsl(210 20% 85%)" fontSize={11} fontWeight={600} />
-              {raceData.map((_, i) => <Cell key={i} fill={RACE_COLORS[i]} />)}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
         <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20">
           <p className="text-xs text-warning">
-            <span className="font-semibold">Análise:</span> Expressiva predominância de indivíduos pardos, refletindo o perfil étnico-racial da população maranhense.
+            <span className="font-semibold">Análise:</span> Expressiva predominância de indivíduos pardos (91%), refletindo o perfil étnico-racial da população maranhense.
           </p>
         </div>
       </div>

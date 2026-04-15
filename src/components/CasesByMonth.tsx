@@ -3,8 +3,8 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGri
 const data = [
   { month: "Janeiro", notificados: 24, confirmados: 11 },
   { month: "Fevereiro", notificados: 21, confirmados: 5 },
-  { month: "Março", notificados: 14, confirmados: 3 },
-  { month: "Abril", notificados: 7, confirmados: 2 },
+  { month: "Março", notificados: 33, confirmados: 3 },
+  { month: "Abril", notificados: 4, confirmados: 3 },
 ];
 
 const tooltipStyle = {
@@ -30,14 +30,14 @@ export function CasesByMonth() {
           <Bar dataKey="notificados" name="Notificados" fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]}>
             <LabelList dataKey="notificados" position="top" fill="hsl(38 92% 50%)" fontSize={11} fontWeight={600} />
           </Bar>
-          <Bar dataKey="confirmados" name="Confirmados" fill="hsl(174 62% 47%)" radius={[4, 4, 0, 0]}>
-            <LabelList dataKey="confirmados" position="top" fill="hsl(174 62% 47%)" fontSize={11} fontWeight={600} />
+          <Bar dataKey="confirmados" name="Confirmados" fill="hsl(0 72% 55%)" radius={[4, 4, 0, 0]}>
+            <LabelList dataKey="confirmados" position="top" fill="hsl(0 72% 55%)" fontSize={11} fontWeight={600} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
       <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/20">
         <p className="text-xs text-info">
-          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de notificações (24 casos) e confirmações (11 casos). A tendência mostra redução gradual nas notificações nos meses seguintes.
+          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de confirmações (11 casos). Março teve o pico de notificações (33 casos). Abril com dados parciais.
         </p>
       </div>
     </div>
