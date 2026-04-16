@@ -164,11 +164,6 @@ const Index = () => {
         <div className="glass-card p-6">
           <h3 className="font-display font-semibold text-foreground mb-1">Filtrar por Semana Epidemiológica</h3>
           <p className="text-xs text-muted-foreground mb-2">Evolução semanal com comparação 2025 vs 2026</p>
-          <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 mb-4">
-            <p className="text-xs text-primary">
-              <span className="font-semibold">Análise SE 01–15 (2026):</span> Picos de casos confirmados observados nas SE 3, SE 5 e SE 10, com destaque para a SE 5 (4 confirmados). O período apresenta tendência de aumento entre SE 3–5, seguido de estabilização e novo pico na SE 10. Recomenda-se atenção redobrada nas semanas de maior incidência.
-            </p>
-          </div>
           <div className="flex flex-wrap gap-4 mb-4">
             <div>
               <label className="text-xs text-muted-foreground block mb-1">Semana Inicial</label>
