@@ -34,6 +34,24 @@ const tooltipStyle = {
   fontSize: 12,
 };
 
+const sexTooltipStyle = {
+  backgroundColor: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: "8px",
+  color: "#1e293b",
+  fontSize: 12,
+  boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+};
+
+const raceTooltipStyle = {
+  backgroundColor: "hsl(210 28% 12%)",
+  border: "1px solid hsl(210 20% 22%)",
+  borderRadius: "8px",
+  color: "hsl(210 20% 92%)",
+  fontSize: 12,
+  boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+};
+
 export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
   const sexData = sexDataByAge[ageGroup] || sexDataByAge.all;
   const raceData = raceDataByAge[ageGroup] || raceDataByAge.all;
@@ -41,7 +59,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Sexo */}
-      <div className="glass-card p-6">
+      <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
         <h3 className="font-display font-semibold text-foreground mb-1">Por Sexo</h3>
         <p className="text-xs text-muted-foreground mb-4">Distribuição dos casos confirmados</p>
         <div className="flex items-center gap-6">
@@ -51,7 +69,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
                 <Pie data={sexData} innerRadius={25} outerRadius={50} paddingAngle={3} dataKey="value" stroke="none">
                   {sexData.map((_, i) => <Cell key={i} fill={SEX_COLORS[i]} />)}
                 </Pie>
-                <Tooltip contentStyle={tooltipStyle} />
+                <Tooltip contentStyle={sexTooltipStyle} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -74,7 +92,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
       </div>
 
       {/* Raça/Cor */}
-      <div className="glass-card p-6">
+      <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
         <h3 className="font-display font-semibold text-foreground mb-1">Por Raça/Cor</h3>
         <p className="text-xs text-muted-foreground mb-4">Distribuição dos casos confirmados</p>
         <ResponsiveContainer width="100%" height={140}>
@@ -82,7 +100,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
             <XAxis dataKey="name" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={tooltipStyle} />
+            <Tooltip contentStyle={raceTooltipStyle} cursor={{ fill: 'transparent' }} />
             <Bar dataKey="value" name="Casos" fill="hsl(0 72% 55%)" radius={[4, 4, 0, 0]}>
               <LabelList dataKey="value" position="top" fill="hsl(210 20% 85%)" fontSize={11} fontWeight={600} />
             </Bar>

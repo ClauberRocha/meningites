@@ -13,7 +13,7 @@ const ageData = [
 
 export function AgeDistribution() {
   return (
-    <div className="glass-card p-6">
+    <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
       <h3 className="font-display font-semibold text-foreground mb-1">Faixa Etária</h3>
       <p className="text-xs text-muted-foreground mb-4">Casos confirmados por idade</p>
       <ResponsiveContainer width="100%" height={250}>
@@ -22,12 +22,14 @@ export function AgeDistribution() {
           <XAxis type="number" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
           <YAxis dataKey="faixa" type="category" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} width={45} />
           <Tooltip
+            cursor={{ fill: 'transparent' }}
             contentStyle={{
               backgroundColor: "hsl(210 28% 12%)",
               border: "1px solid hsl(210 20% 22%)",
               borderRadius: "8px",
               color: "hsl(210 20% 92%)",
               fontSize: 12,
+              boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
             }}
           />
           <Bar dataKey="casos" name="Casos" fill="hsl(0 72% 55%)" radius={[0, 4, 4, 0]}>

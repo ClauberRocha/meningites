@@ -25,7 +25,7 @@ export function EtiologyBreakdown() {
   const total = etiologiaData.reduce((s, d) => s + d.value, 0);
 
   return (
-    <div className="glass-card p-6">
+    <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
       <h3 className="font-display font-semibold text-foreground mb-1">Etiologia dos Casos</h3>
       <p className="text-xs text-muted-foreground mb-4">Classificação dos {total} casos confirmados</p>
 
@@ -36,7 +36,7 @@ export function EtiologyBreakdown() {
               <Pie data={etiologiaData} innerRadius={30} outerRadius={55} paddingAngle={3} dataKey="value" stroke="none">
                 {etiologiaData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
               </Pie>
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#1e293b", fontSize: 12, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }} />
             </PieChart>
           </ResponsiveContainer>
         </div>

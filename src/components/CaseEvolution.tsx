@@ -1,8 +1,9 @@
 export function CaseEvolution() {
+  const total = 22;
   const evolution = [
-    { label: "Alta", value: 9, pct: 50, color: "bg-success", textColor: "text-success" },
-    { label: "Óbito por Meningite", value: 2, pct: 11, color: "bg-destructive", textColor: "text-destructive" },
-    { label: "Internação", value: 7, pct: 39, color: "bg-warning", textColor: "text-warning" },
+    { label: "Alta", value: 12, pct: Math.round((12/total)*100), color: "bg-success", textColor: "text-success" },
+    { label: "Óbito por Meningite", value: 3, pct: Math.round((3/total)*100), color: "bg-destructive", textColor: "text-destructive" },
+    { label: "Internação", value: 7, pct: Math.round((7/total)*100), color: "bg-warning", textColor: "text-warning" },
   ];
 
   const viralEvolution = [
@@ -66,7 +67,7 @@ export function CaseEvolution() {
 
       <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20">
         <p className="text-xs text-warning">
-          <span className="font-semibold">Análise:</span> A taxa de alta entre bacterianas é de 50%, com 11% de óbitos e 39% em internação. Meningite viral teve 1 óbito. Outras etiologias evoluíram para alta.
+          <span className="font-semibold">Análise:</span> A taxa de alta entre bacterianas é de 55%, com 14% de óbitos e 32% em internação. Meningite viral teve 1 óbito. Outras etiologias evoluíram para alta.
         </p>
       </div>
     </div>
