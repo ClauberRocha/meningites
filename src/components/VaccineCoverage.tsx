@@ -170,11 +170,14 @@ export function VaccineCoverage() {
               />
               <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: v.color }} />
               <label htmlFor={`vaccine-${v.key}`} className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                {v.name} (META {v.meta}%)
+                {v.name}
                 {selectedVaccines.includes(v.key) && currentPct !== null && (
-                  <span className={`ml-1 font-semibold ${currentPct >= v.meta ? 'text-success' : 'text-destructive'}`}>
-                    ({currentPct}% — {currentPct >= v.meta ? '✓ Alcançada' : '✗ Não alcançada'})
-                  </span>
+                  <>
+                    <span className="ml-1 text-muted-foreground">(META {v.meta}%)</span>
+                    <span className={`ml-1 font-semibold ${currentPct >= v.meta ? 'text-success' : 'text-destructive'}`}>
+                      {currentPct}% — {currentPct >= v.meta ? `✓ Alcançada (+${(currentPct - v.meta).toFixed(1)}pp)` : `✗ Não alcançada (${(currentPct - v.meta).toFixed(1)}pp)`}
+                    </span>
+                  </>
                 )}
               </label>
             </div>
