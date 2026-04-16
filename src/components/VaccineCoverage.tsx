@@ -175,6 +175,7 @@ export function VaccineCoverage() {
                   <span className={`ml-1 font-semibold ${currentPct >= v.meta ? 'text-success' : 'text-destructive'}`}>
                     ({currentPct}% — {currentPct >= v.meta ? '✓ Alcançada' : '✗ Não alcançada'})
                   </span>
+                )}
               </label>
             </div>
           );
