@@ -18,8 +18,8 @@ import { AnalysisCard } from "@/components/AnalysisCard";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
-  const [startWeek, setStartWeek] = useState("3");
-  const [endWeek, setEndWeek] = useState("14");
+  const [startWeek, setStartWeek] = useState("1");
+  const [endWeek, setEndWeek] = useState("15");
 
   const ageFilters = [
     { key: "all", label: "Todas" },
@@ -129,7 +129,9 @@ const Index = () => {
         {/* Age + Confirmation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <AgeDistribution />
-          <ConfirmationCriteria />
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <ConfirmationCriteria />
+          </div>
         </div>
 
         {/* Cases by Month */}
@@ -138,22 +140,35 @@ const Index = () => {
         {/* Etiologia + Evolução */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <EtiologyBreakdown />
-          <CaseEvolution />
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <CaseEvolution />
+          </div>
         </div>
 
         {/* Geographic Distribution */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <RegionalTable />
-          <MunicipalityChart />
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <RegionalTable />
+          </div>
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <MunicipalityChart />
+          </div>
         </div>
 
         {/* Heatmap */}
-        <GeographicHeatmap />
+        <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+          <GeographicHeatmap />
+        </div>
 
         {/* Epidemic Curve with Filter */}
         <div className="glass-card p-6">
           <h3 className="font-display font-semibold text-foreground mb-1">Filtrar por Semana Epidemiológica</h3>
-          <p className="text-xs text-muted-foreground mb-4">Evolução semanal com comparação 2025 vs 2026</p>
+          <p className="text-xs text-muted-foreground mb-2">Evolução semanal com comparação 2025 vs 2026</p>
+          <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 mb-4">
+            <p className="text-xs text-primary">
+              <span className="font-semibold">Análise SE 01–15 (2026):</span> Picos de casos confirmados observados nas SE 3, SE 5 e SE 10, com destaque para a SE 5 (4 confirmados). O período apresenta tendência de aumento entre SE 3–5, seguido de estabilização e novo pico na SE 10. Recomenda-se atenção redobrada nas semanas de maior incidência.
+            </p>
+          </div>
           <div className="flex flex-wrap gap-4 mb-4">
             <div>
               <label className="text-xs text-muted-foreground block mb-1">Semana Inicial</label>
@@ -187,7 +202,7 @@ const Index = () => {
         <VaccineCoverage />
 
         {/* Situação dos Casos */}
-        <div className="glass-card p-6">
+        <div className="glass-card p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
           <h3 className="font-display font-semibold text-foreground mb-4">Situação dos Casos</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
