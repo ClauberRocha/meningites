@@ -18,8 +18,8 @@ import { AnalysisCard } from "@/components/AnalysisCard";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
-  const [startWeek, setStartWeek] = useState("1");
-  const [endWeek, setEndWeek] = useState("15");
+  const [startWeek, setStartWeek] = useState("3");
+  const [endWeek, setEndWeek] = useState("14");
 
   const ageFilters = [
     { key: "all", label: "Todas" },

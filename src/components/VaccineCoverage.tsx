@@ -49,25 +49,25 @@ const vaccineData = [
 ];
 
 const vaccines = [
-  { key: "BCG", color: "hsl(174 62% 47%)", name: "BCG (META 90%)" },
-  { key: "HepB30", color: "hsl(210 80% 55%)", name: "Hepatite B (<30 dias) (META 95%)" },
-  { key: "HepB1", color: "hsl(38 92% 50%)", name: "Hepatite B (<1 ano) (META 95%)" },
-  { key: "DTP", color: "hsl(0 72% 55%)", name: "DTP (META 95%)" },
-  { key: "FA", color: "hsl(280 60% 55%)", name: "FA (<1 ano) (META 100%)" },
-  { key: "VIP", color: "hsl(152 60% 45%)", name: "Poliomielite VIP Injetável (<1 ano) (META 95%)" },
-  { key: "Pneumo", color: "hsl(330 65% 55%)", name: "Pneumocócica (<1 ano) (META 95%)" },
-  { key: "MeningoC", color: "hsl(45 90% 50%)", name: "Meningocócica Conj.C (<1 ano) (META 95%)" },
-  { key: "Penta", color: "hsl(200 70% 50%)", name: "Pentavalente (<1 ano) (META 95%)" },
-  { key: "Rotavirus", color: "hsl(120 50% 45%)", name: "Rotavírus Humano (META 95%)" },
-  { key: "HepA", color: "hsl(15 80% 55%)", name: "Hepatite A Infantil" },
-  { key: "DTPRef", color: "hsl(260 50% 55%)", name: "DTP (1º reforço) (META 95%)" },
-  { key: "TViralD1", color: "hsl(340 70% 50%)", name: "Tríplice Viral - D1 (META 95%)" },
-  { key: "TViralD2", color: "hsl(190 70% 45%)", name: "Tríplice Viral - D2 (META 95%)" },
-  { key: "PneumoRef", color: "hsl(60 70% 45%)", name: "Pneumocócica (1º reforço) (META 95%)" },
-  { key: "PolioRef", color: "hsl(100 50% 50%)", name: "Polio Injetável (VIP) (Reforço)" },
-  { key: "Varicela", color: "hsl(310 60% 50%)", name: "Varicela (META 95%)" },
-  { key: "MenigoCRef", color: "hsl(230 60% 55%)", name: "Meningocócica Conj.C 1º reforço (META 95%)" },
-  { key: "dTpa", color: "hsl(0 0% 55%)", name: "dTpa adulto (META 100%)" },
+  { key: "BCG", color: "hsl(174 62% 47%)", name: "BCG", meta: 90 },
+  { key: "HepB30", color: "hsl(210 80% 55%)", name: "Hepatite B (<30 dias)", meta: 95 },
+  { key: "HepB1", color: "hsl(38 92% 50%)", name: "Hepatite B (<1 ano)", meta: 95 },
+  { key: "DTP", color: "hsl(0 72% 55%)", name: "DTP", meta: 95 },
+  { key: "FA", color: "hsl(280 60% 55%)", name: "FA (<1 ano)", meta: 100 },
+  { key: "VIP", color: "hsl(152 60% 45%)", name: "Poliomielite VIP Injetável (<1 ano)", meta: 95 },
+  { key: "Pneumo", color: "hsl(330 65% 55%)", name: "Pneumocócica (<1 ano)", meta: 95 },
+  { key: "MeningoC", color: "hsl(45 90% 50%)", name: "Meningocócica Conj.C (<1 ano)", meta: 95 },
+  { key: "Penta", color: "hsl(200 70% 50%)", name: "Pentavalente (<1 ano)", meta: 95 },
+  { key: "Rotavirus", color: "hsl(120 50% 45%)", name: "Rotavírus Humano", meta: 95 },
+  { key: "HepA", color: "hsl(15 80% 55%)", name: "Hepatite A Infantil", meta: 95 },
+  { key: "DTPRef", color: "hsl(260 50% 55%)", name: "DTP (1º reforço)", meta: 95 },
+  { key: "TViralD1", color: "hsl(340 70% 50%)", name: "Tríplice Viral - D1", meta: 95 },
+  { key: "TViralD2", color: "hsl(190 70% 45%)", name: "Tríplice Viral - D2", meta: 95 },
+  { key: "PneumoRef", color: "hsl(60 70% 45%)", name: "Pneumocócica (1º reforço)", meta: 95 },
+  { key: "PolioRef", color: "hsl(100 50% 50%)", name: "Polio Injetável (VIP) (Reforço)", meta: 95 },
+  { key: "Varicela", color: "hsl(310 60% 50%)", name: "Varicela", meta: 95 },
+  { key: "MenigoCRef", color: "hsl(230 60% 55%)", name: "Meningocócica Conj.C 1º reforço", meta: 95 },
+  { key: "dTpa", color: "hsl(0 0% 55%)", name: "dTpa adulto", meta: 100 },
 ];
 
 const allKeys = vaccines.map((v) => v.key);
@@ -170,9 +170,11 @@ export function VaccineCoverage() {
               />
               <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: v.color }} />
               <label htmlFor={`vaccine-${v.key}`} className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                {v.name}
+                {v.name} (META {v.meta}%)
                 {selectedVaccines.includes(v.key) && currentPct !== null && (
-                  <span className="ml-1 font-semibold text-foreground">({currentPct}%)</span>
+                  <span className={`ml-1 font-semibold ${currentPct >= v.meta ? 'text-success' : 'text-destructive'}`}>
+                    ({currentPct}% — {currentPct >= v.meta ? '✓ Alcançada' : '✗ Não alcançada'})
+                  </span>
                 )}
               </label>
             </div>
