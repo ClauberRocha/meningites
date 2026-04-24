@@ -31,6 +31,13 @@ export function EpiChart({ startWeek = 1, endWeek = 16 }: EpiChartProps) {
   const totalConf2025 = weeklyData.reduce((s, d) => s + d.conf2025, 0);
   const taxa = totalNotif > 0 ? ((totalConf2026 / totalNotif) * 100).toFixed(1) : "0";
 
+  // Identificar picos no período filtrado
+  const maxNotif = weeklyData.reduce((max, d) => (d.notif2026 > max.notif2026 ? d : max), weeklyData[0] || { sem: "-", notif2026: 0, conf2026: 0, conf2025: 0 });
+  const maxConf = weeklyData.reduce((max, d) => (d.conf2026 > max.conf2026 ? d : max), weeklyData[0] || { sem: "-", notif2026: 0, conf2026: 0, conf2025: 0 });
+  const maxConf2025 = weeklyData.reduce((max, d) => (d.conf2025 > max.conf2025 ? d : max), weeklyData[0] || { sem: "-", notif2026: 0, conf2026: 0, conf2025: 0 });
+  const mediaConf = weeklyData.length > 0 ? (totalConf2026 / weeklyData.length).toFixed(1) : "0";
+  const mediaNotif = weeklyData.length > 0 ? (totalNotif / weeklyData.length).toFixed(1) : "0";
+
   return (
     <div>
       <div className="flex flex-wrap gap-4 mb-4 text-sm">
@@ -65,6 +72,38 @@ export function EpiChart({ startWeek = 1, endWeek = 16 }: EpiChartProps) {
           </Line>
         </LineChart>
       </ResponsiveContainer>
+
+      {/* Análise de picos */}
+      <div className="mt-5 p-4 rounded-lg bg-secondary/40 border border-border">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+          Análise de Picos — {weeklyData[0]?.sem || "-"} a {weeklyData[weeklyData.length - 1]?.sem || "-"}
+        </h4>
+        <ul className="space-y-1.5 text-sm text-muted-foreground leading-relaxed">
+          <li>
+            <span className="font-semibold" style={{ color: "hsl(38 92% 50%)" }}>Pico de notificações (2026):</span>{" "}
+            <span className="text-foreground font-bold">{maxNotif.sem}</span> com{" "}
+            <span className="text-foreground font-bold">{maxNotif.notif2026}</span> casos notificados
+            (média do período: {mediaNotif}).
+          </li>
+          <li>
+            <span className="font-semibold" style={{ color: "hsl(0 72% 55%)" }}>Pico de confirmados (2026):</span>{" "}
+            <span className="text-foreground font-bold">{maxConf.sem}</span> com{" "}
+            <span className="text-foreground font-bold">{maxConf.conf2026}</span> casos confirmados
+            (média do período: {mediaConf}).
+          </li>
+          <li>
+            <span className="font-semibold" style={{ color: "hsl(210 80% 55%)" }}>Pico de confirmados (2025):</span>{" "}
+            <span className="text-foreground font-bold">{maxConf2025.sem}</span> com{" "}
+            <span className="text-foreground font-bold">{maxConf2025.conf2025}</span> casos confirmados
+            no mesmo período comparativo.
+          </li>
+          <li className="pt-1 text-xs">
+            No intervalo selecionado, foram registrados <span className="text-foreground font-bold">{totalNotif}</span> notificados
+            e <span className="text-foreground font-bold">{totalConf2026}</span> confirmados em 2026,
+            resultando em taxa de confirmação de <span className="text-foreground font-bold">{taxa}%</span>.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
