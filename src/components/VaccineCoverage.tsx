@@ -46,6 +46,13 @@ const vaccineData = [
     DTPRef: 82.95, TViralD1: 90.07, TViralD2: 72.49, PneumoRef: 87.03, PolioRef: 71.40,
     Varicela: 71.40, MenigoCRef: 87.39, dTpa: 100.60,
   },
+  {
+    year: "2026",
+    BCG: 79.47, HepB30: 82.54, HepB1: 90.07, DTP: 90.07, FA: 85.00, VIP: 90.53,
+    Pneumo: 91.31, MeningoC: 91.59, Penta: 90.07, Rotavirus: 88.77, HepA: 83.62,
+    DTPRef: 81.27, TViralD1: 90.77, TViralD2: 81.27, PneumoRef: 87.43, PolioRef: 84.66,
+    Varicela: 78.46, MenigoCRef: 89.12, dTpa: 0,
+  },
 ];
 
 const vaccines = [
@@ -83,7 +90,7 @@ const tooltipStyle = {
 
 export function VaccineCoverage() {
   const [startYear, setStartYear] = useState("2020");
-  const [endYear, setEndYear] = useState("2025");
+  const [endYear, setEndYear] = useState("2026");
   const [selectedVaccines, setSelectedVaccines] = useState<string[]>([...allKeys]);
 
   const allSelected = selectedVaccines.length === allKeys.length;
