@@ -19,7 +19,7 @@ import { AnalysisCard } from "@/components/AnalysisCard";
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
   const [startWeek, setStartWeek] = useState("1");
-  const [endWeek, setEndWeek] = useState("15");
+  const [endWeek, setEndWeek] = useState("16");
 
   const ageFilters = [
     { key: "all", label: "Todas" },
@@ -172,7 +172,7 @@ const Index = () => {
                 onChange={(e) => setStartWeek(e.target.value)}
                 className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {Array.from({ length: 15 }, (_, i) => (
+                {Array.from({ length: 16 }, (_, i) => (
                   <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                 ))}
               </select>
@@ -184,7 +184,7 @@ const Index = () => {
                 onChange={(e) => setEndWeek(e.target.value)}
                 className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {Array.from({ length: 15 }, (_, i) => (
+                {Array.from({ length: 16 }, (_, i) => (
                   <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                 ))}
               </select>
