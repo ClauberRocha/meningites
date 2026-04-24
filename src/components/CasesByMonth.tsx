@@ -3,8 +3,8 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGri
 const data = [
   { month: "Janeiro", notificados: 24, confirmados: 11 },
   { month: "Fevereiro", notificados: 21, confirmados: 5 },
-  { month: "Março", notificados: 33, confirmados: 3 },
-  { month: "Abril", notificados: 4, confirmados: 3 },
+  { month: "Março", notificados: 33, confirmados: 4 },
+  { month: "Abril", notificados: 15, confirmados: 6 },
 ];
 
 const tooltipStyle = {
@@ -37,7 +37,7 @@ export function CasesByMonth() {
       </ResponsiveContainer>
       <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/20">
         <p className="text-xs text-info">
-          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de confirmações (11 casos). Março teve o pico de notificações (33 casos). Abril com dados parciais.
+          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de confirmações (11 casos). Março teve o pico de notificações (33 casos). Abril com dados parciais (6 confirmados).
         </p>
       </div>
     </div>

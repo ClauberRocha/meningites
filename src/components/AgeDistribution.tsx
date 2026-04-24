@@ -1,11 +1,11 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LabelList } from "recharts";
 
 const ageData = [
-  { faixa: "0-1", casos: 6 },
+  { faixa: "< 1", casos: 9 },
   { faixa: "1-10", casos: 5 },
   { faixa: "11-20", casos: 3 },
   { faixa: "21-30", casos: 1 },
-  { faixa: "31-40", casos: 2 },
+  { faixa: "31-40", casos: 3 },
   { faixa: "41-50", casos: 3 },
   { faixa: "51-60", casos: 1 },
   { faixa: "61-70", casos: 1 },
