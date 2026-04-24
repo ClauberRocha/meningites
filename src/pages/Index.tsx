@@ -23,7 +23,7 @@ const Index = () => {
 
   const ageFilters = [
     { key: "all", label: "Todas" },
-    { key: "0-1", label: "0-1" },
+    { key: "0-1", label: "< 1" },
     { key: "1-10", label: "1-10" },
     { key: "11-20", label: "11-20" },
     { key: "21-30", label: "21-30" },
@@ -66,33 +66,33 @@ const Index = () => {
 
         {/* KPIs Row 1 */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          <KpiCard title="Total Notificados" value={82} icon={<Activity className="w-4 h-4" />} variant="primary" />
-          <KpiCard title="Bacterianas" value="18 (82%)" icon={<Shield className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Virais" value="3 (14%)" icon={<Shield className="w-4 h-4" />} variant="default" />
-          <KpiCard title="Outras Etiologias" value="1 (5%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Taxa de Mortalidade" value="14%" subtitle="3 óbitos / 22 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Total Notificados" value={93} icon={<Activity className="w-4 h-4" />} variant="primary" />
+          <KpiCard title="Bacterianas" value="21 (81%)" icon={<Shield className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Virais" value="4 (15%)" icon={<Shield className="w-4 h-4" />} variant="default" />
+          <KpiCard title="Outras Etiologias" value="1 (4%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
+          <KpiCard title="Taxa de Mortalidade" value="12%" subtitle="3 óbitos / 26 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
           <KpiCard title="Tempo Resposta" value="0 dias" subtitle="Fluxo regionais" icon={<TrendingUp className="w-4 h-4" />} variant="success" />
         </div>
 
         {/* Status dos Casos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <KpiCard title="Confirmados" value="22 (27%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Em Investigação" value="40 (49%)" icon={<Search className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Descartados" value="20 (24%)" icon={<Users className="w-4 h-4" />} variant="success" />
+          <KpiCard title="Confirmados" value="26 (28%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Em Investigação" value="47 (51%)" icon={<Search className="w-4 h-4" />} variant="warning" />
+          <KpiCard title="Descartados" value="20 (21%)" icon={<Users className="w-4 h-4" />} variant="success" />
         </div>
 
         {/* Status Bar */}
         <div className="glass-card p-5">
           <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Status dos Casos</h3>
           <div className="flex h-10 rounded-lg overflow-hidden text-sm font-semibold">
-            <div className="bg-destructive flex items-center justify-center text-destructive-foreground" style={{ width: "27%" }}>
-              22 Confirmados (27%)
+            <div className="bg-destructive flex items-center justify-center text-destructive-foreground" style={{ width: "28%" }}>
+              26 Confirmados (28%)
             </div>
-            <div className="bg-warning flex items-center justify-center text-warning-foreground" style={{ width: "49%" }}>
-              40 Em Investigação (49%)
+            <div className="bg-warning flex items-center justify-center text-warning-foreground" style={{ width: "51%" }}>
+              47 Em Investigação (51%)
             </div>
-            <div className="bg-success flex items-center justify-center text-success-foreground" style={{ width: "24%" }}>
-              20 Descartados (24%)
+            <div className="bg-success flex items-center justify-center text-success-foreground" style={{ width: "21%" }}>
+              20 Descartados (21%)
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const Index = () => {
         {/* Análise Geral */}
         <AnalysisCard
           title="Análise Geral do Informe"
-          text="No período de 05/01/2026 a 18/04/2026 (SE 01 a SE 15), foram registrados 82 casos notificados de meningite, com 22 confirmados (27%), 20 descartados (24%) e 40 em investigação (49%). As meningites bacterianas representam a maioria dos casos (82%), com destaque para 3 casos de Meningite Meningocócica e 1 caso de Meningo + Meningococcemia. A taxa de mortalidade foi de 14% (3 óbitos entre 22 confirmados). A distribuição geográfica concentra-se na região Metropolitana (22 casos), com presença em múltiplas regionais."
+          text="No período de 05/01/2026 a 18/04/2026 (SE 01 a SE 15), foram registrados 93 casos notificados de meningite, com 26 confirmados (28%), 20 descartados (21%) e 47 em investigação (51%). As meningites bacterianas representam a maioria dos casos confirmados (81%), seguidas pelas virais (15%) e outras etiologias (4%). A taxa de mortalidade foi de 12% (3 óbitos entre 26 confirmados). A distribuição geográfica concentra-se na região Metropolitana (27 casos), com presença em múltiplas regionais."
         />
 
         {/* Demographic Filters */}
@@ -205,17 +205,17 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Encerrados</span>
-                  <span className="font-semibold text-success">37 (45%)</span>
+                  <span className="font-semibold text-success">40 (43%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "45%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "43%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Em Aberto</span>
-                  <span className="font-semibold text-warning">45 (55%)</span>
+                  <span className="font-semibold text-warning">53 (57%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-warning rounded-full" style={{ width: "55%" }} />
+                  <div className="h-full bg-warning rounded-full" style={{ width: "57%" }} />
                 </div>
               </div>
             </div>
@@ -224,17 +224,17 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Altas</span>
-                  <span className="font-semibold text-success">31 (84%)</span>
+                  <span className="font-semibold text-success">32 (80%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "84%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "80%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Internação</span>
-                  <span className="font-semibold text-warning">4 (11%)</span>
+                  <span className="font-semibold text-warning">6 (15%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-warning rounded-full" style={{ width: "11%" }} />
+                  <div className="h-full bg-warning rounded-full" style={{ width: "15%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Óbitos</span>

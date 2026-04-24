@@ -1,17 +1,21 @@
-const municipalities = [
-  { name: "São Luís", value: 11, pct: 50 },
-  { name: "São José de Ribamar", value: 1, pct: 5 },
-  { name: "Viana", value: 1, pct: 5 },
-  { name: "São Luiz Gonzaga do Maranhão", value: 1, pct: 5 },
-  { name: "Bacabal", value: 1, pct: 5 },
-  { name: "Bacabeira", value: 1, pct: 5 },
-  { name: "Urbano Santos", value: 1, pct: 5 },
-  { name: "Caxias", value: 1, pct: 5 },
-  { name: "Amarante", value: 1, pct: 5 },
-  { name: "Nova Olinda do Maranhão", value: 1, pct: 5 },
-  { name: "Jenipapo dos Vieiras", value: 1, pct: 5 },
-  { name: "Outros", value: 1, pct: 5 },
+const totalMun = 26;
+const rawMunicipalities = [
+  { name: "São Luís", value: 13 },
+  { name: "Bacabeira", value: 1 },
+  { name: "Bacabal", value: 1 },
+  { name: "Amarante", value: 1 },
+  { name: "São José de Ribamar", value: 1 },
+  { name: "Nova Olinda do Maranhão", value: 1 },
+  { name: "Viana", value: 1 },
+  { name: "Urbano Santos", value: 1 },
+  { name: "Caxias", value: 1 },
+  { name: "Santa Inês", value: 1 },
+  { name: "São Luiz Gonzaga do Maranhão", value: 1 },
+  { name: "Jenipapo dos Vieiras", value: 1 },
+  { name: "Alcântara", value: 1 },
+  { name: "Outros", value: 1 },
 ];
+const municipalities = rawMunicipalities.map((m) => ({ ...m, pct: Math.round((m.value / totalMun) * 100) }));
 
 export function MunicipalityChart() {
   const maxValue = Math.max(...municipalities.map(m => m.value));
