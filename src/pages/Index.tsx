@@ -81,22 +81,6 @@ const Index = () => {
           <KpiCard title="Descartados" value="20 (21%)" icon={<Users className="w-4 h-4" />} variant="success" />
         </div>
 
-        {/* Status Bar */}
-        <div className="glass-card p-5">
-          <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Status dos Casos</h3>
-          <div className="flex h-10 rounded-lg overflow-hidden text-sm font-semibold">
-            <div className="bg-destructive flex items-center justify-center text-destructive-foreground" style={{ width: "28%" }}>
-              26 Confirmados (28%)
-            </div>
-            <div className="bg-warning flex items-center justify-center text-warning-foreground" style={{ width: "51%" }}>
-              47 Em Investigação (51%)
-            </div>
-            <div className="bg-success flex items-center justify-center text-success-foreground" style={{ width: "21%" }}>
-              20 Descartados (21%)
-            </div>
-          </div>
-        </div>
-
         {/* Análise Geral */}
         <AnalysisCard
           title="Análise Geral do Informe"
