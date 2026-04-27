@@ -13,7 +13,7 @@ const alerts = [
   {
     emoji: "📍",
     title: "Concentração Geográfica",
-    finding: "57% dos casos na região Metropolitana (12 casos).",
+    finding: "57% dos casos na região Metropolitana (12 casos). O volume elevado de notificações na Região Metropolitana deve-se ao fato de essa região concentrar os serviços de referência que recebem casos provenientes de todos os municípios maranhenses.",
     recommendations: [
       "Intensificar vigilância epidemiológica na região Metropolitana",
       "Reforçar capacitação de profissionais para detecção precoce",
