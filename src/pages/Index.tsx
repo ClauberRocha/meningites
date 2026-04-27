@@ -50,7 +50,7 @@ const Index = () => {
               Vigilância das Doenças Imunopreveníveis — Programa de Controle das Meningites
             </p>
             <p className="text-xs text-primary font-semibold mt-1">
-              SE 01 a SE 15 (05/01 – 18/04/2026)
+              SE 01 a SE 16 (05/01 – 25/04/2026)
             </p>
             <p className="text-sm text-foreground font-medium mt-2">
               Dashboard de Vigilância Epidemiológica — Meningite 2026
@@ -84,7 +84,7 @@ const Index = () => {
         {/* Análise Geral */}
         <AnalysisCard
           title="Análise Geral do Informe"
-          text="No período de 05/01/2026 a 18/04/2026 (SE 01 a SE 15), foram registrados 93 casos notificados de meningite, com 26 confirmados (28%), 20 descartados (21%) e 47 em investigação (51%). As meningites bacterianas representam a maioria dos casos confirmados (81%), seguidas pelas virais (15%) e outras etiologias (4%). A taxa de mortalidade foi de 12% (3 óbitos entre 26 confirmados). A distribuição geográfica concentra-se na região Metropolitana (27 casos), com presença em múltiplas regionais."
+          text="No período de 05/01/2026 a 25/04/2026 (SE 01 a SE 16), foram registrados 93 casos notificados de meningite, com 26 confirmados (28%), 20 descartados (21%) e 47 em investigação (51%). As meningites bacterianas representam a maioria dos casos confirmados (81%), seguidas pelas virais (15%) e outras etiologias (4%). A taxa de mortalidade foi de 12% (3 óbitos entre 26 confirmados). A distribuição geográfica concentra-se na região Metropolitana (27 casos), com presença em múltiplas regionais."
         />
 
         {/* Demographic Filters */}
