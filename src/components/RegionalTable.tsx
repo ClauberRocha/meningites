@@ -1,16 +1,15 @@
 const confirmedData = [
-  { regional: "METROPOLITANA", confirmados: 27 },
+  { regional: "METROPOLITANA", confirmados: 25 },
   { regional: "ROSÁRIO", confirmados: 4 },
-  { regional: "SANTA INÊS", confirmados: 3 },
+  { regional: "SANTA INÊS", confirmados: 2 },
   { regional: "IMPERATRIZ", confirmados: 2 },
-  { regional: "VIANA", confirmados: 2 },
   { regional: "BACABAL", confirmados: 2 },
   { regional: "PRESIDENTE DUTRA", confirmados: 2 },
-  { regional: "PEDREIRAS", confirmados: 1 },
   { regional: "BALSAS", confirmados: 1 },
-  { regional: "OUTRO ESTADO", confirmados: 1 },
   { regional: "CHAPADINHA", confirmados: 1 },
+  { regional: "VIANA", confirmados: 1 },
   { regional: "ITAPECURU", confirmados: 1 },
+  { regional: "AÇAILÂNDIA", confirmados: 1 },
 ];
 
 export function RegionalTable() {

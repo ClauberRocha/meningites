@@ -1,25 +1,25 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, LabelList } from "recharts";
 
 const sexDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Masculino", value: 13, pct: 50 }, { name: "Feminino", value: 13, pct: 50 }],
+  all: [{ name: "Masculino", value: 18, pct: 56 }, { name: "Feminino", value: 14, pct: 44 }],
   "0-1": [{ name: "Masculino", value: 5, pct: 56 }, { name: "Feminino", value: 4, pct: 44 }],
-  "1-10": [{ name: "Masculino", value: 2, pct: 40 }, { name: "Feminino", value: 3, pct: 60 }],
-  "11-20": [{ name: "Masculino", value: 2, pct: 67 }, { name: "Feminino", value: 1, pct: 33 }],
+  "1-10": [{ name: "Masculino", value: 4, pct: 57 }, { name: "Feminino", value: 3, pct: 43 }],
+  "11-20": [{ name: "Masculino", value: 2, pct: 50 }, { name: "Feminino", value: 2, pct: 50 }],
   "21-30": [{ name: "Masculino", value: 1, pct: 100 }, { name: "Feminino", value: 0, pct: 0 }],
-  "31-40": [{ name: "Masculino", value: 1, pct: 33 }, { name: "Feminino", value: 2, pct: 67 }],
-  "41-50": [{ name: "Masculino", value: 1, pct: 33 }, { name: "Feminino", value: 2, pct: 67 }],
+  "31-40": [{ name: "Masculino", value: 3, pct: 60 }, { name: "Feminino", value: 2, pct: 40 }],
+  "41-50": [{ name: "Masculino", value: 2, pct: 50 }, { name: "Feminino", value: 2, pct: 50 }],
   "51-60": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
   "61-70": [{ name: "Masculino", value: 1, pct: 100 }, { name: "Feminino", value: 0, pct: 0 }],
 };
 
 const raceDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Parda", value: 22, pct: 85 }, { name: "Branca", value: 3, pct: 12 }, { name: "Indígena", value: 1, pct: 4 }],
+  all: [{ name: "Parda", value: 27, pct: 84 }, { name: "Branca", value: 4, pct: 13 }, { name: "Indígena", value: 1, pct: 3 }],
   "0-1": [{ name: "Parda", value: 8, pct: 89 }, { name: "Branca", value: 1, pct: 11 }, { name: "Indígena", value: 0, pct: 0 }],
-  "1-10": [{ name: "Parda", value: 4, pct: 80 }, { name: "Branca", value: 1, pct: 20 }, { name: "Indígena", value: 0, pct: 0 }],
-  "11-20": [{ name: "Parda", value: 3, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "1-10": [{ name: "Parda", value: 6, pct: 86 }, { name: "Branca", value: 1, pct: 14 }, { name: "Indígena", value: 0, pct: 0 }],
+  "11-20": [{ name: "Parda", value: 4, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
   "21-30": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "31-40": [{ name: "Parda", value: 2, pct: 67 }, { name: "Branca", value: 1, pct: 33 }, { name: "Indígena", value: 0, pct: 0 }],
-  "41-50": [{ name: "Parda", value: 2, pct: 67 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 33 }],
+  "31-40": [{ name: "Parda", value: 4, pct: 80 }, { name: "Branca", value: 1, pct: 20 }, { name: "Indígena", value: 0, pct: 0 }],
+  "41-50": [{ name: "Parda", value: 3, pct: 75 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 25 }],
   "51-60": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
   "61-70": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
 };
@@ -86,7 +86,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
         </div>
         <div className="mt-4 p-3 rounded-lg bg-info/10 border border-info/20">
           <p className="text-xs text-info">
-            <span className="font-semibold">Análise:</span> Distribuição equilibrada entre os sexos (50%/50%), consistente com o perfil epidemiológico da doença.
+            <span className="font-semibold">Análise:</span> Discreta predominância masculina (56%) sobre feminina (44%) entre os casos confirmados.
           </p>
         </div>
       </div>
@@ -108,7 +108,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
         </ResponsiveContainer>
         <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20">
           <p className="text-xs text-warning">
-            <span className="font-semibold">Análise:</span> Expressiva predominância de indivíduos pardos (85%), refletindo o perfil étnico-racial da população maranhense.
+            <span className="font-semibold">Análise:</span> Expressiva predominância de indivíduos pardos (84%), refletindo o perfil étnico-racial da população maranhense.
           </p>
         </div>
       </div>

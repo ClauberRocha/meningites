@@ -19,7 +19,7 @@ import { AnalysisCard } from "@/components/AnalysisCard";
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
   const [startWeek, setStartWeek] = useState("1");
-  const [endWeek, setEndWeek] = useState("16");
+  const [endWeek, setEndWeek] = useState("17");
 
   const ageFilters = [
     { key: "all", label: "Todas" },
@@ -50,7 +50,7 @@ const Index = () => {
               Vigilância das Doenças Imunopreveníveis — Programa de Controle das Meningites
             </p>
             <p className="text-xs text-primary font-semibold mt-1">
-              SE 01 a SE 16 (05/01 – 25/04/2026)
+              SE 01 a SE 17 (05/01 – 02/05/2026)
             </p>
             <p className="text-sm text-foreground font-medium mt-2">
               Dashboard de Vigilância Epidemiológica — Meningite 2026
@@ -66,25 +66,25 @@ const Index = () => {
 
         {/* KPIs Row 1 */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          <KpiCard title="Total Notificados" value={93} icon={<Activity className="w-4 h-4" />} variant="primary" />
-          <KpiCard title="Bacterianas" value="21 (81%)" icon={<Shield className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Virais" value="4 (15%)" icon={<Shield className="w-4 h-4" />} variant="default" />
-          <KpiCard title="Outras Etiologias" value="1 (4%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Taxa de Mortalidade" value="12%" subtitle="3 óbitos / 26 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} variant="primary" />
+          <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} variant="default" />
+          <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
+          <KpiCard title="Taxa de Mortalidade" value="19%" subtitle="6 óbitos / 32 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
           <KpiCard title="Tempo Resposta" value="0 dias" subtitle="Fluxo regionais" icon={<TrendingUp className="w-4 h-4" />} variant="success" />
         </div>
 
         {/* Status dos Casos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <KpiCard title="Confirmados" value="26 (28%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Em Investigação" value="47 (51%)" icon={<Search className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Descartados" value="20 (21%)" icon={<Users className="w-4 h-4" />} variant="success" />
+          <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" />
+          <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} variant="warning" />
+          <KpiCard title="Descartados" value="23 (24%)" icon={<Users className="w-4 h-4" />} variant="success" />
         </div>
 
         {/* Análise Geral */}
         <AnalysisCard
           title="Análise Geral do Informe"
-          text="No período de 05/01/2026 a 25/04/2026 (SE 01 a SE 16), foram registrados 93 casos notificados de meningite, com 26 confirmados (28%), 20 descartados (21%) e 47 em investigação (51%). As meningites bacterianas representam a maioria dos casos confirmados (81%), seguidas pelas virais (15%) e outras etiologias (4%). A taxa de mortalidade foi de 12% (3 óbitos entre 26 confirmados). A distribuição geográfica concentra-se na região Metropolitana (27 casos), com presença em múltiplas regionais."
+          text="No período de 05/01/2026 a 02/05/2026 (SE 01 a SE 17), foram registrados 97 casos notificados de meningite, com 32 confirmados (33%), 23 descartados (24%) e 42 em investigação (43%). As meningites bacterianas representam a maioria dos casos confirmados (75%), seguidas pelas virais (19%) e outras etiologias (6%). A taxa de mortalidade foi de 19% (6 óbitos entre 32 confirmados). A distribuição geográfica concentra-se na região Metropolitana (25 casos), com presença em múltiplas regionais."
         />
 
         {/* Demographic Filters */}
@@ -156,7 +156,7 @@ const Index = () => {
                 onChange={(e) => setStartWeek(e.target.value)}
                 className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {Array.from({ length: 16 }, (_, i) => (
+                {Array.from({ length: 17 }, (_, i) => (
                   <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                 ))}
               </select>
@@ -168,7 +168,7 @@ const Index = () => {
                 onChange={(e) => setEndWeek(e.target.value)}
                 className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {Array.from({ length: 16 }, (_, i) => (
+                {Array.from({ length: 17 }, (_, i) => (
                   <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                 ))}
               </select>
@@ -189,17 +189,17 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Encerrados</span>
-                  <span className="font-semibold text-success">40 (43%)</span>
+                  <span className="font-semibold text-success">47 (48%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "43%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "48%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Em Aberto</span>
-                  <span className="font-semibold text-warning">53 (57%)</span>
+                  <span className="font-semibold text-warning">50 (52%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-warning rounded-full" style={{ width: "57%" }} />
+                  <div className="h-full bg-warning rounded-full" style={{ width: "52%" }} />
                 </div>
               </div>
             </div>
@@ -208,24 +208,24 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Altas</span>
-                  <span className="font-semibold text-success">32 (80%)</span>
+                  <span className="font-semibold text-success">39 (83%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "80%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "83%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Internação</span>
-                  <span className="font-semibold text-warning">6 (15%)</span>
+                  <span className="font-semibold text-warning">5 (11%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-warning rounded-full" style={{ width: "15%" }} />
+                  <div className="h-full bg-warning rounded-full" style={{ width: "11%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Óbitos</span>
-                  <span className="font-semibold text-destructive">2 (5%)</span>
+                  <span className="font-semibold text-destructive">3 (6%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-destructive rounded-full" style={{ width: "5%" }} />
+                  <div className="h-full bg-destructive rounded-full" style={{ width: "6%" }} />
                 </div>
               </div>
             </div>

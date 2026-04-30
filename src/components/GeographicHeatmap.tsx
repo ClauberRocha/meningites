@@ -1,17 +1,17 @@
-const total = 26;
+const total = 32;
 
 const regions = [
-  { name: "Metropolitana", value: 15 },
+  { name: "Metropolitana", value: 17 },
+  { name: "Rosário", value: 2 },
   { name: "Bacabal", value: 2 },
-  { name: "Rosário", value: 1 },
+  { name: "Outro Estado", value: 2 },
   { name: "Imperatriz", value: 1 },
   { name: "Zé Doca", value: 1 },
   { name: "Viana", value: 1 },
   { name: "Itapecuru", value: 1 },
+  { name: "Pedreiras", value: 1 },
   { name: "Caxias", value: 1 },
   { name: "Santa Inês", value: 1 },
-  { name: "Barra do Corda", value: 1 },
-  { name: "Outro Estado", value: 1 },
 ];
 
 export function GeographicHeatmap() {
@@ -42,7 +42,7 @@ export function GeographicHeatmap() {
 
       <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
         <p className="text-xs text-destructive">
-          <span className="font-semibold">Alerta:</span> A Metropolitana concentra {((15 / total) * 100).toFixed(0)}% dos casos confirmados (15 casos), indicando necessidade de intensificação da vigilância nesta região.
+          <span className="font-semibold">Alerta:</span> A Metropolitana concentra {((17 / total) * 100).toFixed(0)}% dos casos confirmados (17 casos), indicando necessidade de intensificação da vigilância nesta região.
         </p>
       </div>
     </div>
