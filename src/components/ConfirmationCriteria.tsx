@@ -1,10 +1,11 @@
-const total = 26;
+const total = 32;
 const rawCriteria = [
-  { name: "Quimiocitológico", value: 11 },
-  { name: "PCR", value: 5 },
+  { name: "Quimiocitológico", value: 12 },
+  { name: "PCR", value: 7 },
   { name: "Clínico", value: 5 },
   { name: "Cultura", value: 3 },
-  { name: "Necropsia", value: 1 },
+  { name: "Necropsia", value: 3 },
+  { name: "Outros", value: 1 },
   { name: "Em Investigação", value: 1 },
 ];
 const criteria = rawCriteria.map((c) => ({ ...c, pct: Math.round((c.value / total) * 100) }));
