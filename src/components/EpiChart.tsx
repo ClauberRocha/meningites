@@ -1,7 +1,7 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 
 const allWeeklyData = [
-  { sem: "SE1", conf2025: 2, notif2026: 2, conf2026: 0 },
+  { sem: "SE1", conf2025: 2, notif2026: 2, conf2026: 1 },
   { sem: "SE2", conf2025: 0, notif2026: 7, conf2026: 2 },
   { sem: "SE3", conf2025: 5, notif2026: 7, conf2026: 4 },
   { sem: "SE4", conf2025: 1, notif2026: 4, conf2026: 3 },
@@ -11,12 +11,13 @@ const allWeeklyData = [
   { sem: "SE8", conf2025: 0, notif2026: 7, conf2026: 2 },
   { sem: "SE9", conf2025: 5, notif2026: 5, conf2026: 1 },
   { sem: "SE10", conf2025: 2, notif2026: 4, conf2026: 0 },
-  { sem: "SE11", conf2025: 4, notif2026: 6, conf2026: 1 },
+  { sem: "SE11", conf2025: 4, notif2026: 6, conf2026: 2 },
   { sem: "SE12", conf2025: 3, notif2026: 13, conf2026: 1 },
   { sem: "SE13", conf2025: 2, notif2026: 6, conf2026: 1 },
   { sem: "SE14", conf2025: 3, notif2026: 10, conf2026: 5 },
   { sem: "SE15", conf2025: 0, notif2026: 6, conf2026: 1 },
   { sem: "SE16", conf2025: 2, notif2026: 1, conf2026: 0 },
+  { sem: "SE17", conf2025: 3, notif2026: 2, conf2026: 2 },
 ];
 
 interface EpiChartProps {
@@ -24,7 +25,7 @@ interface EpiChartProps {
   endWeek?: number;
 }
 
-export function EpiChart({ startWeek = 1, endWeek = 16 }: EpiChartProps) {
+export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
   const weeklyData = allWeeklyData.slice(startWeek - 1, endWeek);
   const totalNotif = weeklyData.reduce((s, d) => s + d.notif2026, 0);
   const totalConf2026 = weeklyData.reduce((s, d) => s + d.conf2026, 0);

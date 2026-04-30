@@ -1,10 +1,11 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, LabelList } from "recharts";
 
 const data = [
-  { month: "Janeiro", notificados: 24, confirmados: 11 },
-  { month: "Fevereiro", notificados: 21, confirmados: 5 },
-  { month: "Março", notificados: 33, confirmados: 4 },
-  { month: "Abril", notificados: 15, confirmados: 6 },
+  { month: "Janeiro", notificados: 20, confirmados: 10 },
+  { month: "Fevereiro", notificados: 22, confirmados: 5 },
+  { month: "Março", notificados: 34, confirmados: 5 },
+  { month: "Abril", notificados: 17, confirmados: 6 },
+  { month: "Maio", notificados: 2, confirmados: 2 },
 ];
 
 const tooltipStyle = {
@@ -37,7 +38,7 @@ export function CasesByMonth() {
       </ResponsiveContainer>
       <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/20">
         <p className="text-xs text-info">
-          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de confirmações (11 casos). Março teve o pico de notificações (33 casos). Abril com dados parciais (6 confirmados).
+          <span className="font-semibold">Análise:</span> Janeiro apresentou o maior número de confirmações (10 casos). Março teve o pico de notificações (34 casos). Abril registrou 6 confirmados e Maio inicia com dados parciais (2 confirmados até a SE 17).
         </p>
       </div>
     </div>

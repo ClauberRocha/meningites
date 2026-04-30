@@ -2,7 +2,7 @@ const alerts = [
   {
     emoji: "🚨",
     title: "Concentração em Crianças Pequenas",
-    finding: "29% dos casos confirmados ocorrem em crianças de 0-1 ano (6 casos).",
+    finding: "28% dos casos confirmados ocorrem em crianças menores de 1 ano (9 casos).",
     recommendations: [
       "Intensificar campanhas de vacinação meningocócica em menores de 2 anos",
       "Reforçar orientação aos pais sobre sinais de alerta",
@@ -13,7 +13,7 @@ const alerts = [
   {
     emoji: "📍",
     title: "Concentração Geográfica",
-    finding: "57% dos casos na região Metropolitana (12 casos). O volume elevado de notificações na Região Metropolitana deve-se ao fato de essa região concentrar os serviços de referência que recebem casos provenientes de todos os municípios maranhenses.",
+    finding: "53% dos casos na região Metropolitana (17 casos). O volume elevado de notificações na Região Metropolitana deve-se ao fato de essa região concentrar os serviços de referência que recebem casos provenientes de todos os municípios maranhenses.",
     recommendations: [
       "Intensificar vigilância epidemiológica na região Metropolitana",
       "Reforçar capacitação de profissionais para detecção precoce",
@@ -24,7 +24,7 @@ const alerts = [
   {
     emoji: "🦠",
     title: "Predominância de Meningite Bacteriana",
-    finding: "82% dos casos são bacterianos (18 casos), com taxa de mortalidade de 14%.",
+    finding: "75% dos casos são bacterianos (24 casos), com taxa de mortalidade geral de 19%.",
     recommendations: [
       "Garantir acesso rápido a antibióticos apropriados",
       "Reforçar protocolos de manejo clínico de meningite bacteriana",
@@ -35,7 +35,7 @@ const alerts = [
   {
     emoji: "⚠️",
     title: "Taxa de Mortalidade",
-    finding: "14% de taxa de mortalidade (3 óbitos em 22 confirmados).",
+    finding: "19% de taxa de mortalidade (6 óbitos em 32 confirmados).",
     recommendations: [
       "Revisar protocolos de manejo clínico e terapia antimicrobiana",
       "Reforçar capacitação em diagnóstico precoce",
@@ -46,7 +46,7 @@ const alerts = [
   {
     emoji: "🌍",
     title: "Perfil Étnico-Racial",
-    finding: "86% dos casos em indivíduos pardos, refletindo perfil populacional.",
+    finding: "84% dos casos em indivíduos pardos, refletindo perfil populacional.",
     recommendations: [
       "Assegurar equidade no acesso a vacinas e tratamentos",
       "Monitorar possíveis disparidades no acesso à saúde",
@@ -56,8 +56,8 @@ const alerts = [
   },
   {
     emoji: "👥",
-    title: "Distribuição por Sexo Equilibrada",
-    finding: "48% masculino vs 52% feminino entre confirmados.",
+    title: "Distribuição por Sexo",
+    finding: "56% masculino (18) vs 44% feminino (14) entre confirmados.",
     recommendations: [
       "Manter monitoramento de tendências epidemiológicas por gênero",
       "Fortalecer campanhas direcionadas a ambos os sexos",
