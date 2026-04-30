@@ -16,8 +16,8 @@ const allWeeklyData = [
   { sem: "SE13", conf2025: 2, notif2026: 6, conf2026: 1 },
   { sem: "SE14", conf2025: 3, notif2026: 10, conf2026: 5 },
   { sem: "SE15", conf2025: 0, notif2026: 6, conf2026: 1 },
-  { sem: "SE16", conf2025: 2, notif2026: 1, conf2026: 0 },
-  { sem: "SE17", conf2025: 3, notif2026: 2, conf2026: 2 },
+  { sem: "SE16", conf2025: 2, notif2026: 2, conf2026: 2 },
+  { sem: "SE17", conf2025: 3, notif2026: 3, conf2026: 4 },
 ];
 
 interface EpiChartProps {
