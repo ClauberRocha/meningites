@@ -71,7 +71,7 @@ const Index = () => {
           <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} variant="default" />
           <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
           <KpiCard title="Taxa de Mortalidade" value="19%" subtitle="6 óbitos / 32 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Tempo Resposta" value="0 dias" subtitle="Fluxo regionais" icon={<TrendingUp className="w-4 h-4" />} variant="success" />
+          <KpiCard title="Tempo Resposta" value="70 dias" subtitle="Regional Zé Doca" icon={<TrendingUp className="w-4 h-4" />} variant="success" />
         </div>
 
         {/* Status dos Casos */}
