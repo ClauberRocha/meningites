@@ -15,6 +15,7 @@ import { VaccineCoverage } from "@/components/VaccineCoverage";
 import { AlertsSection } from "@/components/AlertsSection";
 import { GlossarySection } from "@/components/GlossarySection";
 import { AnalysisCard } from "@/components/AnalysisCard";
+import { BackToTopButton } from "@/components/BackToTopButton";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
@@ -239,6 +240,7 @@ const Index = () => {
         <GlossarySection />
 
       </div>
+      <BackToTopButton />
     </div>
   );
 };
