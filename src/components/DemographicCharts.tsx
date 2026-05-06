@@ -1,27 +1,27 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, LabelList } from "recharts";
 
 const sexDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Masculino", value: 18, pct: 56 }, { name: "Feminino", value: 14, pct: 44 }],
-  "0-1": [{ name: "Masculino", value: 5, pct: 56 }, { name: "Feminino", value: 4, pct: 44 }],
-  "1-10": [{ name: "Masculino", value: 4, pct: 57 }, { name: "Feminino", value: 3, pct: 43 }],
-  "11-20": [{ name: "Masculino", value: 2, pct: 50 }, { name: "Feminino", value: 2, pct: 50 }],
+  all: [{ name: "Masculino", value: 17, pct: 53 }, { name: "Feminino", value: 15, pct: 47 }],
+  "0-1": [{ name: "Masculino", value: 4, pct: 44 }, { name: "Feminino", value: 5, pct: 56 }],
+  "1-10": [{ name: "Masculino", value: 5, pct: 71 }, { name: "Feminino", value: 2, pct: 29 }],
+  "11-20": [{ name: "Masculino", value: 3, pct: 75 }, { name: "Feminino", value: 1, pct: 25 }],
   "21-30": [{ name: "Masculino", value: 1, pct: 100 }, { name: "Feminino", value: 0, pct: 0 }],
-  "31-40": [{ name: "Masculino", value: 3, pct: 60 }, { name: "Feminino", value: 2, pct: 40 }],
+  "31-40": [{ name: "Masculino", value: 2, pct: 40 }, { name: "Feminino", value: 3, pct: 60 }],
   "41-50": [{ name: "Masculino", value: 2, pct: 50 }, { name: "Feminino", value: 2, pct: 50 }],
   "51-60": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
-  "61-70": [{ name: "Masculino", value: 1, pct: 100 }, { name: "Feminino", value: 0, pct: 0 }],
+  "61-70": [{ name: "Masculino", value: 0, pct: 0 }, { name: "Feminino", value: 1, pct: 100 }],
 };
 
 const raceDataByAge: Record<string, { name: string; value: number; pct: number }[]> = {
-  all: [{ name: "Parda", value: 27, pct: 84 }, { name: "Branca", value: 4, pct: 13 }, { name: "Indígena", value: 1, pct: 3 }],
-  "0-1": [{ name: "Parda", value: 8, pct: 89 }, { name: "Branca", value: 1, pct: 11 }, { name: "Indígena", value: 0, pct: 0 }],
-  "1-10": [{ name: "Parda", value: 6, pct: 86 }, { name: "Branca", value: 1, pct: 14 }, { name: "Indígena", value: 0, pct: 0 }],
-  "11-20": [{ name: "Parda", value: 4, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "21-30": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "31-40": [{ name: "Parda", value: 4, pct: 80 }, { name: "Branca", value: 1, pct: 20 }, { name: "Indígena", value: 0, pct: 0 }],
-  "41-50": [{ name: "Parda", value: 3, pct: 75 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 25 }],
-  "51-60": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
-  "61-70": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  all: [{ name: "Parda", value: 27, pct: 84 }, { name: "Branca", value: 3, pct: 9 }, { name: "Preta", value: 1, pct: 3 }, { name: "Indígena", value: 1, pct: 3 }],
+  "0-1": [{ name: "Parda", value: 8, pct: 89 }, { name: "Branca", value: 1, pct: 11 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "1-10": [{ name: "Parda", value: 6, pct: 86 }, { name: "Branca", value: 0, pct: 0 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 1, pct: 14 }],
+  "11-20": [{ name: "Parda", value: 3, pct: 75 }, { name: "Branca", value: 1, pct: 25 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "21-30": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "31-40": [{ name: "Parda", value: 3, pct: 60 }, { name: "Branca", value: 1, pct: 20 }, { name: "Preta", value: 1, pct: 20 }, { name: "Indígena", value: 0, pct: 0 }],
+  "41-50": [{ name: "Parda", value: 4, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "51-60": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
+  "61-70": [{ name: "Parda", value: 1, pct: 100 }, { name: "Branca", value: 0, pct: 0 }, { name: "Preta", value: 0, pct: 0 }, { name: "Indígena", value: 0, pct: 0 }],
 };
 
 const SEX_COLORS = ["hsl(210 80% 55%)", "hsl(330 65% 55%)"];
@@ -86,7 +86,7 @@ export function DemographicCharts({ ageGroup }: { ageGroup: string }) {
         </div>
         <div className="mt-4 p-3 rounded-lg bg-info/10 border border-info/20">
           <p className="text-xs text-info">
-            <span className="font-semibold">Análise:</span> Discreta predominância masculina (56%) sobre feminina (44%) entre os casos confirmados.
+            <span className="font-semibold">Análise:</span> Discreta predominância masculina (53%) sobre feminina (47%) entre os casos confirmados.
           </p>
         </div>
       </div>
