@@ -48,10 +48,10 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
         <span className="text-muted-foreground">Taxa de confirmação: <span className="font-bold text-foreground">{taxa}%</span></span>
       </div>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={weeklyData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
-          <XAxis dataKey="sem" tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
-          <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
+        <LineChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="2 6" stroke="hsl(210 20% 22%)" vertical={false} />
+          <XAxis dataKey="sem" tick={{ fill: "hsl(210 15% 70%)", fontSize: 11 }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fill: "hsl(210 15% 70%)", fontSize: 11 }} axisLine={false} tickLine={false} />
           <Tooltip
             contentStyle={{
               backgroundColor: "hsl(210 28% 12%)",
@@ -60,16 +60,40 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
               color: "hsl(210 20% 92%)",
               fontSize: 12,
             }}
+            cursor={{ stroke: "hsl(210 20% 35%)", strokeWidth: 1, strokeDasharray: "3 3" }}
           />
-          <Legend wrapperStyle={{ fontSize: 12, color: "hsl(210 15% 55%)" }} />
-          <Line type="monotone" dataKey="conf2025" name="Confirmados 2025" stroke="hsl(210 80% 55%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }}>
-            <LabelList dataKey="conf2025" position="top" fill="hsl(210 80% 55%)" fontSize={10} fontWeight={600} />
-          </Line>
-          <Line type="monotone" dataKey="notif2026" name="Notificados 2026" stroke="hsl(38 92% 50%)" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }}>
-            <LabelList dataKey="notif2026" position="top" fill="hsl(38 92% 50%)" fontSize={10} fontWeight={600} />
-          </Line>
-          <Line type="monotone" dataKey="conf2026" name="Confirmados 2026" stroke="hsl(0 72% 55%)" strokeWidth={3.5} dot={{ r: 4 }} activeDot={{ r: 6 }}>
-            <LabelList dataKey="conf2026" position="top" fill="hsl(0 72% 55%)" fontSize={10} fontWeight={600} />
+          <Legend wrapperStyle={{ fontSize: 12, color: "hsl(210 15% 70%)", paddingTop: 8 }} iconType="circle" />
+          <Line
+            type="monotone"
+            dataKey="conf2025"
+            name="Confirmados 2025"
+            stroke="hsl(210 70% 65%)"
+            strokeWidth={1.5}
+            strokeDasharray="5 4"
+            strokeOpacity={0.55}
+            dot={false}
+            activeDot={{ r: 4 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="notif2026"
+            name="Notificados 2026"
+            stroke="hsl(38 92% 60%)"
+            strokeWidth={2}
+            strokeOpacity={0.75}
+            dot={{ r: 2.5, strokeWidth: 0 }}
+            activeDot={{ r: 5 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="conf2026"
+            name="Confirmados 2026"
+            stroke="hsl(0 84% 60%)"
+            strokeWidth={4}
+            dot={{ r: 4, fill: "hsl(0 84% 60%)", stroke: "hsl(210 28% 10%)", strokeWidth: 2 }}
+            activeDot={{ r: 7 }}
+          >
+            <LabelList dataKey="conf2026" position="top" fill="hsl(0 84% 75%)" fontSize={11} fontWeight={700} offset={10} />
           </Line>
         </LineChart>
       </ResponsiveContainer>
