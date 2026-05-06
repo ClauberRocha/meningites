@@ -57,7 +57,7 @@ const alerts = [
   {
     emoji: "👥",
     title: "Distribuição por Sexo",
-    finding: "56% masculino (18) vs 44% feminino (14) entre confirmados.",
+    finding: "53% masculino (17) vs 47% feminino (15) entre confirmados.",
     recommendations: [
       "Manter monitoramento de tendências epidemiológicas por gênero",
       "Fortalecer campanhas direcionadas a ambos os sexos",
