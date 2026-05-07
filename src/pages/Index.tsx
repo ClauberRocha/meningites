@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Activity, Users, AlertTriangle, CheckCircle, Search, Skull, TrendingUp, Shield } from "lucide-react";
+import { Activity, Users, AlertTriangle, CheckCircle, Search, Skull, TrendingUp, Shield, Gauge } from "lucide-react";
 import { KpiCard } from "@/components/KpiCard";
 import { EpiChart } from "@/components/EpiChart";
 import { AgeDistribution } from "@/components/AgeDistribution";
@@ -16,6 +16,8 @@ import { AlertsSection } from "@/components/AlertsSection";
 import { GlossarySection } from "@/components/GlossarySection";
 import { AnalysisCard } from "@/components/AnalysisCard";
 import { BackToTopButton } from "@/components/BackToTopButton";
+import { ExecutiveSummary } from "@/components/ExecutiveSummary";
+import { ActionPanel } from "@/components/ActionPanel";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
@@ -65,30 +67,72 @@ const Index = () => {
           </div>
         </header>
 
-        {/* KPIs Row 1 */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} variant="primary" />
-          <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} variant="default" />
-          <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Taxa de Mortalidade" value="19%" subtitle="6 óbitos / 32 confirmados" icon={<Skull className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Tempo Resposta" value="70 dias" subtitle="Regional Zé Doca" icon={<TrendingUp className="w-4 h-4" />} variant="success" />
-        </div>
+        {/* Resumo Executivo */}
+        <ExecutiveSummary
+          trend="down"
+          level="medium"
+          yoyPct={-20}
+          criticalWeek="SE 14"
+          headline="32 casos confirmados em 17 semanas; pico recente em SE 14 com 6 confirmados; mortalidade ainda elevada (19%) e tempo de resposta acima do recomendado em 1 regional."
+        />
 
-        {/* Status dos Casos */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" />
-          <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} variant="warning" />
-          <KpiCard title="Descartados" value="23 (24%)" icon={<Users className="w-4 h-4" />} variant="success" />
-        </div>
+        {/* SEÇÃO: SITUAÇÃO GERAL */}
+        <section className="space-y-3">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Situação Geral</h2>
 
-        {/* Análise Geral */}
+          {/* KPIs principais — destacados */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" deltaPct={-12} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Óbitos" value={6} subtitle="Taxa de mortalidade 19%" icon={<Skull className="w-4 h-4" />} variant="destructive" deltaPct={-25} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Tendência (4 sem.)" value="Queda" subtitle="Confirmados em redução" icon={<TrendingUp className="w-4 h-4" />} variant="success" deltaPct={-18} higherIsWorse={false} deltaLabel="vs sem. anterior" />
+          </div>
+
+          {/* KPIs secundários */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} variant="primary" deltaPct={8} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} variant="warning" deltaPct={5} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Descartados" value="23 (24%)" icon={<Users className="w-4 h-4" />} variant="success" deltaPct={10} higherIsWorse={false} deltaLabel="vs sem. anterior" />
+            <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} variant="destructive" deltaPct={-3} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} variant="default" deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} variant="warning" deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
+          </div>
+
+          {/* KPIs operacionais / eficiência */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <KpiCard
+              title="Eficiência da Vigilância"
+              value="68%"
+              subtitle="Encerramento + investigação + confirmação"
+              icon={<Gauge className="w-4 h-4" />}
+              variant="warning"
+              deltaPct={4}
+              higherIsWorse={false}
+              deltaLabel="vs sem. anterior"
+            />
+            <KpiCard
+              title="Tempo Resposta"
+              value="70 dias"
+              subtitle="Regional Zé Doca — acima do recomendado"
+              icon={<AlertTriangle className="w-4 h-4" />}
+              variant="destructive"
+              deltaPct={15}
+              higherIsWorse
+              deltaLabel="vs sem. anterior"
+            />
+          </div>
+        </section>
+
+        {/* Painel de Ação */}
+        <ActionPanel />
+
         <AnalysisCard
           title="Análise Geral do Informe"
           text="No período de 05/01/2026 a 02/05/2026 (SE 01 a SE 17), foram registrados 97 casos notificados de meningite, com 32 confirmados (33%), 23 descartados (24%) e 42 em investigação (43%). As meningites bacterianas representam a maioria dos casos confirmados (75%), seguidas pelas virais (19%) e outras etiologias (6%). A taxa de mortalidade foi de 19% (6 óbitos entre 32 confirmados). A distribuição geográfica concentra-se na região Metropolitana (25 casos), com presença em múltiplas regionais."
         />
 
-        {/* Demographic Filters */}
+        {/* SEÇÃO: PERFIL EPIDEMIOLÓGICO */}
+        <section className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Perfil Epidemiológico</h2>
         <div className="glass-card p-5">
           <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Filtrar por Faixa Etária</h3>
           <div className="flex flex-wrap gap-2">
@@ -108,81 +152,85 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Demographics */}
         <DemographicCharts ageGroup={ageGroup} />
 
-        {/* Age + Confirmation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <AgeDistribution />
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <ConfirmationCriteria />
           </div>
         </div>
+        </section>
 
-        {/* Cases by Month */}
-        <CasesByMonth />
+        {/* SEÇÃO: EVOLUÇÃO TEMPORAL */}
+        <section className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Evolução Temporal</h2>
+          <CasesByMonth />
 
-        {/* Etiologia + Evolução */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <EtiologyBreakdown />
-          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
-            <CaseEvolution />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <EtiologyBreakdown />
+            <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+              <CaseEvolution />
+            </div>
           </div>
-        </div>
 
-        {/* Geographic Distribution */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Curva epidêmica com filtro */}
+          <div className="glass-card p-6">
+            <h3 className="font-display font-semibold text-foreground mb-1">Filtrar por Semana Epidemiológica</h3>
+            <p className="text-xs text-muted-foreground mb-2">Evolução semanal com comparação 2025 vs 2026</p>
+            <div className="flex flex-wrap gap-4 mb-4">
+              <div>
+                <label className="text-xs text-muted-foreground block mb-1">Semana Inicial</label>
+                <select
+                  value={startWeek}
+                  onChange={(e) => setStartWeek(e.target.value)}
+                  className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  {Array.from({ length: 17 }, (_, i) => (
+                    <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="text-xs text-muted-foreground block mb-1">Semana Final</label>
+                <select
+                  value={endWeek}
+                  onChange={(e) => setEndWeek(e.target.value)}
+                  className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  {Array.from({ length: 17 }, (_, i) => (
+                    <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <EpiChart startWeek={parseInt(startWeek)} endWeek={parseInt(endWeek)} />
+          </div>
+        </section>
+
+        {/* SEÇÃO: DISTRIBUIÇÃO GEOGRÁFICA */}
+        <section className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Distribuição Geográfica</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <RegionalTable />
           </div>
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <MunicipalityChart />
           </div>
-        </div>
-
-        {/* Heatmap */}
-        <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
-          <GeographicHeatmap />
-        </div>
-
-        {/* Epidemic Curve with Filter */}
-        <div className="glass-card p-6">
-          <h3 className="font-display font-semibold text-foreground mb-1">Filtrar por Semana Epidemiológica</h3>
-          <p className="text-xs text-muted-foreground mb-2">Evolução semanal com comparação 2025 vs 2026</p>
-          <div className="flex flex-wrap gap-4 mb-4">
-            <div>
-              <label className="text-xs text-muted-foreground block mb-1">Semana Inicial</label>
-              <select
-                value={startWeek}
-                onChange={(e) => setStartWeek(e.target.value)}
-                className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {Array.from({ length: 17 }, (_, i) => (
-                  <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="text-xs text-muted-foreground block mb-1">Semana Final</label>
-              <select
-                value={endWeek}
-                onChange={(e) => setEndWeek(e.target.value)}
-                className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {Array.from({ length: 17 }, (_, i) => (
-                  <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
-                ))}
-              </select>
-            </div>
           </div>
-          <EpiChart startWeek={parseInt(startWeek)} endWeek={parseInt(endWeek)} />
-        </div>
 
-        {/* Vaccination Coverage */}
-        <VaccineCoverage />
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <GeographicHeatmap />
+          </div>
+        </section>
 
-        {/* Situação dos Casos */}
-        <div className="glass-card p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+        {/* SEÇÃO: OPERACIONAL */}
+        <section className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Operacional</h2>
+          <VaccineCoverage />
+
+          <div className="glass-card p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
           <h3 className="font-display font-semibold text-foreground mb-4">Situação dos Casos</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -231,13 +279,11 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
 
-        {/* Alerts */}
-        <AlertsSection />
-
-        {/* Glossary */}
-        <GlossarySection />
+          <AlertsSection />
+          <GlossarySection />
+        </section>
 
       </div>
       <BackToTopButton />

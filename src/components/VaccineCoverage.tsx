@@ -91,7 +91,7 @@ const tooltipStyle = {
 export function VaccineCoverage() {
   const [startYear, setStartYear] = useState("2020");
   const [endYear, setEndYear] = useState("2026");
-  const [selectedVaccines, setSelectedVaccines] = useState<string[]>([...allKeys]);
+  const [selectedVaccines, setSelectedVaccines] = useState<string[]>([]);
 
   const allSelected = selectedVaccines.length === allKeys.length;
 
@@ -158,6 +158,9 @@ export function VaccineCoverage() {
             {years.map((y) => (<option key={y} value={y}>{y}</option>))}
           </select>
         </div>
+        <p className="text-sm font-medium text-white pb-1.5">
+          Selecione uma ou mais vacinas para análises
+        </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-3 mb-5 p-3 bg-secondary/20 rounded-lg border border-border/30">
@@ -213,9 +216,9 @@ export function VaccineCoverage() {
                 dataKey={v.key}
                 name={v.name}
                 stroke={v.color}
-                strokeWidth={2}
-                dot={{ r: 2 }}
-                activeDot={{ r: 4 }}
+                strokeWidth={3.5}
+                dot={{ r: 3 }}
+                activeDot={{ r: 6 }}
               />
             ))}
           </LineChart>
