@@ -1,5 +1,38 @@
 const alerts = [
   {
+    emoji: "📈",
+    title: "Aumento Recente em Notificações",
+    finding: "Aumento de 47% nas notificações entre SE 11 e SE 14 (de 6 para 10 notificados/semana).",
+    recommendations: [
+      "Investigar fatores associados ao aumento na Região Metropolitana",
+      "Reforçar busca ativa em municípios com casos suspeitos",
+      "Acelerar coleta e processamento laboratorial",
+    ],
+    variant: "destructive" as const,
+  },
+  {
+    emoji: "⏱️",
+    title: "Tempo de Encerramento Acima do Recomendado",
+    finding: "Tempo médio de encerramento na Regional Zé Doca está em 70 dias — acima do recomendado (≤60 dias).",
+    recommendations: [
+      "Apoio técnico à Regional Zé Doca para encerramento de fichas pendentes",
+      "Monitorar fichas em aberto há mais de 60 dias",
+      "Estabelecer meta semanal de encerramento por regional",
+    ],
+    variant: "warning" as const,
+  },
+  {
+    emoji: "🏙️",
+    title: "Município Concentrador",
+    finding: "São Luís concentrou 44% dos casos confirmados (14 de 32) no período.",
+    recommendations: [
+      "Direcionar ações de bloqueio vacinal para São Luís",
+      "Reforçar vigilância em unidades de referência da capital",
+      "Articular com SEMUS para resposta coordenada",
+    ],
+    variant: "destructive" as const,
+  },
+  {
     emoji: "🚨",
     title: "Concentração em Crianças Pequenas",
     finding: "28% dos casos confirmados ocorrem em crianças menores de 1 ano (9 casos).",
