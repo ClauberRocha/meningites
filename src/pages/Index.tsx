@@ -37,10 +37,10 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
-      <div className="max-w-[1440px] mx-auto space-y-6">
+    <div className="min-h-screen bg-background bg-gradient-soft p-4 md:p-6 lg:p-8">
+      <div className="max-w-[1440px] mx-auto space-y-6 animate-fade-in">
         {/* Header */}
-        <header className="glass-card p-6 md:p-8">
+        <header className="glass-card glass-card-hover p-6 md:p-8 animate-scale-in">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />

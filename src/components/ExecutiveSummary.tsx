@@ -37,15 +37,17 @@ export function ExecutiveSummary({
   const YoyIcon = yoyUp ? TrendingUp : yoyPct < 0 ? TrendingDown : Minus;
 
   return (
-    <div className="glass-card p-6 md:p-7 border-2 border-primary/30">
+    <div className="glass-card glass-card-hover p-6 md:p-7 border-2 border-primary/30 animate-scale-in relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-soft pointer-events-none" />
+      <div className="relative">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs font-medium uppercase tracking-widest text-primary">Resumo Executivo</span>
+        <span className="text-xs font-medium uppercase tracking-widest gradient-text">Resumo Executivo</span>
         <div className={`w-2 h-2 rounded-full ${l.dot} animate-pulse`} />
       </div>
       <p className="text-sm md:text-base text-foreground mb-5 leading-relaxed">{headline}</p>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className={`rounded-lg border p-4 ${t.bg}`}>
+        <div className={`rounded-lg border p-4 ${t.bg} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg`}>
           <div className="flex items-center gap-2 mb-1">
             <t.Icon className={`w-4 h-4 ${t.color}`} />
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Tendência</span>
@@ -53,7 +55,7 @@ export function ExecutiveSummary({
           <p className={`text-xl font-display font-bold ${t.color}`}>{t.label}</p>
         </div>
 
-        <div className={`rounded-lg border p-4 ${l.bg}`}>
+        <div className={`rounded-lg border p-4 ${l.bg} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg`}>
           <div className="flex items-center gap-2 mb-1">
             <AlertTriangle className={`w-4 h-4 ${l.color}`} />
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Nível de Alerta</span>
@@ -61,7 +63,7 @@ export function ExecutiveSummary({
           <p className={`text-xl font-display font-bold ${l.color}`}>{l.label}</p>
         </div>
 
-        <div className={`rounded-lg border p-4 ${yoyUp ? "bg-destructive/10 border-destructive/30" : yoyPct < 0 ? "bg-success/10 border-success/30" : "bg-warning/10 border-warning/30"}`}>
+        <div className={`rounded-lg border p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${yoyUp ? "bg-destructive/10 border-destructive/30" : yoyPct < 0 ? "bg-success/10 border-success/30" : "bg-warning/10 border-warning/30"}`}>
           <div className="flex items-center gap-2 mb-1">
             <YoyIcon className={`w-4 h-4 ${yoyColor}`} />
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">vs Ano Anterior</span>
@@ -69,7 +71,7 @@ export function ExecutiveSummary({
           <p className={`text-xl font-display font-bold ${yoyColor}`}>{yoyPct > 0 ? "+" : ""}{yoyPct}%</p>
         </div>
 
-        <div className="rounded-lg border border-warning/30 bg-warning/10 p-4">
+        <div className="rounded-lg border border-warning/30 bg-warning/10 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
           <div className="flex items-center gap-2 mb-1">
             <Calendar className="w-4 h-4 text-warning" />
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Semana Crítica</span>
@@ -81,6 +83,7 @@ export function ExecutiveSummary({
       <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
         <BarChart3 className="w-3.5 h-3.5" />
         <span>Indicadores baseados nos casos confirmados de meningite — SE 01 a SE 17 / 2026.</span>
+      </div>
       </div>
     </div>
   );

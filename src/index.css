@@ -80,7 +80,26 @@
 
 @layer utilities {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-xl;
+    @apply relative bg-card/60 backdrop-blur-xl border border-white/[0.06] rounded-xl shadow-[0_8px_32px_-12px_rgba(0,0,0,0.5)] transition-all duration-300;
+    background-image: linear-gradient(135deg, hsl(var(--card) / 0.7) 0%, hsl(var(--card) / 0.45) 100%);
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.18), transparent 40%, hsl(var(--info) / 0.12));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .glass-card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-[0_20px_48px_-16px_hsl(var(--primary)/0.35)] hover:border-primary/30;
   }
 
   .stat-glow {
@@ -89,5 +108,30 @@
 
   .gradient-border {
     border-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--info))) 1;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--info)));
+  }
+
+  .bg-gradient-soft {
+    background-image:
+      radial-gradient(60% 50% at 20% 0%, hsl(var(--primary) / 0.10) 0%, transparent 60%),
+      radial-gradient(50% 40% at 80% 10%, hsl(var(--info) / 0.08) 0%, transparent 60%),
+      radial-gradient(40% 30% at 50% 100%, hsl(var(--accent) / 0.06) 0%, transparent 60%);
+  }
+
+  .shimmer-border {
+    background:
+      linear-gradient(90deg, transparent, hsl(var(--primary) / 0.25), transparent);
+    background-size: 1000px 100%;
+    @apply animate-shimmer;
+  }
+
+  .recharts-line-curve,
+  .recharts-bar-rectangle path,
+  .recharts-area-area {
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 }

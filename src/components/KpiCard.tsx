@@ -47,13 +47,24 @@ export function KpiCard({ title, value, subtitle, icon, variant = "default", del
       ? "text-success"
       : "text-destructive";
   const DeltaIcon = !hasDelta || deltaPct === 0 ? Minus : isUp ? TrendingUp : TrendingDown;
+  const isAlert = variant === "destructive" && hasDelta && (higherIsWorse ? isUp : isDown);
   return (
-    <div className={`glass-card p-5 ${variantStyles[variant]} transition-all hover:scale-[1.02] hover:border-primary/40`}>
+    <div
+      className={`glass-card glass-card-hover p-5 ${variantStyles[variant]} animate-fade-in-up group ${
+        isAlert ? "animate-pulse-danger" : ""
+      }`}
+    >
       <div className="flex items-start justify-between mb-3">
         <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{title}</span>
-        {icon && <span className="text-muted-foreground">{icon}</span>}
+        {icon && (
+          <span className="text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110">
+            {icon}
+          </span>
+        )}
       </div>
-      <p className={`text-3xl font-display font-bold ${valueStyles[variant]} stat-glow`}>{value}</p>
+      <p className={`text-3xl font-display font-bold ${valueStyles[variant]} stat-glow transition-transform duration-300 group-hover:translate-x-0.5`}>
+        {value}
+      </p>
       {subtitle && <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>}
       {hasDelta && (
         <div className={`flex items-center gap-1 mt-2 text-xs font-semibold ${deltaTone}`}>
