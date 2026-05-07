@@ -114,8 +114,8 @@ const bgColors = {
 export function AlertsSection() {
   return (
     <div className="glass-card p-6">
-      <h3 className="font-display font-semibold text-foreground mb-1">Alertas e Recomendações de Saúde Pública</h3>
-      <p className="text-xs text-muted-foreground mb-5">Principais achados e ações recomendadas</p>
+      <h3 className="font-display font-semibold text-foreground mb-1">Alertas Inteligentes e Recomendações</h3>
+      <p className="text-xs text-muted-foreground mb-5">Achados detectados automaticamente nos dados e ações recomendadas</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {alerts.map((a) => (
           <div
