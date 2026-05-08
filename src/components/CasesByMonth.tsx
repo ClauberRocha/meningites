@@ -35,7 +35,12 @@ export function CasesByMonth() {
           <XAxis dataKey="month" tick={{ fill: "hsl(210 15% 55%)", fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
           <Tooltip contentStyle={{...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)"}} cursor={{ fill: 'transparent' }} />
-          <Legend wrapperStyle={{ fontSize: 12 }} />
+          <Legend
+            wrapperStyle={{ fontSize: 12 }}
+            formatter={(value) => (
+              <span style={{ color: value === "Confirmados" ? "#ffffff" : "hsl(210 15% 70%)" }}>{value}</span>
+            )}
+          />
           <Bar dataKey="notificados" name="Notificados" fill="hsl(217 91% 60%)" fillOpacity={0.55} radius={[4, 4, 0, 0]}>
             <LabelList dataKey="notificados" position="top" fill="hsl(217 91% 75%)" fontSize={11} fontWeight={600} />
           </Bar>
