@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, LabelList } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, LabelList, Cell } from "recharts";
 
 const data = [
   { month: "Janeiro", notificados: 24, confirmados: 11 },
@@ -6,6 +6,15 @@ const data = [
   { month: "Março", notificados: 34, confirmados: 7 },
   { month: "Abril", notificados: 18, confirmados: 8 },
 ];
+
+// Cores semânticas por nível de risco (baseado em confirmados)
+const maxConf = Math.max(...data.map((d) => d.confirmados));
+const minConf = Math.min(...data.map((d) => d.confirmados));
+const riskColor = (v: number) => {
+  if (v === maxConf) return "hsl(0 84% 60%)"; // vermelho — maior risco
+  if (v === minConf) return "hsl(160 84% 39%)"; // verde — menor risco
+  return "hsl(38 92% 50%)"; // amarelo — intermediário
+};
 
 const tooltipStyle = {
   backgroundColor: "hsl(210 28% 12%)",
@@ -27,11 +36,14 @@ export function CasesByMonth() {
           <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
           <Tooltip contentStyle={{...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)"}} cursor={{ fill: 'transparent' }} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Bar dataKey="notificados" name="Notificados" fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]}>
-            <LabelList dataKey="notificados" position="top" fill="hsl(38 92% 50%)" fontSize={11} fontWeight={600} />
+          <Bar dataKey="notificados" name="Notificados" fill="hsl(217 91% 60%)" fillOpacity={0.55} radius={[4, 4, 0, 0]}>
+            <LabelList dataKey="notificados" position="top" fill="hsl(217 91% 75%)" fontSize={11} fontWeight={600} />
           </Bar>
-          <Bar dataKey="confirmados" name="Confirmados" fill="hsl(0 72% 55%)" radius={[4, 4, 0, 0]}>
-            <LabelList dataKey="confirmados" position="top" fill="hsl(0 72% 55%)" fontSize={11} fontWeight={600} />
+          <Bar dataKey="confirmados" name="Confirmados" radius={[4, 4, 0, 0]}>
+            {data.map((d) => (
+              <Cell key={d.month} fill={riskColor(d.confirmados)} />
+            ))}
+            <LabelList dataKey="confirmados" position="top" fill="hsl(210 20% 92%)" fontSize={11} fontWeight={700} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
