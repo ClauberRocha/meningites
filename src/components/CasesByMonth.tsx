@@ -37,6 +37,10 @@ export function CasesByMonth() {
           <Tooltip contentStyle={{...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)"}} cursor={{ fill: 'transparent' }} />
           <Legend
             wrapperStyle={{ fontSize: 12 }}
+            payload={[
+              { value: "Notificados", type: "square", id: "notificados", color: "hsl(217 91% 60%)" },
+              { value: "Confirmados", type: "square", id: "confirmados", color: "#ffffff" },
+            ]}
             formatter={(value) => (
               <span style={{ color: value === "Confirmados" ? "#ffffff" : "hsl(210 15% 70%)" }}>{value}</span>
             )}
