@@ -43,7 +43,7 @@ export function CasesByMonth() {
             {data.map((d) => (
               <Cell key={d.month} fill={riskColor(d.confirmados)} />
             ))}
-            <LabelList dataKey="confirmados" position="top" fill="hsl(210 20% 92%)" fontSize={11} fontWeight={700} />
+            <LabelList dataKey="confirmados" position="top" fill="#ffffff" fontSize={11} fontWeight={700} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
