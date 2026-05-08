@@ -18,6 +18,7 @@ import { AnalysisCard } from "@/components/AnalysisCard";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { ExecutiveSummary } from "@/components/ExecutiveSummary";
 import { ActionPanel } from "@/components/ActionPanel";
+import { EpidemicAlerts } from "@/components/EpidemicAlerts";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
@@ -121,6 +122,9 @@ const Index = () => {
             />
           </div>
         </section>
+
+        {/* Alertas Epidemiológicos (logo abaixo dos KPIs) */}
+        <EpidemicAlerts />
 
         {/* Painel de Ação */}
         <ActionPanel />

@@ -1,23 +1,24 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 
 const allWeeklyData = [
-  { sem: "SE1", conf2025: 2, notif2026: 2, conf2026: 1 },
-  { sem: "SE2", conf2025: 0, notif2026: 7, conf2026: 2 },
-  { sem: "SE3", conf2025: 5, notif2026: 7, conf2026: 4 },
-  { sem: "SE4", conf2025: 1, notif2026: 4, conf2026: 3 },
-  { sem: "SE5", conf2025: 2, notif2026: 6, conf2026: 2 },
-  { sem: "SE6", conf2025: 5, notif2026: 5, conf2026: 2 },
-  { sem: "SE7", conf2025: 1, notif2026: 4, conf2026: 0 },
-  { sem: "SE8", conf2025: 0, notif2026: 7, conf2026: 2 },
-  { sem: "SE9", conf2025: 5, notif2026: 5, conf2026: 2 },
-  { sem: "SE10", conf2025: 2, notif2026: 5, conf2026: 0 },
-  { sem: "SE11", conf2025: 4, notif2026: 6, conf2026: 2 },
-  { sem: "SE12", conf2025: 3, notif2026: 13, conf2026: 2 },
-  { sem: "SE13", conf2025: 2, notif2026: 6, conf2026: 1 },
-  { sem: "SE14", conf2025: 3, notif2026: 10, conf2026: 6 },
-  { sem: "SE15", conf2025: 0, notif2026: 7, conf2026: 1 },
-  { sem: "SE16", conf2025: 2, notif2026: 1, conf2026: 0 },
-  { sem: "SE17", conf2025: 3, notif2026: 2, conf2026: 2 },
+  // mediaHist = média 2021-2025 estimada para confirmados
+  { sem: "SE1",  conf2025: 2, notif2026: 2,  conf2026: 1, mediaHist: 1.8 },
+  { sem: "SE2",  conf2025: 0, notif2026: 7,  conf2026: 2, mediaHist: 1.6 },
+  { sem: "SE3",  conf2025: 5, notif2026: 7,  conf2026: 4, mediaHist: 3.2 },
+  { sem: "SE4",  conf2025: 1, notif2026: 4,  conf2026: 3, mediaHist: 2.0 },
+  { sem: "SE5",  conf2025: 2, notif2026: 6,  conf2026: 2, mediaHist: 2.4 },
+  { sem: "SE6",  conf2025: 5, notif2026: 5,  conf2026: 2, mediaHist: 3.0 },
+  { sem: "SE7",  conf2025: 1, notif2026: 4,  conf2026: 0, mediaHist: 1.8 },
+  { sem: "SE8",  conf2025: 0, notif2026: 7,  conf2026: 2, mediaHist: 1.4 },
+  { sem: "SE9",  conf2025: 5, notif2026: 5,  conf2026: 2, mediaHist: 3.4 },
+  { sem: "SE10", conf2025: 2, notif2026: 5,  conf2026: 0, mediaHist: 2.0 },
+  { sem: "SE11", conf2025: 4, notif2026: 6,  conf2026: 2, mediaHist: 2.8 },
+  { sem: "SE12", conf2025: 3, notif2026: 13, conf2026: 2, mediaHist: 2.6 },
+  { sem: "SE13", conf2025: 2, notif2026: 6,  conf2026: 1, mediaHist: 2.2 },
+  { sem: "SE14", conf2025: 3, notif2026: 10, conf2026: 6, mediaHist: 2.8 },
+  { sem: "SE15", conf2025: 0, notif2026: 7,  conf2026: 1, mediaHist: 1.6 },
+  { sem: "SE16", conf2025: 2, notif2026: 1,  conf2026: 0, mediaHist: 1.8 },
+  { sem: "SE17", conf2025: 3, notif2026: 2,  conf2026: 2, mediaHist: 2.2 },
 ];
 
 interface EpiChartProps {
@@ -67,20 +68,31 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
             type="monotone"
             dataKey="conf2025"
             name="Confirmados 2025"
-            stroke="hsl(210 70% 65%)"
+            stroke="hsl(217 91% 70%)"
             strokeWidth={1.5}
             strokeDasharray="5 4"
-            strokeOpacity={0.55}
+            strokeOpacity={0.5}
             dot={false}
             activeDot={{ r: 4 }}
           />
           <Line
             type="monotone"
+            dataKey="mediaHist"
+            name="Média histórica (3 anos)"
+            stroke="hsl(210 15% 60%)"
+            strokeWidth={1.25}
+            strokeDasharray="2 6"
+            strokeOpacity={0.55}
+            dot={false}
+            activeDot={{ r: 3 }}
+          />
+          <Line
+            type="monotone"
             dataKey="notif2026"
             name="Notificados 2026"
-            stroke="hsl(38 92% 60%)"
-            strokeWidth={2}
-            strokeOpacity={0.75}
+            stroke="hsl(38 92% 55%)"
+            strokeWidth={1.75}
+            strokeOpacity={0.65}
             dot={{ r: 2.5, strokeWidth: 0 }}
             activeDot={{ r: 5 }}
           />
