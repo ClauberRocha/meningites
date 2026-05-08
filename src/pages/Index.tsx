@@ -129,11 +129,6 @@ const Index = () => {
         {/* Painel de Ação */}
         <ActionPanel />
 
-        <AnalysisCard
-          title="Análise Geral do Informe"
-          text="No período de 05/01/2026 a 02/05/2026 (SE 01 a SE 17), foram registrados 97 casos notificados de meningite, com 32 confirmados (33%), 23 descartados (24%) e 42 em investigação (43%). As meningites bacterianas representam a maioria dos casos confirmados (75%), seguidas pelas virais (19%) e outras etiologias (6%). A taxa de mortalidade foi de 19% (6 óbitos entre 32 confirmados). A distribuição geográfica concentra-se na região Metropolitana (25 casos), com presença em múltiplas regionais."
-        />
-
         {/* SEÇÃO: PERFIL EPIDEMIOLÓGICO */}
         <section className="space-y-4">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Perfil Epidemiológico</h2>
