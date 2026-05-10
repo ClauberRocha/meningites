@@ -24,6 +24,11 @@ const tooltipStyle = {
   fontSize: 12,
 };
 
+const legendPayload = [
+  { value: "Notificados", type: "square", id: "notificados", color: "hsl(217 91% 60%)" },
+  { value: "Confirmados", type: "square", id: "confirmados", color: "hsl(var(--foreground))" },
+];
+
 export function CasesByMonth() {
   return (
     <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
@@ -37,12 +42,23 @@ export function CasesByMonth() {
           <Tooltip contentStyle={{...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)"}} cursor={{ fill: 'transparent' }} />
           <Legend
             wrapperStyle={{ fontSize: 12 }}
-            payload={[
-              { value: "Notificados", type: "square", id: "notificados", color: "hsl(217 91% 60%)" },
-              { value: "Confirmados", type: "square", id: "confirmados", color: "#ffffff" },
-            ]}
-            formatter={(value) => (
-              <span style={{ color: value === "Confirmados" ? "#ffffff" : "hsl(210 15% 70%)" }}>{value}</span>
+            payload={legendPayload}
+            content={({ payload }) => (
+              <ul className="flex items-center justify-center gap-6 text-xs">
+                {payload?.map((entry) => {
+                  const isConfirmed = entry.value === "Confirmados";
+
+                  return (
+                    <li key={`${entry.id ?? entry.value}`} className="flex items-center gap-2">
+                      <span
+                        className="h-2.5 w-2.5 rounded-[2px] border border-border/50"
+                        style={{ backgroundColor: String(entry.color) }}
+                      />
+                      <span className={isConfirmed ? "text-foreground" : "text-muted-foreground"}>{entry.value}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
           />
           <Bar dataKey="notificados" name="Notificados" fill="hsl(217 91% 60%)" fillOpacity={0.55} radius={[4, 4, 0, 0]}>
