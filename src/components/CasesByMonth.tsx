@@ -25,8 +25,8 @@ const tooltipStyle = {
 };
 
 const legendPayload = [
-  { value: "Notificados", type: "square", id: "notificados", color: "hsl(217 91% 60%)" },
-  { value: "Confirmados", type: "square", id: "confirmados", color: "hsl(var(--foreground))" },
+  { value: "Notificados", type: "square" as const, id: "notificados", color: "hsl(217 91% 60%)" },
+  { value: "Confirmados", type: "square" as const, id: "confirmados", color: "hsl(var(--foreground))" },
 ];
 
 export function CasesByMonth() {
