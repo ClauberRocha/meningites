@@ -14,6 +14,13 @@ interface KpiCardProps {
   /** Para KPIs onde "subir" é ruim (ex: confirmados, óbitos), passe true. */
   higherIsWorse?: boolean;
   deltaLabel?: string;
+  /**
+   * Quando true, a cor do card (variant) é derivada automaticamente do deltaPct:
+   * - higherIsWorse=true:  > +10% → destructive · −10% a +10% → warning · < −10% → success
+   * - higherIsWorse=false: invertido
+   * Útil para KPIs como Confirmados/Notificados/Em Investigação cujo "estado" depende da tendência.
+   */
+  situational?: boolean;
 }
 
 const variantStyles = {
@@ -32,10 +39,20 @@ const valueStyles = {
   success: "text-success",
 };
 
-export function KpiCard({ title, value, subtitle, icon, variant = "default", deltaPct, higherIsWorse = true, deltaLabel = "vs anterior" }: KpiCardProps) {
+export function KpiCard({ title, value, subtitle, icon, variant = "default", deltaPct, higherIsWorse = true, deltaLabel = "vs anterior", situational = false }: KpiCardProps) {
   const hasDelta = typeof deltaPct === "number";
   const isUp = hasDelta && deltaPct! > 0;
   const isDown = hasDelta && deltaPct! < 0;
+
+  // Variant situacional: deriva da variação percentual
+  let effectiveVariant = variant;
+  if (situational && hasDelta) {
+    const d = deltaPct!;
+    const worsened = higherIsWorse ? d > 10 : d < -10;
+    const improved = higherIsWorse ? d < -10 : d > 10;
+    effectiveVariant = worsened ? "destructive" : improved ? "success" : "warning";
+  }
+
   const deltaTone =
     !hasDelta || deltaPct === 0
       ? "text-muted-foreground"
@@ -47,10 +64,10 @@ export function KpiCard({ title, value, subtitle, icon, variant = "default", del
       ? "text-success"
       : "text-destructive";
   const DeltaIcon = !hasDelta || deltaPct === 0 ? Minus : isUp ? TrendingUp : TrendingDown;
-  const isAlert = variant === "destructive" && hasDelta && (higherIsWorse ? isUp : isDown);
+  const isAlert = effectiveVariant === "destructive" && hasDelta && (higherIsWorse ? isUp : isDown);
   return (
     <div
-      className={`glass-card glass-card-hover p-5 ${variantStyles[variant]} animate-fade-in-up group ${
+      className={`glass-card glass-card-hover p-5 ${variantStyles[effectiveVariant]} animate-fade-in-up group ${
         isAlert ? "animate-pulse-danger" : ""
       }`}
     >
@@ -62,7 +79,7 @@ export function KpiCard({ title, value, subtitle, icon, variant = "default", del
           </span>
         )}
       </div>
-      <p className={`text-3xl font-display font-bold ${valueStyles[variant]} stat-glow transition-transform duration-300 group-hover:translate-x-0.5`}>
+      <p className={`text-3xl font-display font-bold ${valueStyles[effectiveVariant]} stat-glow transition-transform duration-300 group-hover:translate-x-0.5`}>
         {value}
       </p>
       {subtitle && <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>}
