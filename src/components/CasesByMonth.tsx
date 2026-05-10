@@ -29,6 +29,46 @@ const legendPayload = [
   { value: "Confirmados", type: "square" as const, id: "confirmados", color: "hsl(var(--foreground))" },
 ];
 
+const renderCasesTooltip = ({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  label?: string;
+  payload?: Array<{
+    color?: string;
+    fill?: string;
+    name?: string;
+    value?: number | string;
+  }>;
+}) => {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div style={{ ...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)", padding: 12 }}>
+      <p className="mb-2 text-xs font-semibold text-foreground">{label}</p>
+      <ul className="space-y-1.5">
+        {payload.map((entry, index) => {
+          const isConfirmed = entry.name === "Confirmados";
+
+          return (
+            <li key={`${entry.name ?? "item"}-${index}`} className="flex items-center gap-2 text-xs">
+              <span
+                className="h-2.5 w-2.5 rounded-[2px] border border-border/50"
+                style={{ backgroundColor: isConfirmed ? "hsl(var(--foreground))" : entry.color ?? entry.fill }}
+              />
+              <span className={isConfirmed ? "text-foreground" : "text-muted-foreground"}>
+                {entry.name}: <span className="font-semibold">{entry.value}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
 export function CasesByMonth() {
   return (
     <div className="glass-card p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1">
@@ -39,7 +79,7 @@ export function CasesByMonth() {
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(210 20% 18%)" />
           <XAxis dataKey="month" tick={{ fill: "hsl(210 15% 55%)", fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fill: "hsl(210 15% 55%)", fontSize: 11 }} axisLine={false} tickLine={false} />
-          <Tooltip contentStyle={{...tooltipStyle, boxShadow: "0 8px 24px rgba(0,0,0,0.3)"}} cursor={{ fill: 'transparent' }} />
+          <Tooltip content={renderCasesTooltip} cursor={{ fill: 'transparent' }} />
           <Legend
             wrapperStyle={{ fontSize: 12 }}
             payload={legendPayload}
