@@ -83,19 +83,19 @@ const Index = () => {
 
           {/* KPIs principais — destacados */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} variant="destructive" deltaPct={-12} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} situational deltaPct={-12} higherIsWorse deltaLabel="vs sem. anterior" />
             <KpiCard title="Óbitos" value={6} subtitle="Taxa de mortalidade 19%" icon={<Skull className="w-4 h-4" />} variant="destructive" deltaPct={-25} higherIsWorse deltaLabel="vs sem. anterior" />
             <KpiCard title="Tendência (4 sem.)" value="Queda" subtitle="Confirmados em redução" icon={<TrendingUp className="w-4 h-4" />} variant="success" deltaPct={-18} higherIsWorse={false} deltaLabel="vs sem. anterior" />
           </div>
 
           {/* KPIs secundários */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} variant="primary" deltaPct={8} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} variant="warning" deltaPct={5} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} situational deltaPct={8} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} situational deltaPct={5} higherIsWorse deltaLabel="vs sem. anterior" />
             <KpiCard title="Descartados" value="23 (24%)" icon={<Users className="w-4 h-4" />} variant="success" deltaPct={10} higherIsWorse={false} deltaLabel="vs sem. anterior" />
-            <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} variant="destructive" deltaPct={-3} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} variant="default" deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} variant="warning" deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={-3} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
           </div>
 
           {/* KPIs operacionais / eficiência */}
@@ -105,7 +105,7 @@ const Index = () => {
               value="68%"
               subtitle="Encerramento + investigação + confirmação"
               icon={<Gauge className="w-4 h-4" />}
-              variant="warning"
+              situational
               deltaPct={4}
               higherIsWorse={false}
               deltaLabel="vs sem. anterior"
