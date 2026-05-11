@@ -1,4 +1,6 @@
+import type { ReactNode } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
+import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle2, Activity } from "lucide-react";
 
 const allWeeklyData = [
   // mediaHist = média 2021-2025 estimada para confirmados
@@ -58,6 +60,123 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
   const maxConf2025 = weeklyData.reduce((max, d) => (d.conf2025 > max.conf2025 ? d : max), weeklyData[0] || { sem: "-", notif2026: 0, conf2026: 0, conf2025: 0 });
   const mediaConf = weeklyData.length > 0 ? (totalConf2026 / weeklyData.length).toFixed(1) : "0";
   const mediaNotif = weeklyData.length > 0 ? (totalNotif / weeklyData.length).toFixed(1) : "0";
+
+  // ===== Insights automáticos =====
+  type Insight = {
+    severity: "critical" | "warning" | "info" | "success";
+    Icon: typeof TrendingUp;
+    text: ReactNode;
+  };
+  const insights: Insight[] = [];
+
+  // 1) Semanas consecutivas acima da média histórica (no fim da série)
+  let aboveStreak = 0;
+  for (let i = weeklyData.length - 1; i >= 0; i--) {
+    if (weeklyData[i].conf2026 > weeklyData[i].mediaHist) aboveStreak++;
+    else break;
+  }
+  if (aboveStreak >= 2) {
+    insights.push({
+      severity: aboveStreak >= 3 ? "critical" : "warning",
+      Icon: AlertTriangle,
+      text: (
+        <>
+          Casos confirmados ultrapassaram a <span className="font-semibold">média histórica</span> pela{" "}
+          <span className="font-bold">{aboveStreak}ª semana consecutiva</span>.
+        </>
+      ),
+    });
+  }
+
+  // 2) Crescimento sustentado (últimas 4 semanas) — confirmados não decrescem
+  const tail = weeklyData.slice(-4);
+  if (tail.length >= 4) {
+    const monotonicGrowth = tail.every((d, i) => i === 0 || d.conf2026 >= tail[i - 1].conf2026) && tail[3].conf2026 > tail[0].conf2026;
+    const monotonicDrop = tail.every((d, i) => i === 0 || d.conf2026 <= tail[i - 1].conf2026) && tail[3].conf2026 < tail[0].conf2026;
+    if (monotonicGrowth) {
+      insights.push({
+        severity: "critical",
+        Icon: TrendingUp,
+        text: <>Tendência de <span className="font-semibold">crescimento sustentado</span> nas últimas 4 semanas ({tail[0].conf2026} → {tail[3].conf2026} confirmados).</>,
+      });
+    } else if (monotonicDrop) {
+      insights.push({
+        severity: "success",
+        Icon: TrendingDown,
+        text: <>Tendência de <span className="font-semibold">queda sustentada</span> nas últimas 4 semanas ({tail[0].conf2026} → {tail[3].conf2026} confirmados).</>,
+      });
+    }
+  }
+
+  // 3) Variação percentual recente (últimas 2 semanas vs 2 anteriores)
+  if (weeklyData.length >= 4) {
+    const last2 = weeklyData.slice(-2).reduce((s, d) => s + d.conf2026, 0);
+    const prev2 = weeklyData.slice(-4, -2).reduce((s, d) => s + d.conf2026, 0);
+    if (prev2 > 0) {
+      const pct = Math.round(((last2 - prev2) / prev2) * 100);
+      if (pct >= 30) {
+        insights.push({
+          severity: "critical",
+          Icon: TrendingUp,
+          text: <>Confirmados <span className="font-semibold">aumentaram {pct}%</span> nas últimas 2 semanas vs período anterior.</>,
+        });
+      } else if (pct <= -30) {
+        insights.push({
+          severity: "success",
+          Icon: TrendingDown,
+          text: <>Confirmados <span className="font-semibold">reduziram {Math.abs(pct)}%</span> nas últimas 2 semanas vs período anterior.</>,
+        });
+      }
+    }
+  }
+
+  // 4) Comparativo ano anterior (2026 vs 2025 acumulado no período)
+  if (totalConf2025 > 0) {
+    const yoyPct = Math.round(((totalConf2026 - totalConf2025) / totalConf2025) * 100);
+    if (Math.abs(yoyPct) >= 10) {
+      insights.push({
+        severity: yoyPct > 0 ? "warning" : "success",
+        Icon: yoyPct > 0 ? TrendingUp : TrendingDown,
+        text: (
+          <>
+            No mesmo período, {yoyPct > 0 ? "aumento" : "redução"} de{" "}
+            <span className="font-semibold">{Math.abs(yoyPct)}%</span> em confirmados vs 2025
+            ({totalConf2025} → {totalConf2026}).
+          </>
+        ),
+      });
+    }
+  }
+
+  // 5) Pico recente acima de 2x a média do período
+  const mediaConfNum = weeklyData.length > 0 ? totalConf2026 / weeklyData.length : 0;
+  if (mediaConfNum > 0 && maxConf.conf2026 >= mediaConfNum * 2) {
+    insights.push({
+      severity: "warning",
+      Icon: Activity,
+      text: (
+        <>
+          <span className="font-semibold">{maxConf.sem}</span> registrou pico de{" "}
+          <span className="font-bold">{maxConf.conf2026}</span> confirmados — mais que o dobro da média do período ({mediaConfNum.toFixed(1)}).
+        </>
+      ),
+    });
+  }
+
+  if (insights.length === 0) {
+    insights.push({
+      severity: "info",
+      Icon: CheckCircle2,
+      text: <>Sem desvios significativos detectados no intervalo selecionado.</>,
+    });
+  }
+
+  const insightStyles: Record<Insight["severity"], { border: string; bg: string; color: string }> = {
+    critical: { border: "border-destructive/40", bg: "bg-destructive/10", color: "text-destructive" },
+    warning: { border: "border-warning/40", bg: "bg-warning/10", color: "text-warning" },
+    info: { border: "border-info/40", bg: "bg-info/10", color: "text-info" },
+    success: { border: "border-success/40", bg: "bg-success/10", color: "text-success" },
+  };
 
   return (
     <div>
@@ -170,6 +289,28 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
             resultando em taxa de confirmação de <span className="text-foreground font-bold">{taxa}%</span>.
           </li>
         </ul>
+      </div>
+
+      {/* Insights automáticos */}
+      <div className="mt-4">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 flex items-center gap-2">
+          <Activity className="w-3.5 h-3.5" /> Insights Automáticos
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {insights.map((ins, i) => {
+            const s = insightStyles[ins.severity];
+            return (
+              <div
+                key={i}
+                className={`flex items-start gap-2 p-3 rounded-lg border ${s.border} ${s.bg} animate-fade-in-up`}
+                style={{ animationDelay: `${i * 60}ms` }}
+              >
+                <ins.Icon className={`w-4 h-4 shrink-0 mt-0.5 ${s.color}`} />
+                <p className="text-xs leading-relaxed text-foreground/90">{ins.text}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
