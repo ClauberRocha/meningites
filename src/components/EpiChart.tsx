@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid, LabelList } from "recharts";
 import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle2, Activity } from "lucide-react";
 
@@ -64,7 +65,7 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
   type Insight = {
     severity: "critical" | "warning" | "info" | "success";
     Icon: typeof TrendingUp;
-    text: React.ReactNode;
+    text: ReactNode;
   };
   const insights: Insight[] = [];
 
