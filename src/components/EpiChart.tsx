@@ -27,7 +27,26 @@ interface EpiChartProps {
 }
 
 export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
-  const weeklyData = allWeeklyData.slice(startWeek - 1, endWeek);
+  const baseData = allWeeklyData.slice(startWeek - 1, endWeek);
+
+  // Regressão linear simples sobre confirmados 2026
+  const n = baseData.length;
+  const xs = baseData.map((_, i) => i);
+  const ys = baseData.map((d) => d.conf2026);
+  const sumX = xs.reduce((a, b) => a + b, 0);
+  const sumY = ys.reduce((a, b) => a + b, 0);
+  const sumXY = xs.reduce((a, x, i) => a + x * ys[i], 0);
+  const sumXX = xs.reduce((a, x) => a + x * x, 0);
+  const denom = n * sumXX - sumX * sumX;
+  const slope = denom !== 0 ? (n * sumXY - sumX * sumY) / denom : 0;
+  const intercept = n > 0 ? (sumY - slope * sumX) / n : 0;
+  const weeklyData = baseData.map((d, i) => ({
+    ...d,
+    tendencia: Number((intercept + slope * i).toFixed(2)),
+  }));
+
+  const trendDir = slope > 0.05 ? "Alta" : slope < -0.05 ? "Queda" : "Estável";
+  const trendColor = slope > 0.05 ? "hsl(0 84% 60%)" : slope < -0.05 ? "hsl(160 84% 39%)" : "hsl(38 92% 50%)";
   const totalNotif = weeklyData.reduce((s, d) => s + d.notif2026, 0);
   const totalConf2026 = weeklyData.reduce((s, d) => s + d.conf2026, 0);
   const totalConf2025 = weeklyData.reduce((s, d) => s + d.conf2025, 0);
@@ -47,6 +66,7 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
         <span className="text-muted-foreground">Notificados 2026: <span className="font-bold" style={{ color: "hsl(38 92% 50%)" }}>{totalNotif}</span></span>
         <span className="text-muted-foreground">Confirmados 2026: <span className="font-bold" style={{ color: "hsl(0 72% 55%)" }}>{totalConf2026}</span></span>
         <span className="text-muted-foreground">Taxa de confirmação: <span className="font-bold text-foreground">{taxa}%</span></span>
+        <span className="text-muted-foreground">Tendência: <span className="font-bold" style={{ color: trendColor }}>{trendDir}</span></span>
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
@@ -107,6 +127,16 @@ export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
           >
             <LabelList dataKey="conf2026" position="top" fill="hsl(0 84% 75%)" fontSize={11} fontWeight={700} offset={10} />
           </Line>
+          <Line
+            type="linear"
+            dataKey="tendencia"
+            name="Tendência (regressão)"
+            stroke={trendColor}
+            strokeWidth={2}
+            strokeDasharray="6 3"
+            dot={false}
+            activeDot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
 
