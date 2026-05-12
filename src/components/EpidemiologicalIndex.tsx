@@ -91,6 +91,7 @@ export function EpidemiologicalIndex() {
     low:      computed.filter((c) => c.level === "low").length,
   };
   const top = computed[0];
+  const TopIcon = levelMeta[top.level].Icon;
 
   return (
     <div className="glass-card p-6">
@@ -124,7 +125,7 @@ export function EpidemiologicalIndex() {
 
       {/* Headline do município top */}
       <div className={`p-3 rounded-lg border ${levelMeta[top.level].bg} ${levelMeta[top.level].ring} ring-1 mb-4 flex items-start gap-2`}>
-        <levelMeta[top.level].Icon className={`w-4 h-4 mt-0.5 ${levelMeta[top.level].color} shrink-0`} />
+        <TopIcon className={`w-4 h-4 mt-0.5 ${levelMeta[top.level].color} shrink-0`} />
         <p className={`text-xs leading-relaxed ${levelMeta[top.level].color}`}>
           <span className="font-semibold">{top.name}</span> é{" "}
           <span className="font-bold">{levelMeta[top.level].label.toLowerCase()}</span> e exige{" "}
