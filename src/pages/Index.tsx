@@ -19,6 +19,7 @@ import { BackToTopButton } from "@/components/BackToTopButton";
 import { ExecutiveSummary } from "@/components/ExecutiveSummary";
 import { ActionPanel } from "@/components/ActionPanel";
 import { EpidemicAlerts } from "@/components/EpidemicAlerts";
+import { EpidemiologicalIndex } from "@/components/EpidemiologicalIndex";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
@@ -221,6 +222,10 @@ const Index = () => {
 
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <GeographicHeatmap />
+          </div>
+
+          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
+            <EpidemiologicalIndex />
           </div>
         </section>
 
