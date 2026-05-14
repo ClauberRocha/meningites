@@ -151,6 +151,24 @@ export function GeographicHeatmap() {
         </div>
       </div>
 
+      {/* Regionais com tempo de resposta acima de 60 dias */}
+      {(() => {
+        const above60 = scored.filter((r) => r.responseDays > 60);
+        if (above60.length === 0) return null;
+        return (
+          <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/30">
+            <p className="text-xs text-destructive font-semibold mb-1">Tempo de resposta acima do recomendado (≤ 60 dias):</p>
+            <ul className="space-y-1">
+              {above60.map((r) => (
+                <li key={r.name} className="text-xs text-destructive">
+                  • <span className="font-semibold">{r.name}</span>: {r.responseDays} dias de tempo médio de resposta
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })()}
+
       <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
         <p className="text-xs text-destructive">
           <span className="font-semibold">Onde agir agora:</span> {ranking[0].name} — score {ranking[0].score}/100,
