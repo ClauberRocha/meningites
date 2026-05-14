@@ -20,6 +20,7 @@ import { ExecutiveSummary } from "@/components/ExecutiveSummary";
 import { ActionPanel } from "@/components/ActionPanel";
 import { EpidemicAlerts } from "@/components/EpidemicAlerts";
 import { EpidemiologicalIndex } from "@/components/EpidemiologicalIndex";
+import { StrategicRecommendations } from "@/components/StrategicRecommendations";
 
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
@@ -77,6 +78,9 @@ const Index = () => {
           criticalWeek="SE 14"
           headline="32 casos confirmados em 17 semanas; pico recente em SE 14 com 6 confirmados; mortalidade ainda elevada (19%) e tempo de resposta acima do recomendado em 1 regional."
         />
+
+        {/* Recomendações Estratégicas — central de decisão */}
+        <StrategicRecommendations />
 
         {/* SEÇÃO: SITUAÇÃO GERAL */}
         <section className="space-y-3">
