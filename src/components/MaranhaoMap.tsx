@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, X, Plus, Minus, RotateCcw } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 /** Casos confirmados por município (nomes batem com o GeoJSON oficial do IBGE). */
@@ -119,9 +119,10 @@ interface MapSvgProps {
   height: number;
   hoverScale?: number;
   onSurfaceClick?: () => void;
+  zoom?: number;
 }
 
-function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick }: MapSvgProps) {
+function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zoom = 1 }: MapSvgProps) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -148,7 +149,13 @@ function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick }: 
             <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#000" floodOpacity="0.55" />
           </filter>
         </defs>
-        <g>
+        <g
+          style={{
+            transform: `translate(${width / 2}px, ${height / 2}px) scale(${zoom}) translate(${-width / 2}px, ${-height / 2}px)`,
+            transformOrigin: "0 0",
+            transition: "transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+          }}
+        >
           {features.map((f) => {
             const isHover = f.name === hovered;
             const hasCases = f.cases > 0;
