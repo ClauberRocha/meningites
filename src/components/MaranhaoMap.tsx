@@ -126,12 +126,21 @@ interface MapSvgProps {
   hoverScale?: number;
   onSurfaceClick?: () => void;
   zoom?: number;
+  pannable?: boolean;
 }
 
-function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zoom = 1 }: MapSvgProps) {
+function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zoom = 1, pannable = false }: MapSvgProps) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const dragRef = useRef<{ startX: number; startY: number; origX: number; origY: number; moved: boolean } | null>(null);
+  const [dragging, setDragging] = useState(false);
+
+  // Reset pan when zoom returns to 1
+  useEffect(() => {
+    if (zoom === 1) setPan({ x: 0, y: 0 });
+  }, [zoom]);
 
   const sorted = useMemo(() => [...features].sort((a, b) => b.cases - a.cases), [features]);
   const hoveredFeature = hovered ? features.find((f) => f.name === hovered) : null;
@@ -142,12 +151,39 @@ function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zo
     setTip({ x: e.clientX - r.left, y: e.clientY - r.top });
   };
 
+  const onPanDown = (e: React.MouseEvent) => {
+    if (!pannable) return;
+    dragRef.current = { startX: e.clientX, startY: e.clientY, origX: pan.x, origY: pan.y, moved: false };
+    setDragging(true);
+  };
+  const onPanMove = (e: React.MouseEvent) => {
+    if (pannable && dragRef.current) {
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) dragRef.current.moved = true;
+      setPan({ x: dragRef.current.origX + dx, y: dragRef.current.origY + dy });
+    }
+    if (!dragRef.current) handleMove(e);
+  };
+  const onPanUp = () => {
+    dragRef.current = null;
+    setDragging(false);
+  };
+  const handleSurfaceClick = () => {
+    if (pannable) return; // pan mode swallows clicks
+    onSurfaceClick?.();
+  };
+
   return (
     <div
       ref={wrapRef}
-      className="relative w-full overflow-hidden rounded-lg cursor-pointer"
+      className={`relative w-full overflow-hidden rounded-lg ${pannable ? (dragging ? "cursor-grabbing" : "cursor-grab") : "cursor-pointer"}`}
       style={{ background: MAP_BG, height }}
-      onClick={onSurfaceClick}
+      onClick={handleSurfaceClick}
+      onMouseDown={onPanDown}
+      onMouseMove={pannable ? onPanMove : undefined}
+      onMouseUp={onPanUp}
+      onMouseLeave={onPanUp}
     >
       <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -157,9 +193,9 @@ function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zo
         </defs>
         <g
           style={{
-            transform: `translate(${width / 2}px, ${height / 2}px) scale(${zoom}) translate(${-width / 2}px, ${-height / 2}px)`,
+            transform: `translate(${pan.x}px, ${pan.y}px) translate(${width / 2}px, ${height / 2}px) scale(${zoom}) translate(${-width / 2}px, ${-height / 2}px)`,
             transformOrigin: "0 0",
-            transition: "transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+            transition: dragging ? "none" : "transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1)",
           }}
         >
           {features.map((f) => {
@@ -173,12 +209,22 @@ function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick, zo
                 stroke={isHover ? "#0f172a" : "rgba(120,130,140,0.55)"}
                 strokeWidth={isHover ? 0.8 : 0.4}
                 style={{ transition: "fill 200ms ease, opacity 200ms ease", opacity: hovered && !isHover ? 0.55 : 1 }}
-                {...(hasCases ? {
+                {...(hasCases && !pannable ? {
                   onMouseEnter: (e: React.MouseEvent) => {
                     setHovered(f.name);
                     handleMove(e);
                   },
                   onMouseMove: handleMove,
+                  onMouseLeave: () => {
+                    setHovered(null);
+                    setTip(null);
+                  },
+                } : hasCases ? {
+                  onMouseEnter: (e: React.MouseEvent) => {
+                    if (dragRef.current) return;
+                    setHovered(f.name);
+                    handleMove(e);
+                  },
                   onMouseLeave: () => {
                     setHovered(null);
                     setTip(null);
@@ -337,7 +383,7 @@ export function MaranhaoMap() {
             </div>
 
             {features && features.length > 0 && (
-              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.22} zoom={fsZoom} />
+              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.22} zoom={fsZoom} pannable />
             )}
             <div className="mt-3">
               <Legend />
