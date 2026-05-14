@@ -90,7 +90,7 @@ export function GeographicHeatmap() {
             <div
               key={r.name}
               className={`rounded-xl p-3 text-center border transition-all hover:scale-105 ${m.tile}`}
-              title={`Score ${r.score}/100 · ${r.value} casos · crescimento ${r.growth}% · ${r.deaths} óbito(s)`}
+              title={`Score ${r.score}/100 · ${r.value} casos · crescimento ${r.growth}% · ${r.deaths} óbito(s) · ${r.responseDays}d resposta`}
             >
               <div className="flex items-center justify-center gap-1 mb-1">
                 <m.Icon className={`w-3 h-3 ${m.text}`} />
