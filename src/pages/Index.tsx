@@ -72,11 +72,11 @@ const Index = () => {
 
         {/* Resumo Executivo */}
         <ExecutiveSummary
-          trend="down"
-          level="medium"
-          yoyPct={-20}
+          trend="up"
+          level="high"
+          yoyPct={12}
           criticalWeek="SE 14"
-          headline="32 casos confirmados em 17 semanas; pico recente em SE 14 com 6 confirmados; mortalidade ainda elevada (19%) e tempo de resposta acima do recomendado em 1 regional."
+          headline="44 casos confirmados em 121 notificações; pico em SE 14 com 8 confirmados; letalidade elevada (27%, 12 óbitos) e concentração crítica em São Luís (34% dos confirmados)."
         />
 
         {/* Recomendações Estratégicas — central de decisão */}
@@ -88,40 +88,40 @@ const Index = () => {
 
           {/* KPIs principais — destacados */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <KpiCard title="Confirmados" value="32 (33%)" icon={<CheckCircle className="w-4 h-4" />} situational deltaPct={-12} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Óbitos" value={6} subtitle="Taxa de mortalidade 19%" icon={<Skull className="w-4 h-4" />} variant="destructive" deltaPct={-25} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Tendência (4 sem.)" value="Queda" subtitle="Confirmados em redução" icon={<TrendingUp className="w-4 h-4" />} variant="success" deltaPct={-18} higherIsWorse={false} deltaLabel="vs sem. anterior" />
+            <KpiCard title="Confirmados" value="44 (36%)" icon={<CheckCircle className="w-4 h-4" />} situational deltaPct={18} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Óbitos" value={12} subtitle="Letalidade 27%" icon={<Skull className="w-4 h-4" />} variant="destructive" deltaPct={50} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Tendência (4 sem.)" value="Alta" subtitle="Confirmados em crescimento" icon={<TrendingUp className="w-4 h-4" />} variant="destructive" deltaPct={22} higherIsWorse deltaLabel="vs sem. anterior" />
           </div>
 
           {/* KPIs secundários */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            <KpiCard title="Total Notificados" value={97} icon={<Activity className="w-4 h-4" />} situational deltaPct={8} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Em Investigação" value="42 (43%)" icon={<Search className="w-4 h-4" />} situational deltaPct={5} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Descartados" value="23 (24%)" icon={<Users className="w-4 h-4" />} variant="success" deltaPct={10} higherIsWorse={false} deltaLabel="vs sem. anterior" />
-            <KpiCard title="Bacterianas" value="24 (75%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={-3} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Virais" value="6 (19%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Outras Etiologias" value="2 (6%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Total Notificados" value={121} icon={<Activity className="w-4 h-4" />} situational deltaPct={25} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Em Investigação" value="43 (36%)" icon={<Search className="w-4 h-4" />} situational deltaPct={8} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Descartados" value="34 (28%)" icon={<Users className="w-4 h-4" />} variant="success" deltaPct={15} higherIsWorse={false} deltaLabel="vs sem. anterior" />
+            <KpiCard title="Bacterianas" value="35 (80%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={5} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Virais" value="7 (16%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={2} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Outras Etiologias" value="2 (5%)" icon={<Shield className="w-4 h-4" />} situational deltaPct={0} higherIsWorse deltaLabel="vs sem. anterior" />
           </div>
 
           {/* KPIs operacionais / eficiência */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <KpiCard
               title="Eficiência da Vigilância"
-              value="68%"
+              value="60%"
               subtitle="Encerramento + investigação + confirmação"
               icon={<Gauge className="w-4 h-4" />}
               situational
-              deltaPct={4}
+              deltaPct={-8}
               higherIsWorse={false}
               deltaLabel="vs sem. anterior"
             />
             <KpiCard
               title="Tempo Resposta"
-              value="70 dias"
-              subtitle="Regional Zé Doca — acima do recomendado"
+              value="32 dias"
+              subtitle="Mediana de encerramento — dentro do prazo"
               icon={<AlertTriangle className="w-4 h-4" />}
-              variant="destructive"
-              deltaPct={15}
+              variant="warning"
+              deltaPct={-5}
               higherIsWorse
               deltaLabel="vs sem. anterior"
             />
@@ -246,29 +246,29 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Encerrados</span>
-                  <span className="font-semibold text-success">47 (48%)</span>
+                  <span className="font-semibold text-success">72 (60%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "48%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "60%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Em Aberto</span>
-                  <span className="font-semibold text-warning">50 (52%)</span>
+                  <span className="font-semibold text-warning">49 (40%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-warning rounded-full" style={{ width: "52%" }} />
+                  <div className="h-full bg-warning rounded-full" style={{ width: "40%" }} />
                 </div>
               </div>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Casos Encerrados</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Desfecho dos Confirmados (44)</p>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Altas</span>
-                  <span className="font-semibold text-success">39 (83%)</span>
+                  <span className="font-semibold text-success">27 (61%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-success rounded-full" style={{ width: "83%" }} />
+                  <div className="h-full bg-success rounded-full" style={{ width: "61%" }} />
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Internação</span>
@@ -279,10 +279,10 @@ const Index = () => {
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-muted-foreground">Óbitos</span>
-                  <span className="font-semibold text-destructive">3 (6%)</span>
+                  <span className="font-semibold text-destructive">12 (27%)</span>
                 </div>
                 <div className="h-3 bg-secondary/50 rounded-full overflow-hidden">
-                  <div className="h-full bg-destructive rounded-full" style={{ width: "6%" }} />
+                  <div className="h-full bg-destructive rounded-full" style={{ width: "27%" }} />
                 </div>
               </div>
             </div>
