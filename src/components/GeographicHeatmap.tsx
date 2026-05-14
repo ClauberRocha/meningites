@@ -2,22 +2,22 @@ import { Flame, Activity, ShieldCheck, ArrowUp, ArrowDown, ArrowRight } from "lu
 
 const total = 44;
 
-// dados base por regional + crescimento recente (%) e óbitos
+// dados base por regional + crescimento recente (%), óbitos e tempo médio de resposta (dias)
 const regions = [
-  { name: "Metropolitana",  value: 21, growth: 28, deaths: 6 },
-  { name: "Rosário",        value: 5,  growth: 15, deaths: 1 },
-  { name: "Imperatriz",     value: 4,  growth: 12, deaths: 1 },
-  { name: "Bacabal",        value: 2,  growth: 10, deaths: 1 },
-  { name: "Caxias",         value: 2,  growth: 8,  deaths: 1 },
-  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 0 },
-  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0 },
-  { name: "Viana",          value: 1,  growth: 0,  deaths: 0 },
-  { name: "Itapecuru",      value: 1,  growth: 0,  deaths: 0 },
-  { name: "Pedreiras",      value: 1,  growth: 0,  deaths: 0 },
-  { name: "Santa Inês",     value: 1,  growth: 0,  deaths: 0 },
-  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 0 },
-  { name: "Barra do Corda", value: 1,  growth: 0,  deaths: 0 },
-  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 0 },
+  { name: "Metropolitana",  value: 21, growth: 28, deaths: 6, responseDays: 24 },
+  { name: "Rosário",        value: 5,  growth: 15, deaths: 1, responseDays: 30 },
+  { name: "Imperatriz",     value: 4,  growth: 12, deaths: 1, responseDays: 25 },
+  { name: "Bacabal",        value: 2,  growth: 10, deaths: 1, responseDays: 32 },
+  { name: "Caxias",         value: 2,  growth: 8,  deaths: 1, responseDays: 19 },
+  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0, responseDays: 70 },
+  { name: "Viana",          value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Itapecuru",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Pedreiras",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Santa Inês",     value: 1,  growth: 0,  deaths: 0, responseDays: 25 },
+  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Barra do Corda", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
 ];
 
 type RiskLevel = "high" | "medium" | "low";
@@ -90,7 +90,7 @@ export function GeographicHeatmap() {
             <div
               key={r.name}
               className={`rounded-xl p-3 text-center border transition-all hover:scale-105 ${m.tile}`}
-              title={`Score ${r.score}/100 · ${r.value} casos · crescimento ${r.growth}% · ${r.deaths} óbito(s)`}
+              title={`Score ${r.score}/100 · ${r.value} casos · crescimento ${r.growth}% · ${r.deaths} óbito(s) · ${r.responseDays}d resposta`}
             >
               <div className="flex items-center justify-center gap-1 mb-1">
                 <m.Icon className={`w-3 h-3 ${m.text}`} />
@@ -118,6 +118,7 @@ export function GeographicHeatmap() {
                 <th className="text-left px-3 py-2 font-medium">Risco</th>
                 <th className="text-right px-3 py-2 font-medium">Score</th>
                 <th className="text-right px-3 py-2 font-medium">Casos</th>
+                <th className="text-right px-3 py-2 font-medium">Tempo Resp.</th>
                 <th className="text-center px-3 py-2 font-medium">Tendência</th>
               </tr>
             </thead>
@@ -132,6 +133,10 @@ export function GeographicHeatmap() {
                     <td className={`px-3 py-2 font-semibold ${m.text}`}>{m.label}</td>
                     <td className={`px-3 py-2 text-right font-bold ${m.text}`}>{r.score}</td>
                     <td className="px-3 py-2 text-right text-foreground">{r.value}</td>
+                    <td className={`px-3 py-2 text-right font-semibold ${r.responseDays > 60 ? "text-destructive" : "text-foreground"}`}>
+                      {r.responseDays}d
+                      {r.responseDays > 60 && <span className="ml-1 text-[10px] uppercase tracking-wider">acima</span>}
+                    </td>
                     <td className="px-3 py-2">
                       <span className={`flex items-center justify-center gap-1 ${t.color}`}>
                         <t.Icon className="w-3.5 h-3.5" />
@@ -145,6 +150,24 @@ export function GeographicHeatmap() {
           </table>
         </div>
       </div>
+
+      {/* Regionais com tempo de resposta acima de 60 dias */}
+      {(() => {
+        const above60 = scored.filter((r) => r.responseDays > 60);
+        if (above60.length === 0) return null;
+        return (
+          <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/30">
+            <p className="text-xs text-destructive font-semibold mb-1">Tempo de resposta acima do recomendado (≤ 60 dias):</p>
+            <ul className="space-y-1">
+              {above60.map((r) => (
+                <li key={r.name} className="text-xs text-destructive">
+                  • <span className="font-semibold">{r.name}</span>: {r.responseDays} dias de tempo médio de resposta
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })()}
 
       <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
         <p className="text-xs text-destructive">
