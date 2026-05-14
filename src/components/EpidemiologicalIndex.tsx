@@ -80,14 +80,6 @@ const levelMeta = {
 
 const computed = data.map(computeIndex).sort((a, b) => b.score - a.score);
 
-function Bar({ value, color }: { value: number; color: string }) {
-  return (
-    <div className="h-1.5 bg-secondary/50 rounded-full overflow-hidden">
-      <div className={`h-full rounded-full ${color}`} style={{ width: `${clamp(value)}%` }} />
-    </div>
-  );
-}
-
 function IndexContent({ expanded = false }: { expanded?: boolean }) {
   const counts = {
     critical: computed.filter((c) => c.level === "critical").length,
@@ -262,7 +254,7 @@ export function EpidemiologicalIndex() {
 
           {/* Conteúdo scrollável */}
           <div className="flex-1 overflow-auto p-6">
-            <IndexContent />
+            <IndexContent expanded />
           </div>
         </DialogContent>
       </Dialog>
