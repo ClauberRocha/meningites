@@ -13,16 +13,16 @@ type Row = {
 };
 
 const data: Row[] = [
-  { name: "São Luís",            cases: 14, deaths: 3, growth: 35, closurePct: 55, responseDays: 55, pop: 1108 },
-  { name: "São José de Ribamar", cases: 1,  deaths: 0, growth: 15, closurePct: 70, responseDays: 50, pop: 184 },
-  { name: "Bacabal",             cases: 1,  deaths: 1, growth: 10, closurePct: 60, responseDays: 60, pop: 102 },
-  { name: "Caxias",              cases: 1,  deaths: 1, growth: 8,  closurePct: 65, responseDays: 65, pop: 165 },
-  { name: "Imperatriz",          cases: 1,  deaths: 0, growth: 8,  closurePct: 75, responseDays: 45, pop: 259 },
-  { name: "Bacabeira",           cases: 1,  deaths: 0, growth: 0,  closurePct: 80, responseDays: 40, pop: 16 },
-  { name: "Santa Inês",          cases: 1,  deaths: 0, growth: 0,  closurePct: 70, responseDays: 50, pop: 91 },
-  { name: "Viana",               cases: 1,  deaths: 0, growth: 0,  closurePct: 75, responseDays: 45, pop: 51 },
-  { name: "Raposa",              cases: 1,  deaths: 0, growth: 0,  closurePct: 70, responseDays: 45, pop: 32 },
-  { name: "Alcântara",           cases: 1,  deaths: 0, growth: 0,  closurePct: 80, responseDays: 50, pop: 22 },
+  { name: "São Luís",            cases: 15, deaths: 4, growth: 25, closurePct: 70, responseDays: 35, pop: 1108 },
+  { name: "São José de Ribamar", cases: 3,  deaths: 1, growth: 18, closurePct: 75, responseDays: 36, pop: 184 },
+  { name: "Amarante do Maranhão",cases: 2,  deaths: 1, growth: 10, closurePct: 70, responseDays: 40, pop: 41 },
+  { name: "Caxias",              cases: 2,  deaths: 1, growth: 8,  closurePct: 80, responseDays: 19, pop: 165 },
+  { name: "Presidente Juscelino",cases: 2,  deaths: 0, growth: 12, closurePct: 75, responseDays: 30, pop: 12 },
+  { name: "Bacabal",             cases: 1,  deaths: 1, growth: 5,  closurePct: 70, responseDays: 32, pop: 102 },
+  { name: "Imperatriz",          cases: 1,  deaths: 0, growth: 8,  closurePct: 80, responseDays: 25, pop: 259 },
+  { name: "S. L. Gonzaga do MA", cases: 1,  deaths: 1, growth: 0,  closurePct: 65, responseDays: 50, pop: 21 },
+  { name: "Bacabeira",           cases: 1,  deaths: 0, growth: 0,  closurePct: 85, responseDays: 30, pop: 16 },
+  { name: "Santa Inês",          cases: 1,  deaths: 0, growth: 0,  closurePct: 80, responseDays: 25, pop: 91 },
 ];
 
 // helpers
