@@ -252,6 +252,7 @@ function Legend() {
 export function MaranhaoMap() {
   const features = useGeo();
   const [open, setOpen] = useState(false);
+  const [fsZoom, setFsZoom] = useState(1);
 
   const projected = useMemo(() => (features ? project(features, 800, 800) : []), [features]);
   const projectedFs = useMemo(() => (features ? project(features, 1400, 1100) : []), [features]);
@@ -300,9 +301,37 @@ export function MaranhaoMap() {
               <p className="text-[11px] text-muted-foreground">Hover destaca o município (escala 2.22×) · Tooltip com nome e quantidade</p>
             </div>
           </div>
-          <div className="flex-1 p-4 overflow-auto">
+          <div className="relative flex-1 p-4 overflow-auto">
+            {/* Controles de zoom */}
+            <div className="absolute right-6 top-6 z-20 flex flex-col gap-1.5 rounded-lg border border-border/60 bg-background/80 p-1.5 shadow-xl backdrop-blur">
+              <button
+                onClick={() => setFsZoom((z) => Math.min(z + 0.25, 4))}
+                aria-label="Aumentar zoom"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border/50 bg-secondary/50 text-foreground hover:bg-secondary/80 transition-colors"
+              >
+                <Plus className="h-4 w-4" />
+              </button>
+              <div className="text-center text-[10px] font-medium tabular-nums text-muted-foreground">
+                {Math.round(fsZoom * 100)}%
+              </div>
+              <button
+                onClick={() => setFsZoom((z) => Math.max(z - 0.25, 0.5))}
+                aria-label="Diminuir zoom"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border/50 bg-secondary/50 text-foreground hover:bg-secondary/80 transition-colors"
+              >
+                <Minus className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setFsZoom(1)}
+                aria-label="Resetar zoom"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border/50 bg-secondary/40 text-muted-foreground hover:bg-secondary/70 hover:text-foreground transition-colors"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+              </button>
+            </div>
+
             {features && features.length > 0 && (
-              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.22} />
+              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.22} zoom={fsZoom} />
             )}
             <div className="mt-3">
               <Legend />
