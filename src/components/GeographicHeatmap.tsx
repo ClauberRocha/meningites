@@ -2,22 +2,22 @@ import { Flame, Activity, ShieldCheck, ArrowUp, ArrowDown, ArrowRight } from "lu
 
 const total = 44;
 
-// dados base por regional + crescimento recente (%) e óbitos
+// dados base por regional + crescimento recente (%), óbitos e tempo médio de resposta (dias)
 const regions = [
-  { name: "Metropolitana",  value: 21, growth: 28, deaths: 6 },
-  { name: "Rosário",        value: 5,  growth: 15, deaths: 1 },
-  { name: "Imperatriz",     value: 4,  growth: 12, deaths: 1 },
-  { name: "Bacabal",        value: 2,  growth: 10, deaths: 1 },
-  { name: "Caxias",         value: 2,  growth: 8,  deaths: 1 },
-  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 0 },
-  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0 },
-  { name: "Viana",          value: 1,  growth: 0,  deaths: 0 },
-  { name: "Itapecuru",      value: 1,  growth: 0,  deaths: 0 },
-  { name: "Pedreiras",      value: 1,  growth: 0,  deaths: 0 },
-  { name: "Santa Inês",     value: 1,  growth: 0,  deaths: 0 },
-  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 0 },
-  { name: "Barra do Corda", value: 1,  growth: 0,  deaths: 0 },
-  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 0 },
+  { name: "Metropolitana",  value: 21, growth: 28, deaths: 6, responseDays: 24 },
+  { name: "Rosário",        value: 5,  growth: 15, deaths: 1, responseDays: 30 },
+  { name: "Imperatriz",     value: 4,  growth: 12, deaths: 1, responseDays: 25 },
+  { name: "Bacabal",        value: 2,  growth: 10, deaths: 1, responseDays: 32 },
+  { name: "Caxias",         value: 2,  growth: 8,  deaths: 1, responseDays: 19 },
+  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0, responseDays: 70 },
+  { name: "Viana",          value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Itapecuru",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Pedreiras",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Santa Inês",     value: 1,  growth: 0,  deaths: 0, responseDays: 25 },
+  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Barra do Corda", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
 ];
 
 type RiskLevel = "high" | "medium" | "low";
