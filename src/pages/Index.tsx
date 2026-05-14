@@ -56,7 +56,7 @@ const Index = () => {
               Vigilância das Doenças Imunopreveníveis — Programa de Controle das Meningites
             </p>
             <p className="text-xs text-primary font-semibold mt-1">
-              SE 01 a SE 17 (05/01 – 02/05/2026)
+              SE 01 a SE 19 (05/01 – 16/05/2026)
             </p>
             <p className="text-sm text-foreground font-medium mt-2">
               Dashboard de Vigilância Epidemiológica — Meningite 2026

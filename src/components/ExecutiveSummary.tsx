@@ -82,7 +82,7 @@ export function ExecutiveSummary({
 
       <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
         <BarChart3 className="w-3.5 h-3.5" />
-        <span>Indicadores baseados nos casos confirmados de meningite — SE 01 a SE 17 / 2026.</span>
+        <span>Indicadores baseados nos casos confirmados de meningite — SE 01 a SE 19 / 2026.</span>
       </div>
       </div>
     </div>
