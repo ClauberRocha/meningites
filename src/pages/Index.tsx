@@ -293,6 +293,12 @@ const Index = () => {
           <GlossarySection />
         </section>
 
+        {/* Rodapé */}
+        <footer className="text-center py-6 border-t border-border/30">
+          <p className="text-xs text-muted-foreground">
+            Desenvolvido por Clauber Rocha — Contato: (98) 98600-1270
+          </p>
+        </footer>
       </div>
       <BackToTopButton />
     </div>
