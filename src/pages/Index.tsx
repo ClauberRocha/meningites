@@ -3,7 +3,7 @@ import { Activity, Users, AlertTriangle, CheckCircle, Search, Skull, TrendingUp,
 import { KpiCard } from "@/components/KpiCard";
 import { EpiChart } from "@/components/EpiChart";
 import { AgeDistribution } from "@/components/AgeDistribution";
-import { RegionalTable } from "@/components/RegionalTable";
+import { MaranhaoMap } from "@/components/MaranhaoMap";
 import { EtiologyBreakdown } from "@/components/EtiologyBreakdown";
 import { ConfirmationCriteria } from "@/components/ConfirmationCriteria";
 import { DemographicCharts } from "@/components/DemographicCharts";
@@ -217,7 +217,7 @@ const Index = () => {
           <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Distribuição Geográfica</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
-            <RegionalTable />
+            <MaranhaoMap />
           </div>
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <MunicipalityChart />
