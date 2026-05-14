@@ -151,28 +151,31 @@ function MapSvg({ features, width, height, hoverScale = 2.18, onSurfaceClick }: 
         <g>
           {features.map((f) => {
             const isHover = f.name === hovered;
+            const hasCases = f.cases > 0;
             return (
               <path
                 key={f.name}
                 d={f.d}
                 fill={colorFor(f.cases)}
-                stroke={isHover ? "#fff" : "rgba(255,255,255,0.18)"}
+                stroke={isHover ? "#fff" : "rgba(120,130,140,0.4)"}
                 strokeWidth={isHover ? 0.8 : 0.4}
                 style={{ transition: "fill 200ms ease, opacity 200ms ease", opacity: hovered && !isHover ? 0.55 : 1 }}
-                onMouseEnter={(e) => {
-                  setHovered(f.name);
-                  handleMove(e);
-                }}
-                onMouseMove={handleMove}
-                onMouseLeave={() => {
-                  setHovered(null);
-                  setTip(null);
-                }}
+                {...(hasCases ? {
+                  onMouseEnter: (e: React.MouseEvent) => {
+                    setHovered(f.name);
+                    handleMove(e);
+                  },
+                  onMouseMove: handleMove,
+                  onMouseLeave: () => {
+                    setHovered(null);
+                    setTip(null);
+                  },
+                } : {})}
               />
             );
           })}
-          {/* Renderiza o hover por cima dos demais, com elevação e ampliação */}
-          {hoveredFeature && (
+          {/* Renderiza o hover por cima dos demais, com elevação e ampliação — apenas para municípios com casos */}
+          {hoveredFeature && hoveredFeature.cases > 0 && (
             <g
               style={{
                 transform: `translate(${hoveredFeature.cx}px, ${hoveredFeature.cy}px) scale(${hoverScale}) translate(${-hoveredFeature.cx}px, ${-hoveredFeature.cy}px) translateY(-6px)`,
