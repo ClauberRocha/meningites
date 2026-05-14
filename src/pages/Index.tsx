@@ -117,11 +117,11 @@ const Index = () => {
             />
             <KpiCard
               title="Tempo Resposta"
-              value="32 dias"
-              subtitle="Mediana de encerramento — dentro do prazo"
+              value="84 dias"
+              subtitle="Regional Zé Doca — acima do recomendado (≤60d)"
               icon={<AlertTriangle className="w-4 h-4" />}
-              variant="warning"
-              deltaPct={-5}
+              variant="destructive"
+              deltaPct={24}
               higherIsWorse
               deltaLabel="vs sem. anterior"
             />
