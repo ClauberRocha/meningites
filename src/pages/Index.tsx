@@ -25,7 +25,7 @@ import { StrategicRecommendations } from "@/components/StrategicRecommendations"
 const Index = () => {
   const [ageGroup, setAgeGroup] = useState("all");
   const [startWeek, setStartWeek] = useState("1");
-  const [endWeek, setEndWeek] = useState("17");
+  const [endWeek, setEndWeek] = useState("19");
 
   const ageFilters = [
     { key: "all", label: "Todas" },
@@ -190,7 +190,7 @@ const Index = () => {
                   onChange={(e) => setStartWeek(e.target.value)}
                   className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  {Array.from({ length: 17 }, (_, i) => (
+                  {Array.from({ length: 19 }, (_, i) => (
                     <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                   ))}
                 </select>
@@ -202,7 +202,7 @@ const Index = () => {
                   onChange={(e) => setEndWeek(e.target.value)}
                   className="bg-secondary text-secondary-foreground border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  {Array.from({ length: 17 }, (_, i) => (
+                  {Array.from({ length: 19 }, (_, i) => (
                     <option key={i + 1} value={String(i + 1)}>SE {i + 1}</option>
                   ))}
                 </select>
