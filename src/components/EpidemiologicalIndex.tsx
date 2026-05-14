@@ -1,4 +1,9 @@
-import { Flame, Activity, ShieldCheck, AlertTriangle, TrendingUp, Skull, Gauge, CheckCircle2, Info } from "lucide-react";
+import { useState } from "react";
+import {
+  Flame, Activity, ShieldCheck, AlertTriangle, TrendingUp, Skull, Gauge, CheckCircle2, Info,
+  Maximize2, X
+} from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // População estimada (mil hab) — usada para calcular incidência por 100k
 // Fonte: estimativas IBGE (valores aproximados para fins de demonstração)
@@ -83,7 +88,7 @@ function Bar({ value, color }: { value: number; color: string }) {
   );
 }
 
-export function EpidemiologicalIndex() {
+function IndexContent() {
   const counts = {
     critical: computed.filter((c) => c.level === "critical").length,
     high:     computed.filter((c) => c.level === "high").length,
@@ -94,7 +99,7 @@ export function EpidemiologicalIndex() {
   const TopIcon = levelMeta[top.level].Icon;
 
   return (
-    <div className="glass-card p-6">
+    <>
       <div className="flex items-start justify-between gap-3 mb-1">
         <div>
           <h3 className="font-display font-semibold text-foreground">Índice Epidemiológico Completo</h3>
@@ -194,6 +199,57 @@ export function EpidemiologicalIndex() {
         <Info className="w-3 h-3 mt-0.5 shrink-0" />
         Combinar quantidade, crescimento e taxa proporcional evita viés de município grande — o índice prioriza por <span className="font-semibold">risco real</span>, não por volume bruto.
       </p>
+    </>
+  );
+}
+
+export function EpidemiologicalIndex() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="glass-card p-6">
+      <div className="mb-1 flex items-start justify-between gap-3">
+        <div>
+          <h3 className="font-display font-semibold text-foreground">Índice Epidemiológico Completo</h3>
+          <p className="text-xs text-muted-foreground">
+            Combina incidência · letalidade · velocidade de crescimento · pressão operacional · cobertura de encerramento
+          </p>
+        </div>
+        <button
+          onClick={() => setOpen(true)}
+          className="inline-flex items-center gap-1.5 rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-secondary/60 transition-colors shrink-0"
+        >
+          <Maximize2 className="h-3.5 w-3.5" />
+          Ampliar
+        </button>
+      </div>
+
+      {/* Exibe conteúdo resumido no card (sem o header duplicado) */}
+      <IndexContent />
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-[96vw] w-[96vw] h-[94vh] p-0 border-border/60 overflow-hidden flex flex-col">
+          {/* Cabeçalho do modo ampliado */}
+          <div className="flex items-center justify-between border-b border-border/40 bg-background/40 px-4 py-3 backdrop-blur shrink-0">
+            <button
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-secondary/40 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-secondary/70 transition-colors"
+            >
+              <X className="h-3.5 w-3.5" />
+              Voltar pro Informe
+            </button>
+            <div className="text-right">
+              <p className="text-sm font-display font-semibold text-foreground">Índice Epidemiológico Completo</p>
+              <p className="text-[11px] text-muted-foreground">Visualização ampliada com todos os dados</p>
+            </div>
+          </div>
+
+          {/* Conteúdo scrollável */}
+          <div className="flex-1 overflow-auto p-6">
+            <IndexContent />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
