@@ -118,6 +118,7 @@ export function GeographicHeatmap() {
                 <th className="text-left px-3 py-2 font-medium">Risco</th>
                 <th className="text-right px-3 py-2 font-medium">Score</th>
                 <th className="text-right px-3 py-2 font-medium">Casos</th>
+                <th className="text-right px-3 py-2 font-medium">Tempo Resp.</th>
                 <th className="text-center px-3 py-2 font-medium">Tendência</th>
               </tr>
             </thead>
