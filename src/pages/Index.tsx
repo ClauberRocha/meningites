@@ -215,21 +215,21 @@ const Index = () => {
         {/* SEÇÃO: DISTRIBUIÇÃO GEOGRÁFICA */}
         <section className="space-y-4">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-primary border-l-2 border-primary pl-3">Distribuição Geográfica</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
-            <MaranhaoMap />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+            <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all h-full [&>div]:h-full">
+              <MaranhaoMap />
+            </div>
+            <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all h-full [&>div]:h-full">
+              <EpidemiologicalIndex />
+            </div>
           </div>
+
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <MunicipalityChart />
-          </div>
           </div>
 
           <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
             <GeographicHeatmap />
-          </div>
-
-          <div className="hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all">
-            <EpidemiologicalIndex />
           </div>
         </section>
 
