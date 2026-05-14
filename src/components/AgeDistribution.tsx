@@ -2,12 +2,12 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGri
 import { AlertTriangle } from "lucide-react";
 
 const ageData = [
-  { faixa: "< 1", casos: 9 },
-  { faixa: "1-10", casos: 7 },
-  { faixa: "11-20", casos: 4 },
-  { faixa: "21-30", casos: 1 },
+  { faixa: "< 1", casos: 12 },
+  { faixa: "1-10", casos: 8 },
+  { faixa: "11-20", casos: 7 },
+  { faixa: "21-30", casos: 5 },
   { faixa: "31-40", casos: 5 },
-  { faixa: "41-50", casos: 4 },
+  { faixa: "41-50", casos: 5 },
   { faixa: "51-60", casos: 1 },
   { faixa: "61-70", casos: 1 },
 ];
