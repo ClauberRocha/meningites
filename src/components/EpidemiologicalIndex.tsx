@@ -88,7 +88,7 @@ function Bar({ value, color }: { value: number; color: string }) {
   );
 }
 
-function IndexContent() {
+function IndexContent({ expanded = false }: { expanded?: boolean }) {
   const counts = {
     critical: computed.filter((c) => c.level === "critical").length,
     high:     computed.filter((c) => c.level === "high").length,
@@ -98,16 +98,30 @@ function IndexContent() {
   const top = computed[0];
   const TopIcon = levelMeta[top.level].Icon;
 
+  const t = {
+    title: expanded ? "text-xl" : "text-base",
+    subtitle: expanded ? "text-sm" : "text-xs",
+    badge: expanded ? "text-xs" : "text-[10px]",
+    icon: expanded ? "w-6 h-6" : "w-4 h-4",
+    count: expanded ? "text-2xl" : "text-lg",
+    label: expanded ? "text-xs" : "text-[10px]",
+    body: expanded ? "text-sm" : "text-xs",
+    table: expanded ? "text-sm" : "text-xs",
+    barH: expanded ? "h-2.5" : "h-1.5",
+    score: expanded ? "text-sm" : "text-[11px]",
+    legend: expanded ? "text-xs" : "text-[10px]",
+  };
+
   return (
     <>
       <div className="flex items-start justify-between gap-3 mb-1">
         <div>
-          <h3 className="font-display font-semibold text-foreground">Índice Epidemiológico Completo</h3>
-          <p className="text-xs text-muted-foreground">
+          <h3 className={`font-display font-semibold text-foreground ${t.title}`}>Índice Epidemiológico Completo</h3>
+          <p className={`${t.subtitle} text-muted-foreground`}>
             Combina incidência · letalidade · velocidade de crescimento · pressão operacional · cobertura de encerramento
           </p>
         </div>
-        <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded border border-primary/30 text-primary bg-primary/5 shrink-0">
+        <span className={`${t.badge} uppercase tracking-wider px-2 py-1 rounded border border-primary/30 text-primary bg-primary/5 shrink-0`}>
           Nível secretaria estadual
         </span>
       </div>
@@ -118,10 +132,10 @@ function IndexContent() {
           const m = levelMeta[lvl];
           return (
             <div key={lvl} className={`p-3 rounded-lg border border-border/40 ${m.bg} flex items-center gap-2`}>
-              <m.Icon className={`w-4 h-4 ${m.color}`} />
+              <m.Icon className={`${t.icon} ${m.color}`} />
               <div className="leading-tight">
-                <p className={`text-lg font-display font-bold ${m.color}`}>{counts[lvl]}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{m.label}</p>
+                <p className={`${t.count} font-display font-bold ${m.color}`}>{counts[lvl]}</p>
+                <p className={`${t.label} text-muted-foreground uppercase tracking-wider`}>{m.label}</p>
               </div>
             </div>
           );
@@ -130,8 +144,8 @@ function IndexContent() {
 
       {/* Headline do município top */}
       <div className={`p-3 rounded-lg border ${levelMeta[top.level].bg} ${levelMeta[top.level].ring} ring-1 mb-4 flex items-start gap-2`}>
-        <TopIcon className={`w-4 h-4 mt-0.5 ${levelMeta[top.level].color} shrink-0`} />
-        <p className={`text-xs leading-relaxed ${levelMeta[top.level].color}`}>
+        <TopIcon className={`${t.icon} mt-0.5 ${levelMeta[top.level].color} shrink-0`} />
+        <p className={`${t.body} leading-relaxed ${levelMeta[top.level].color}`}>
           <span className="font-semibold">{top.name}</span> é{" "}
           <span className="font-bold">{levelMeta[top.level].label.toLowerCase()}</span> e exige{" "}
           <span className="font-bold">{levelMeta[top.level].action.toLowerCase()}</span> — índice {top.score}/100
@@ -141,7 +155,7 @@ function IndexContent() {
 
       {/* Tabela */}
       <div className="overflow-x-auto rounded-lg border border-border/40">
-        <table className="w-full text-xs">
+        <table className={`w-full ${t.table}`}>
           <thead className="bg-secondary/40 text-muted-foreground">
             <tr>
               <th className="text-left px-3 py-2 font-medium">Município</th>
@@ -164,8 +178,8 @@ function IndexContent() {
                 <tr key={c.name} className="border-t border-border/30 hover:bg-secondary/20">
                   <td className="px-3 py-2 font-medium text-foreground">{c.name}</td>
                   <td className="px-3 py-2 text-center">
-                    <span className={`inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-current/30 ${m.color}`}>
-                      <m.Icon className="w-3 h-3" />
+                    <span className={`inline-flex items-center gap-1 ${t.badge} font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-current/30 ${m.color}`}>
+                      <m.Icon className="w-4 h-4" />
                       {m.label}
                     </span>
                   </td>
@@ -176,8 +190,10 @@ function IndexContent() {
                   <td className={`px-3 py-2 text-right ${c.closureCoverage < 60 ? "text-warning" : "text-success"}`}>{c.closureCoverage}</td>
                   <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
-                      <Bar value={c.score} color={barColor} />
-                      <span className={`text-[11px] font-bold w-8 text-right ${m.color}`}>{c.score}</span>
+                      <div className={`${t.barH} bg-secondary/50 rounded-full overflow-hidden flex-1`}>
+                        <div className={`h-full rounded-full ${barColor}`} style={{ width: `${clamp(c.score)}%` }} />
+                      </div>
+                      <span className={`${t.score} font-bold w-10 text-right ${m.color}`}>{c.score}</span>
                     </div>
                   </td>
                 </tr>
@@ -188,15 +204,15 @@ function IndexContent() {
       </div>
 
       {/* Legenda dos componentes */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mt-4 text-[10px] text-muted-foreground">
-        <div className="flex items-center gap-1"><Activity className="w-3 h-3 text-primary" /> Incidência (30%)</div>
-        <div className="flex items-center gap-1"><Skull className="w-3 h-3 text-destructive" /> Letalidade (25%)</div>
-        <div className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-warning" /> Crescimento (20%)</div>
-        <div className="flex items-center gap-1"><Gauge className="w-3 h-3 text-info" /> Pressão Op. (15%)</div>
-        <div className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-success" /> Encerramento (10%)</div>
+      <div className={`grid grid-cols-2 md:grid-cols-5 gap-2 mt-4 ${t.legend} text-muted-foreground`}>
+        <div className="flex items-center gap-1"><Activity className="w-4 h-4 text-primary" /> Incidência (30%)</div>
+        <div className="flex items-center gap-1"><Skull className="w-4 h-4 text-destructive" /> Letalidade (25%)</div>
+        <div className="flex items-center gap-1"><TrendingUp className="w-4 h-4 text-warning" /> Crescimento (20%)</div>
+        <div className="flex items-center gap-1"><Gauge className="w-4 h-4 text-info" /> Pressão Op. (15%)</div>
+        <div className="flex items-center gap-1"><CheckCircle2 className="w-4 h-4 text-success" /> Encerramento (10%)</div>
       </div>
-      <p className="text-[10px] text-muted-foreground mt-2 flex items-start gap-1">
-        <Info className="w-3 h-3 mt-0.5 shrink-0" />
+      <p className={`${t.legend} text-muted-foreground mt-2 flex items-start gap-1`}>
+        <Info className="w-4 h-4 mt-0.5 shrink-0" />
         Combinar quantidade, crescimento e taxa proporcional evita viés de município grande — o índice prioriza por <span className="font-semibold">risco real</span>, não por volume bruto.
       </p>
     </>
