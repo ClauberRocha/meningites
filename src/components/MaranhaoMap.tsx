@@ -25,7 +25,7 @@ const casesByMunicipality: Record<string, number> = {
 
 type Bin = { min: number; max: number; color: string; label: string };
 const BINS: Bin[] = [
-  { min: 0, max: 0, color: "hsl(210 18% 22%)", label: "0 casos" },
+  { min: 0, max: 0, color: "#ffffff", label: "0 casos" },
   { min: 1, max: 1, color: "hsl(48 95% 60%)", label: "1 caso" },
   { min: 2, max: 4, color: "hsl(28 90% 58%)", label: "2 – 4 casos" },
   { min: 5, max: 9, color: "hsl(8 85% 58%)", label: "5 – 9 casos" },
@@ -33,7 +33,7 @@ const BINS: Bin[] = [
 ];
 const colorFor = (n: number) => BINS.find((b) => n >= b.min && n <= b.max)!.color;
 
-const MAP_BG = "#161C24";
+const MAP_BG = "#111724";
 
 type GeoFeature = {
   type: "Feature";
@@ -121,7 +121,7 @@ interface MapSvgProps {
   onSurfaceClick?: () => void;
 }
 
-function MapSvg({ features, width, height, hoverScale = 2.18, onSurfaceClick }: MapSvgProps) {
+function MapSvg({ features, width, height, hoverScale = 2.22, onSurfaceClick }: MapSvgProps) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -157,7 +157,7 @@ function MapSvg({ features, width, height, hoverScale = 2.18, onSurfaceClick }: 
                 key={f.name}
                 d={f.d}
                 fill={colorFor(f.cases)}
-                stroke={isHover ? "#fff" : "rgba(120,130,140,0.4)"}
+                stroke={isHover ? "#0f172a" : "rgba(120,130,140,0.55)"}
                 strokeWidth={isHover ? 0.8 : 0.4}
                 style={{ transition: "fill 200ms ease, opacity 200ms ease", opacity: hovered && !isHover ? 0.55 : 1 }}
                 {...(hasCases ? {
@@ -187,7 +187,7 @@ function MapSvg({ features, width, height, hoverScale = 2.18, onSurfaceClick }: 
               <path
                 d={hoveredFeature.d}
                 fill={colorFor(hoveredFeature.cases)}
-                stroke="#fff"
+                stroke="#0f172a"
                 strokeWidth={0.6}
                 filter="url(#ma-elev)"
               />
@@ -236,7 +236,7 @@ function Legend() {
         ))}
       </div>
       <p className="mt-2 text-[10px] text-muted-foreground">
-        Passe o mouse para destacar o município (escala 2.18× com elevação) · Clique no mapa ou em "Ampliar" para visualizar em tela cheia.
+        Passe o mouse para destacar o município (escala 2.22× com elevação) · Clique no mapa ou em "Ampliar" para visualizar em tela cheia.
       </p>
     </div>
   );
@@ -290,12 +290,12 @@ export function MaranhaoMap() {
             </button>
             <div className="text-right">
               <p className="text-sm font-display font-semibold text-foreground">Mapa de Casos — Maranhão</p>
-              <p className="text-[11px] text-muted-foreground">Hover destaca o município (escala 2.18×) · Tooltip com nome e quantidade</p>
+              <p className="text-[11px] text-muted-foreground">Hover destaca o município (escala 2.22×) · Tooltip com nome e quantidade</p>
             </div>
           </div>
           <div className="flex-1 p-4 overflow-auto">
             {features && features.length > 0 && (
-              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.18} />
+              <MapSvg features={projectedFs} width={1400} height={1100} hoverScale={2.22} />
             )}
             <div className="mt-3">
               <Legend />
