@@ -133,6 +133,10 @@ export function GeographicHeatmap() {
                     <td className={`px-3 py-2 font-semibold ${m.text}`}>{m.label}</td>
                     <td className={`px-3 py-2 text-right font-bold ${m.text}`}>{r.score}</td>
                     <td className="px-3 py-2 text-right text-foreground">{r.value}</td>
+                    <td className={`px-3 py-2 text-right font-semibold ${r.responseDays > 60 ? "text-destructive" : "text-foreground"}`}>
+                      {r.responseDays}d
+                      {r.responseDays > 60 && <span className="ml-1 text-[10px] uppercase tracking-wider">acima</span>}
+                    </td>
                     <td className="px-3 py-2">
                       <span className={`flex items-center justify-center gap-1 ${t.color}`}>
                         <t.Icon className="w-3.5 h-3.5" />
