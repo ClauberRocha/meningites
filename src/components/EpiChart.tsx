@@ -20,7 +20,9 @@ const allWeeklyData = [
   { sem: "SE14", conf2025: 3, notif2026: 17, conf2026: 8, mediaHist: 2.8 },
   { sem: "SE15", conf2025: 0, notif2026: 7,  conf2026: 1, mediaHist: 1.6 },
   { sem: "SE16", conf2025: 2, notif2026: 6,  conf2026: 3, mediaHist: 1.8 },
-  { sem: "SE17", conf2025: 3, notif2026: 0,  conf2026: 0, mediaHist: 2.2 },
+  { sem: "SE17", conf2025: 3, notif2026: 6,  conf2026: 2, mediaHist: 2.2 },
+  { sem: "SE18", conf2025: 2, notif2026: 5,  conf2026: 2, mediaHist: 2.0 },
+  { sem: "SE19", conf2025: 1, notif2026: 4,  conf2026: 1, mediaHist: 1.8 },
 ];
 
 interface EpiChartProps {
@@ -28,7 +30,7 @@ interface EpiChartProps {
   endWeek?: number;
 }
 
-export function EpiChart({ startWeek = 1, endWeek = 17 }: EpiChartProps) {
+export function EpiChart({ startWeek = 1, endWeek = 19 }: EpiChartProps) {
   const baseData = allWeeklyData.slice(startWeek - 1, endWeek);
 
   // Regressão linear simples sobre confirmados 2026
