@@ -1,8 +1,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const etiologiaData = [
-  { name: "Bacteriana", value: 24, color: "hsl(0 72% 55%)" },
-  { name: "Viral", value: 6, color: "hsl(210 80% 55%)" },
+  { name: "Bacteriana", value: 35, color: "hsl(0 72% 55%)" },
+  { name: "Viral", value: 7, color: "hsl(210 80% 55%)" },
   { name: "Outras", value: 2, color: "hsl(38 92% 50%)" },
 ];
 
@@ -47,7 +47,7 @@ export function EtiologyBreakdown() {
 
       <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
         <p className="text-xs text-destructive">
-          <span className="font-semibold">Análise:</span> A etiologia bacteriana predomina com 24 casos (75% do total), seguida pela viral com 6 casos (19%) e outras etiologias com 2 casos (6%).
+          <span className="font-semibold">Análise:</span> A etiologia bacteriana predomina com 35 casos (80% do total), seguida pela viral com 7 casos (16%) e outras etiologias com 2 casos (5%).
         </p>
       </div>
     </div>

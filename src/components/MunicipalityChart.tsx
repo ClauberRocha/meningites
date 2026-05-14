@@ -1,26 +1,32 @@
 import { Crown, AlertTriangle, Flame, ShieldCheck, Activity } from "lucide-react";
 
-const totalMun = 32;
+const totalMun = 44;
 // raw inputs por município: casos confirmados, crescimento recente (%), óbitos, tempo médio de encerramento (dias)
 const rawMunicipalities = [
-  { name: "São Luís", value: 14, growth: 35, deaths: 3, closureDays: 55 },
-  { name: "Outros", value: 2, growth: 5, deaths: 0, closureDays: 50 },
-  { name: "Bacabeira", value: 1, growth: 0, deaths: 0, closureDays: 45 },
-  { name: "Bacabal", value: 1, growth: 10, deaths: 1, closureDays: 60 },
-  { name: "Amarante do Maranhão", value: 1, growth: 0, deaths: 0, closureDays: 40 },
-  { name: "São José de Ribamar", value: 1, growth: 15, deaths: 0, closureDays: 50 },
-  { name: "Nova Olinda do Maranhão", value: 1, growth: 0, deaths: 0, closureDays: 50 },
-  { name: "Viana", value: 1, growth: 0, deaths: 0, closureDays: 45 },
-  { name: "Urbano Santos", value: 1, growth: 0, deaths: 0, closureDays: 50 },
-  { name: "Poção de Pedras", value: 1, growth: 0, deaths: 0, closureDays: 55 },
-  { name: "Caxias", value: 1, growth: 8, deaths: 1, closureDays: 65 },
-  { name: "Santa Inês", value: 1, growth: 0, deaths: 0, closureDays: 50 },
-  { name: "São Luís Gonzaga do Maranhão", value: 1, growth: 0, deaths: 0, closureDays: 70 },
-  { name: "Jenipapo dos Vieiras", value: 1, growth: 0, deaths: 0, closureDays: 60 },
-  { name: "Raposa", value: 1, growth: 0, deaths: 0, closureDays: 45 },
-  { name: "Alcântara", value: 1, growth: 0, deaths: 0, closureDays: 50 },
-  { name: "Presidente Juscelino", value: 1, growth: 0, deaths: 0, closureDays: 55 },
-  { name: "Bequimão", value: 1, growth: 0, deaths: 0, closureDays: 50 },
+  { name: "São Luís", value: 15, growth: 25, deaths: 4, closureDays: 35 },
+  { name: "São José de Ribamar", value: 3, growth: 18, deaths: 1, closureDays: 36 },
+  { name: "Amarante do Maranhão", value: 2, growth: 10, deaths: 1, closureDays: 40 },
+  { name: "Caxias", value: 2, growth: 8, deaths: 1, closureDays: 19 },
+  { name: "Presidente Juscelino", value: 2, growth: 12, deaths: 0, closureDays: 30 },
+  { name: "Outros (fora do MA)", value: 2, growth: 5, deaths: 0, closureDays: 30 },
+  { name: "Bacabeira", value: 1, growth: 0, deaths: 0, closureDays: 30 },
+  { name: "Bacabal", value: 1, growth: 5, deaths: 1, closureDays: 32 },
+  { name: "Nova Olinda do Maranhão", value: 1, growth: 0, deaths: 0, closureDays: 30 },
+  { name: "Viana", value: 1, growth: 0, deaths: 0, closureDays: 30 },
+  { name: "Urbano Santos", value: 1, growth: 0, deaths: 0, closureDays: 11 },
+  { name: "Poção de Pedras", value: 1, growth: 0, deaths: 0, closureDays: 30 },
+  { name: "Santa Inês", value: 1, growth: 0, deaths: 0, closureDays: 25 },
+  { name: "São Luís Gonzaga do Maranhão", value: 1, growth: 0, deaths: 1, closureDays: 50 },
+  { name: "Paço do Lumiar", value: 1, growth: 0, deaths: 0, closureDays: 9 },
+  { name: "Icatu", value: 1, growth: 0, deaths: 0, closureDays: 25 },
+  { name: "Imperatriz", value: 1, growth: 8, deaths: 0, closureDays: 25 },
+  { name: "Jenipapo dos Vieiras", value: 1, growth: 0, deaths: 0, closureDays: 30 },
+  { name: "Raposa", value: 1, growth: 0, deaths: 0, closureDays: 15 },
+  { name: "Alcântara", value: 1, growth: 0, deaths: 0, closureDays: 17 },
+  { name: "Passagem Franca", value: 1, growth: 0, deaths: 0, closureDays: 25 },
+  { name: "Axixá", value: 1, growth: 0, deaths: 0, closureDays: 25 },
+  { name: "Estreito", value: 1, growth: 0, deaths: 1, closureDays: 30 },
+  { name: "Bequimão", value: 1, growth: 0, deaths: 0, closureDays: 6 },
 ];
 
 // Normaliza valor entre 0-100

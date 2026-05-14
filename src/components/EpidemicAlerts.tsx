@@ -21,32 +21,32 @@ const alerts: Alert[] = [
   {
     severity: "critical",
     title: "Crescimento de casos",
-    message: "Casos suspeitos aumentaram 47% entre SE 11 e SE 14.",
+    message: "Notificações saltaram de 12 (SE 11) para 17 (SE 14) — alta de 42%.",
     Icon: TrendingUp,
   },
   {
     severity: "critical",
-    title: "Tempo operacional crítico",
-    message: "Tempo médio de encerramento na Regional Zé Doca está em 70 dias (>60 dias recomendado).",
+    title: "Letalidade elevada",
+    message: "12 óbitos por meningite em 44 confirmados — letalidade de 27%.",
     Icon: AlertTriangle,
   },
   {
     severity: "critical",
     title: "Possível concentração",
-    message: "São Luís concentra 44% dos casos confirmados (14 de 32).",
+    message: "São Luís concentra 34% dos casos confirmados (15 de 44).",
     Icon: AlertCircle,
   },
   {
     severity: "warning",
     title: "Tendência preocupante",
-    message: "Faixa etária <1 ano apresentou 28% dos confirmados — vigilância reforçada.",
+    message: "Faixa etária <1 ano apresentou 27% dos confirmados (12 casos) — vigilância reforçada.",
     Icon: AlertTriangle,
   },
   {
-    severity: "control",
-    title: "Situação em melhora",
-    message: "Confirmados reduziram 18% nas últimas 4 semanas em relação ao período anterior.",
-    Icon: CheckCircle2,
+    severity: "warning",
+    title: "Predomínio bacteriano",
+    message: "80% das confirmações são bacterianas (35 de 44) — reforçar quimioprofilaxia.",
+    Icon: AlertCircle,
   },
 ];
 

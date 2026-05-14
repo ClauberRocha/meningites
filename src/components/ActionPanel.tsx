@@ -4,22 +4,22 @@ const recommendations = [
   {
     priority: "Alta",
     color: "destructive",
-    text: "Intensificar investigação em São Luís (44% dos confirmados).",
+    text: "Intensificar investigação em São Luís (34% dos confirmados).",
   },
   {
     priority: "Alta",
     color: "destructive",
-    text: "Reduzir tempo médio de encerramento — 70 dias na Regional Zé Doca, acima do recomendado.",
+    text: "Reduzir letalidade — 27% entre os confirmados (12 óbitos / 44 casos).",
   },
   {
     priority: "Média",
     color: "warning",
-    text: "Focar vacinação meningocócica em menores de 1 ano (28% dos casos confirmados).",
+    text: "Focar vacinação meningocócica em menores de 1 ano (27% dos confirmados).",
   },
   {
     priority: "Média",
     color: "warning",
-    text: "Reforçar quimioprofilaxia para contatos de casos bacterianos (75% dos confirmados).",
+    text: "Reforçar quimioprofilaxia para contatos de casos bacterianos (80% dos confirmados).",
   },
   {
     priority: "Baixa",
@@ -29,10 +29,10 @@ const recommendations = [
 ];
 
 const municipalityRisk = [
-  { name: "São Luís", cases: 14, risk: "high" as const, reason: "44% dos confirmados, crescimento acumulado" },
-  { name: "São José de Ribamar", cases: 1, risk: "medium" as const, reason: "Região metropolitana — vigilância reforçada" },
-  { name: "Bacabal", cases: 1, risk: "medium" as const, reason: "Histórico recorrente na regional" },
-  { name: "Caxias", cases: 1, risk: "medium" as const, reason: "Casos isolados em monitoramento" },
+  { name: "São Luís", cases: 15, risk: "high" as const, reason: "34% dos confirmados, 4 óbitos" },
+  { name: "São José de Ribamar", cases: 3, risk: "high" as const, reason: "3 confirmados na metropolitana com 1 óbito" },
+  { name: "Amarante do Maranhão", cases: 2, risk: "medium" as const, reason: "2 confirmados com 1 óbito" },
+  { name: "Caxias", cases: 2, risk: "medium" as const, reason: "2 confirmados com 1 óbito" },
   { name: "Demais municípios", cases: 1, risk: "low" as const, reason: "Casos pontuais sem aglomeração" },
 ];
 
@@ -79,7 +79,7 @@ export function ActionPanel() {
           </div>
           <p className={`text-lg font-display font-bold ${pressure.color}`}>{pressure.label}</p>
           <p className="text-[11px] text-muted-foreground mt-1">
-            42 casos ativos em investigação · crescimento estável · tempo de resposta acima do recomendado em 1 regional.
+            43 casos ativos em investigação · 12 óbitos confirmados · letalidade 27% acima do esperado.
           </p>
         </div>
       </div>

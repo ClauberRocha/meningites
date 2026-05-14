@@ -24,11 +24,11 @@ const levelMap = {
 };
 
 export function ExecutiveSummary({
-  trend = "down",
-  level = "medium",
-  yoyPct = -20,
+  trend = "up",
+  level = "high",
+  yoyPct = 12,
   criticalWeek = "SE 14",
-  headline = "32 casos confirmados em 17 semanas; pico recente em SE 14 com 6 confirmados; queda nas últimas semanas com taxa de mortalidade ainda elevada (19%).",
+  headline = "44 casos confirmados em 121 notificações; pico em SE 14 com 8 confirmados; letalidade elevada (27%) e concentração crítica em São Luís (34% dos confirmados).",
 }: ExecutiveSummaryProps) {
   const t = trendMap[trend];
   const l = levelMap[level];

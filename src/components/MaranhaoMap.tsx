@@ -4,22 +4,28 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 /** Casos confirmados por município (nomes batem com o GeoJSON oficial do IBGE). */
 const casesByMunicipality: Record<string, number> = {
-  "São Luís": 14,
+  "São Luís": 15,
+  "São José de Ribamar": 3,
+  "Amarante do Maranhão": 2,
+  "Caxias": 2,
+  "Presidente Juscelino": 2,
   "Bacabeira": 1,
   "Bacabal": 1,
-  "Amarante do Maranhão": 1,
-  "São José de Ribamar": 1,
   "Nova Olinda do Maranhão": 1,
   "Viana": 1,
   "Urbano Santos": 1,
   "Poção de Pedras": 1,
-  "Caxias": 1,
   "Santa Inês": 1,
   "São Luís Gonzaga do Maranhão": 1,
+  "Paço do Lumiar": 1,
+  "Icatu": 1,
+  "Imperatriz": 1,
   "Jenipapo dos Vieiras": 1,
   "Raposa": 1,
   "Alcântara": 1,
-  "Presidente Juscelino": 1,
+  "Passagem Franca": 1,
+  "Axixá": 1,
+  "Estreito": 1,
   "Bequimão": 1,
 };
 
