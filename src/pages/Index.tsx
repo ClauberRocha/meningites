@@ -90,7 +90,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <KpiCard title="Confirmados" value="44 (36%)" icon={<CheckCircle className="w-4 h-4" />} situational deltaPct={18} higherIsWorse deltaLabel="vs sem. anterior" />
             <KpiCard title="Óbitos" value={12} subtitle="Letalidade 27%" icon={<Skull className="w-4 h-4" />} variant="destructive" deltaPct={50} higherIsWorse deltaLabel="vs sem. anterior" />
-            <KpiCard title="Tendência (4 sem.)" value="Alta" subtitle="Confirmados em crescimento" icon={<TrendingUp className="w-4 h-4" />} variant="destructive" deltaPct={22} higherIsWorse deltaLabel="vs sem. anterior" />
+            <KpiCard title="Tendência" value="Alta" subtitle="Confirmados em crescimento" icon={<TrendingUp className="w-4 h-4" />} variant="success" deltaPct={22} higherIsWorse={false} deltaLabel="vs sem. anterior" />
           </div>
 
           {/* KPIs secundários */}
