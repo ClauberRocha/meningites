@@ -106,7 +106,7 @@ function IndexContent({ expanded = false }: { expanded?: boolean }) {
 
   return (
     <>
-      {!expanded && (
+      {expanded && (
         <div className="flex items-start justify-between gap-3 mb-1">
           <div>
             <h3 className={`font-display font-semibold text-foreground ${t.title}`}>Índice Epidemiológico Completo</h3>
