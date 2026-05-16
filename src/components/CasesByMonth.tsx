@@ -5,7 +5,7 @@ const data = [
   { month: "Fevereiro", notificados: 21, confirmados: 7 },
   { month: "Março", notificados: 37, confirmados: 12 },
   { month: "Abril", notificados: 34, confirmados: 14 },
-  { month: "Maio", notificados: 5, confirmados: 0 },
+  { month: "Maio", notificados: 7, confirmados: 1 },
 ];
 
 // Cores semânticas por nível de risco (baseado em confirmados)
@@ -115,7 +115,7 @@ export function CasesByMonth() {
       </ResponsiveContainer>
       <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/20">
         <p className="text-xs text-info">
-          <span className="font-semibold">Análise:</span> Abril concentrou o maior número de confirmações (14 casos), seguido por Março (12) e Janeiro (11). Março liderou em notificações (37 casos). Acumulado: 121 notificados e 44 confirmados em 2026.
+          <span className="font-semibold">Análise:</span> Abril concentrou o maior número de confirmações (14 casos), seguido por Março (12) e Janeiro (11). Março liderou em notificações (37 casos). Acumulado: 123 notificados e 45 confirmados em 2026.
         </p>
       </div>
     </div>
