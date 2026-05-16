@@ -1,23 +1,23 @@
 import { Flame, Activity, ShieldCheck, ArrowUp, ArrowDown, ArrowRight } from "lucide-react";
 
-const total = 44;
+const total = 45;
 
 // dados base por regional + crescimento recente (%), óbitos e tempo médio de resposta (dias)
 const regions = [
-  { name: "Metropolitana",  value: 21, growth: 28, deaths: 6, responseDays: 24 },
-  { name: "Rosário",        value: 5,  growth: 15, deaths: 1, responseDays: 30 },
+  { name: "Metropolitana",  value: 22, growth: 28, deaths: 2, responseDays: 17 },
+  { name: "Rosário",        value: 5,  growth: 15, deaths: 4, responseDays: 30 },
   { name: "Imperatriz",     value: 4,  growth: 12, deaths: 1, responseDays: 25 },
-  { name: "Bacabal",        value: 2,  growth: 10, deaths: 1, responseDays: 32 },
+  { name: "Bacabal",        value: 2,  growth: 10, deaths: 0, responseDays: 32 },
   { name: "Caxias",         value: 2,  growth: 8,  deaths: 1, responseDays: 19 },
-  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 0, responseDays: 30 },
-  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0, responseDays: 70 },
-  { name: "Viana",          value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Outro Estado",   value: 2,  growth: 0,  deaths: 2, responseDays: 30 },
+  { name: "Zé Doca",        value: 1,  growth: 5,  deaths: 0, responseDays: 86 },
+  { name: "Viana",          value: 1,  growth: 0,  deaths: 1, responseDays: 17 },
   { name: "Itapecuru",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
   { name: "Pedreiras",      value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
   { name: "Santa Inês",     value: 1,  growth: 0,  deaths: 0, responseDays: 25 },
-  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "S.J. dos Patos", value: 1,  growth: 0,  deaths: 1, responseDays: 30 },
   { name: "Barra do Corda", value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
-  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 0, responseDays: 30 },
+  { name: "Pinheiro",       value: 1,  growth: 0,  deaths: 1, responseDays: 30 },
 ];
 
 type RiskLevel = "high" | "medium" | "low";
