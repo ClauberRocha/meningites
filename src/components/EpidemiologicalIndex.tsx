@@ -106,17 +106,19 @@ function IndexContent({ expanded = false }: { expanded?: boolean }) {
 
   return (
     <>
-      <div className="flex items-start justify-between gap-3 mb-1">
-        <div>
-          <h3 className={`font-display font-semibold text-foreground ${t.title}`}>Índice Epidemiológico Completo</h3>
-          <p className={`${t.subtitle} text-muted-foreground`}>
-            Combina incidência · letalidade · velocidade de crescimento · pressão operacional · cobertura de encerramento
-          </p>
+      {!expanded && (
+        <div className="flex items-start justify-between gap-3 mb-1">
+          <div>
+            <h3 className={`font-display font-semibold text-foreground ${t.title}`}>Índice Epidemiológico Completo</h3>
+            <p className={`${t.subtitle} text-muted-foreground`}>
+              Combina incidência · letalidade · velocidade de crescimento · pressão operacional · cobertura de encerramento
+            </p>
+          </div>
+          <span className={`${t.badge} uppercase tracking-wider px-2 py-1 rounded border border-primary/30 text-primary bg-primary/5 shrink-0`}>
+            Nível secretaria estadual
+          </span>
         </div>
-        <span className={`${t.badge} uppercase tracking-wider px-2 py-1 rounded border border-primary/30 text-primary bg-primary/5 shrink-0`}>
-          Nível secretaria estadual
-        </span>
-      </div>
+      )}
 
       {/* Resumo por nível */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
